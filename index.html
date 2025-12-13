@@ -88,7 +88,6 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-      /* GPU HACK for smoother rendering */
       transform: translateZ(0);
     }
 
@@ -123,22 +122,18 @@
     .accordion-content {
       display: grid;
       grid-template-rows: 0fr;
-      /* The Secret Sauce: Custom Cubic Bezier for "Heavy Luxury" feel */
       transition: grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: grid-template-rows;
     }
     
-    /* The inner wrapper handles the content animation */
     .accordion-inner {
       overflow: hidden;
       opacity: 0;
       transform: translateY(-10px);
       transition: opacity 0.4s ease, transform 0.4s ease;
-      /* Prevent blur lag by isolating painting */
       transform: translateZ(0); 
     }
 
-    /* Active State */
     .accordion-content.active {
       grid-template-rows: 1fr;
     }
@@ -146,7 +141,6 @@
     .accordion-content.active .accordion-inner {
       opacity: 1;
       transform: translateY(0);
-      /* Staggered delay: The box opens, THEN text slides in. Pure class. */
       transition-delay: 0.2s;
     }
     
@@ -313,21 +307,23 @@
     </div>
 
     <div class="space-y-4">
+      
       <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card1">
         <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel1', 'card1', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">01</span>
-              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Scholarships & Pathway</span>
+              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Scholarships & Player Pathway</span>
           </div>
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel1" class="accordion-content">
           <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
-            <p class="text-gray-400 text-sm leading-relaxed mb-4">Direct access to our development ecosystem with financial support opportunities.</p>
-            <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Access to CHF 100k scholarship pool</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Guaranteed pathway entry</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Scout & Agent visibility</li>
+            <ul class="space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Chance to receive support from our CHF 100,000 scholarship pool</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Guaranteed entry into TalentiDO’s long-term development pathway</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Priority access to TalentiDO camps and advanced squads</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Selection opportunities for tournament squads</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Visibility to clubs, scouts and agents</li>
             </ul>
           </div>
         </div>
@@ -337,17 +333,18 @@
         <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel2', 'card2', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">02</span>
-              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Elite Training</span>
+              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Elite Training & Skill Development</span>
           </div>
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel2" class="accordion-content">
           <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
-             <p class="text-gray-400 text-sm leading-relaxed mb-4">European standard coaching focused on high-performance metrics.</p>
-             <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Technical mastery (control, dribbling)</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Speed & Agility workshops</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Game intelligence tactics</li>
+             <ul class="space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>European-standard elite training sessions</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Mastery of core football skills (control, dribbling, passing, shooting)</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Speed, agility and footwork development used in top academies</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Simple tactical lessons to improve game intelligence</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Goalkeeper training slots based on availability and performance</li>
             </ul>
           </div>
         </div>
@@ -357,36 +354,81 @@
         <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel3', 'card3', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">03</span>
-              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Data & Feedback</span>
+              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Performance Tracking & Assessment</span>
           </div>
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel3" class="accordion-content">
           <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
-             <p class="text-gray-400 text-sm leading-relaxed mb-4">We don't guess. We measure. Professional grade assessment.</p>
-             <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>GPS-lite speed & distance tracking</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Personalized improvement plans</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Monthly performance certificates</li>
+             <ul class="space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Complete technical, physical and behavioural player assessment</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Personalized improvement plan for faster growth</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Baseline tests to measure real month-to-month progress</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>GPS-lite tracking for speed, distance and agility metrics</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Monthly performance certificate signed by coaches</li>
             </ul>
           </div>
         </div>
       </div>
 
-       <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card4">
+      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card4">
         <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel4', 'card4', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">04</span>
-              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Matches & Exposure</span>
+              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Coaching & Mentorship</span>
           </div>
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel4" class="accordion-content">
           <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
-             <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Internal mini-leagues</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Video highlights for parents</li>
-              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Competitive friendly matches</li>
+             <ul class="space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Mentorship from certified coaches and experienced players</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Training that builds confidence, discipline and teamwork</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Mental coaching for focus, emotional control and leadership</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Regular coach review sessions with clear feedback</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Meet-and-learn events with Swiss players and coaches</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card5">
+        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel5', 'card5', this)">
+          <div class="flex items-center gap-6">
+              <span class="text-brand-purple font-mono text-xl">05</span>
+              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Matches, Exposure & Media</span>
+          </div>
+          <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
+        </button>
+        <div id="panel5" class="accordion-content">
+          <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
+             <ul class="space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Monthly internal mini-league matches</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Friendly matches and small competitions</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Video breakdowns for smarter decision-making</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Match video highlights sent to parents and posted online</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Short video clips to show visible improvement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card6">
+        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel6', 'card6', this)">
+          <div class="flex items-center gap-6">
+              <span class="text-brand-purple font-mono text-xl">06</span>
+              <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Profile & Safety</span>
+          </div>
+          <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
+        </button>
+        <div id="panel6" class="accordion-content">
+          <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
+             <ul class="space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Digital TalentiDO Football Pass Profile with stats and videos</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Transparent monthly progress updates for parents</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Weekly parent communication and updates</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Safe, supervised Zurich environment</li>
+              <li class="flex gap-3"><span class="text-brand-purple">✦</span>Clear discipline and anti-harm policy for healthy habits</li>
             </ul>
           </div>
         </div>
