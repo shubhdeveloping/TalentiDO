@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>TalentiDO Football Pass | Structured Youth Development in Switzerland</title>
+  <title>TalentiDO Football Pass | Christmas Special</title>
 
-  <!-- SEO & TRUST -->
-  <meta name="description" content="Structured football development program for children in Switzerland. Elite coaching, safety-first approach, clear progress tracking. Christmas access price CHF 149.">
-  <meta property="og:title" content="TalentiDO Football Pass – Structured Youth Development">
-  <meta property="og:description" content="A transparent, safety-first football development pathway for young players in Switzerland. Limited 2025 access.">
+  <!-- SEO -->
+  <meta name="description" content="Give your child elite football training in Switzerland. Christmas Special: CHF 149 for a full year. Limited to 100 passes.">
+  <meta property="og:title" content="TalentiDO Football Pass – Christmas Special">
+  <meta property="og:description" content="Elite football training, scholarships & exposure for young players in Switzerland. Save 85%.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://talentido.com/og-image.jpg">
   <meta property="og:url" content="https://talentido.com">
 
   <!-- Fonts -->
@@ -21,6 +22,7 @@
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -56,8 +58,8 @@
     .accordion-content {
       max-height:0;
       overflow:hidden;
-      opacity:0;
       transition:max-height .4s ease, opacity .3s ease;
+      opacity:0
     }
     .accordion-content.active { opacity:1 }
 
@@ -72,156 +74,108 @@
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass rounded-2xl flex items-center justify-between px-6 z-50">
   <div class="font-display font-bold text-2xl">
     talent<span class="text-brand-purple">iDO</span>
-    <span class="ml-2 text-xs font-mono border border-brand-lilac/40 px-2 py-0.5 rounded">SWITZERLAND</span>
+    <span class="ml-2 text-xs font-mono border border-brand-lilac/40 px-2 py-0.5 rounded">XMAS</span>
   </div>
 
   <div class="hidden md:flex gap-8 text-sm text-gray-300">
-    <a href="#program" class="hover:text-white">Program</a>
-    <a href="#process" class="hover:text-white">How It Works</a>
-    <a href="#pricing" class="hover:text-white">Pricing</a>
+    <a href="#offer" class="hover:text-white">Offer</a>
+    <a href="#benefits" class="hover:text-white">Benefits</a>
   </div>
 
-  <a href="#pricing" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold">
-    Register
+  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold">
+    Claim Pass
   </a>
 </nav>
 
 <!-- HERO -->
 <section class="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 pt-32">
-  <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
-    A STRUCTURED FOOTBALL DEVELOPMENT PROGRAM<br>
-    <span class="text-brand-lilac">For Young Players in Switzerland</span>
+  <h1 class="text-5xl md:text-8xl font-display font-bold mb-6">
+    THE ULTIMATE<br>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-purple">
+      CHRISTMAS GIFT
+    </span>
   </h1>
 
-  <p class="text-gray-400 max-w-2xl mb-10">
-    TalentiDO provides a transparent, safety-first football development pathway
-    designed to support long-term growth, discipline, and confidence in young players.
+  <p class="text-gray-400 max-w-xl mb-10">
+    Give your child the professional football advantage.<br>
+    <span class="text-white">Limited 2025 intake.</span>
   </p>
 
-  <!-- TRUST SIGNALS -->
-  <div class="flex flex-wrap justify-center gap-3 text-xs text-gray-300">
-    <span class="border border-white/20 px-3 py-1 rounded-full">✓ Supervised Sessions</span>
-    <span class="border border-white/20 px-3 py-1 rounded-full">✓ Child Protection Policy</span>
-    <span class="border border-white/20 px-3 py-1 rounded-full">✓ Zurich & Zug Facilities</span>
+  <!-- OFFER -->
+  <div id="offer" class="relative max-w-md w-full">
+    <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-500/10 border border-red-500/50 px-4 py-1 rounded-full text-xs font-bold">
+      Only 100 Passes Available
+    </div>
+
+    <div class="glass rounded-3xl p-8">
+      <span class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl">SAVE 85%</span>
+
+      <h3 class="font-mono text-sm tracking-widest text-gray-300 mb-2">TalentiDO Football Pass</h3>
+
+      <div class="flex justify-center items-baseline gap-4 mb-6">
+        <span class="line-through text-gray-400">CHF 1000</span>
+        <span class="text-6xl font-display font-bold text-brand-gold">149</span>
+      </div>
+
+      <p class="text-sm text-gray-300 mb-6">
+        Full year of elite training, scholarships & exposure.
+      </p>
+
+      <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold">
+        Get the Gift 🎁
+      </button>
+
+      <p class="text-xs text-gray-400 mt-4 text-center">
+        Offer ends January 7, 2026 • Instant Digital Certificate
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="process" class="max-w-5xl mx-auto py-20 px-6">
-  <h2 class="text-3xl font-display font-bold text-center mb-12">
-    How The Program Works
-  </h2>
-
-  <div class="grid md:grid-cols-4 gap-6 text-sm text-gray-300">
-    <div class="glass p-6 rounded-xl">
-      <span class="font-bold text-brand-lilac">Step 1</span>
-      <p class="mt-2">Registration & player profile creation</p>
-    </div>
-    <div class="glass p-6 rounded-xl">
-      <span class="font-bold text-brand-lilac">Step 2</span>
-      <p class="mt-2">Skill assessment & ability-based grouping</p>
-    </div>
-    <div class="glass p-6 rounded-xl">
-      <span class="font-bold text-brand-lilac">Step 3</span>
-      <p class="mt-2">Weekly training & structured evaluations</p>
-    </div>
-    <div class="glass p-6 rounded-xl">
-      <span class="font-bold text-brand-lilac">Step 4</span>
-      <p class="mt-2">Progress reports & pathway opportunities</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRAM DETAILS -->
-<section id="program" class="py-20 px-6 max-w-4xl mx-auto">
-  <h2 class="text-3xl font-display font-bold text-center mb-12">
-    Program Components
+<!-- BENEFITS -->
+<section id="benefits" class="py-20 px-6 max-w-4xl mx-auto">
+  <h2 class="text-4xl font-display font-bold text-center mb-12">
+    What's Included
   </h2>
 
   <div class="space-y-5">
+    <!-- ITEM -->
     <div class="glass rounded-2xl">
       <button class="w-full p-6 flex justify-between items-center text-left"
         aria-expanded="false"
         aria-controls="acc1"
         onclick="toggleAccordion('acc1', this)">
-        <span class="font-display text-xl">Training & Development</span>
+        <span class="font-display text-xl">Scholarships & Pathway</span>
         <span class="accordion-icon text-2xl">+</span>
       </button>
+
       <div id="acc1" class="accordion-content px-6 pb-6">
         <ul class="space-y-2 text-gray-300 text-sm">
-          <li>• European-standard technical training</li>
-          <li>• Speed, coordination & game intelligence</li>
-          <li>• Mental discipline and teamwork focus</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass rounded-2xl">
-      <button class="w-full p-6 flex justify-between items-center text-left"
-        aria-expanded="false"
-        aria-controls="acc2"
-        onclick="toggleAccordion('acc2', this)">
-        <span class="font-display text-xl">Monitoring & Communication</span>
-        <span class="accordion-icon text-2xl">+</span>
-      </button>
-      <div id="acc2" class="accordion-content px-6 pb-6">
-        <ul class="space-y-2 text-gray-300 text-sm">
-          <li>• Monthly progress summaries</li>
-          <li>• Clear parent communication</li>
-          <li>• Transparent development benchmarks</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass rounded-2xl">
-      <button class="w-full p-6 flex justify-between items-center text-left"
-        aria-expanded="false"
-        aria-controls="acc3"
-        onclick="toggleAccordion('acc3', this)">
-        <span class="font-display text-xl">Safety & Environment</span>
-        <span class="accordion-icon text-2xl">+</span>
-      </button>
-      <div id="acc3" class="accordion-content px-6 pb-6">
-        <ul class="space-y-2 text-gray-300 text-sm">
-          <li>• Supervised sessions only</li>
-          <li>• Clear discipline & anti-harm policies</li>
-          <li>• Safe Swiss training facilities</li>
+          <li>✦ CHF 100k scholarship pool</li>
+          <li>✦ Guaranteed pathway entry</li>
+          <li>✦ Scout & club visibility</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="py-20 px-6 text-center">
-  <div class="max-w-md mx-auto glass rounded-3xl p-8">
-    <p class="text-sm text-gray-400 mb-2">Structured Program Value: CHF 1000+</p>
-    <div class="text-6xl font-display font-bold text-brand-gold mb-4">CHF 149</div>
-
-    <p class="text-sm text-gray-300 mb-6">
-      Christmas access price for early families.<br>
-      Limited number of registrations for 2025.
-    </p>
-
-    <button class="w-full py-4 rounded-xl bg-brand-lilac text-black font-bold">
-      Register for the 2025 Program
-    </button>
-
-    <p class="text-xs text-gray-400 mt-4">
-      Offer ends January 7, 2026 • Digital confirmation provided
-    </p>
-  </div>
-</section>
+<!-- MOBILE STICKY CTA -->
+<div class="fixed bottom-4 left-4 right-4 z-40 md:hidden">
+  <a href="#offer" class="block text-center py-4 rounded-full bg-brand-lilac text-black font-bold shadow-xl">
+    Buy Pass – CHF 149
+  </a>
+</div>
 
 <!-- FOOTER -->
-<footer class="py-20 text-center border-t border-white/5 text-sm text-gray-500">
-  <p class="mb-2">TalentiDO · Zurich & Zug · Switzerland</p>
-  <p>Baarerstrasse 141, 6300 Zug</p>
-  <p class="mt-4">© 2025 TalentiDO. All rights reserved.</p>
+<footer class="py-20 text-center border-t border-white/5">
+  <h2 class="text-4xl font-display font-bold mb-6">WRAP UP THEIR FUTURE</h2>
+  <p class="text-gray-400 mb-10">The best gift for a young footballer.</p>
+  <p class="text-xs text-gray-600">© 2025 TalentiDO · Switzerland</p>
 </footer>
 
 <script>
