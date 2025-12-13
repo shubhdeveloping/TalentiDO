@@ -17,10 +17,9 @@
           colors: {
             black: '#050505',
             brand: {
-              purple: '#D041E6',
-              darkPurple: '#4a0f5c',
-              gold: '#FFD700',
-              goldLight: '#FCEEA7',
+              purple: '#D041E6',   // Main Brand Purple
+              lilac: '#E9D5FF',    // Light Purple (Replaces Yellow/Gold)
+              dark: '#2E1065',
             }
           },
           fontFamily: {
@@ -29,8 +28,8 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           backgroundImage: {
-            'christmas-gradient': 'linear-gradient(135deg, #D041E6 0%, #9D00FF 50%, #FFD700 100%)',
-            'gold-text': 'linear-gradient(to bottom, #FCEEA7, #FFD700)',
+            'frost-gradient': 'linear-gradient(135deg, #D041E6 0%, #A855F7 50%, #E9D5FF 100%)',
+            'lilac-glow': 'linear-gradient(to bottom, #F3E8FF, #D041E6)',
           },
           animation: {
             'snow': 'snow 10s linear infinite',
@@ -59,7 +58,7 @@
 
     /* Scrollbar */
     ::-webkit-scrollbar { width:6px }
-    ::-webkit-scrollbar-thumb { background:#FFD700; border-radius:4px }
+    ::-webkit-scrollbar-thumb { background:#D041E6; border-radius:4px }
 
     /* Ultra Premium Glass Effect */
     .glass-card {
@@ -79,7 +78,7 @@
 
     .glass-panel:hover {
       background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-      border-color: rgba(208, 65, 230, 0.3); /* Purple hint on hover */
+      border-color: rgba(233, 213, 255, 0.4); /* Lilac hint on hover */
       transform: translateY(-2px);
     }
 
@@ -108,12 +107,18 @@
       transform: rotate(45deg);
     }
     
-    /* Snow particles (simulated via CSS background) */
+    /* Snow particles */
     .snow-bg {
         background-image: radial-gradient(white 1px, transparent 1px), radial-gradient(white 1px, transparent 1px);
         background-size: 50px 50px;
         background-position: 0 0, 25px 25px;
         opacity: 0.1;
+    }
+    
+    /* Social Icon Hover */
+    .social-icon:hover {
+        transform: translateY(-3px);
+        color: #D041E6;
     }
   </style>
 </head>
@@ -122,12 +127,13 @@
 
 <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-full snow-bg pointer-events-none z-0 animate-snow"></div>
 <div class="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple rounded-full blur-[150px] opacity-[0.15] pointer-events-none"></div>
-<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-gold rounded-full blur-[150px] opacity-[0.1] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-lilac rounded-full blur-[150px] opacity-[0.08] pointer-events-none"></div>
 
 <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass-card rounded-2xl flex items-center justify-between px-6 z-50">
   <div class="flex items-center gap-1">
-    <span class="text-2xl font-display font-bold text-white">TalentiDO</span>
-    <span class="text-xs font-mono text-brand-gold border border-brand-gold/30 px-2 py-0.5 rounded ml-2">XMAS EDITION</span>
+    <span class="text-2xl font-display font-bold text-white">talent</span>
+    <span class="text-2xl font-display font-bold text-brand-purple">iDO</span>
+    <span class="text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2">XMAS EDITION</span>
   </div>
 
   <div class="hidden md:flex gap-10 text-sm text-gray-300">
@@ -135,21 +141,21 @@
     <a href="#benefits" class="hover:text-white transition-colors">What's Included</a>
   </div>
 
-  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-gold text-black font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(255,215,0,0.4)]">
+  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(233,213,255,0.4)]">
     Claim Pass
   </a>
 </nav>
 
 <section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-10 relative z-10">
   <div class="mb-6 animate-pulse-slow">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9D5FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 3L14.5 8.5L20.5 9.25L16 13.25L17.25 19L12 16L6.75 19L8 13.25L3.5 9.25L9.5 8.5L12 3Z" />
     </svg>
   </div>
 
   <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6 leading-none">
     THE ULTIMATE<br/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-goldLight to-brand-gold">
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-lilac to-brand-purple">
       CHRISTMAS GIFT
     </span>
   </h1>
@@ -160,17 +166,17 @@
   </p>
 
   <div id="offer" class="w-full max-w-md relative group">
-    <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-gold to-brand-purple rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+    <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
     
     <div class="relative glass-card rounded-3xl p-8 md:p-10 border border-white/10">
-      <div class="absolute top-0 right-0 bg-brand-gold text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl">
+      <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl">
         SAVE 85%
       </div>
       
       <h3 class="text-gray-400 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
       
       <div class="flex items-baseline justify-center gap-4 mb-6">
-        <span class="text-2xl text-gray-500 line-through decoration-red-500 decoration-2">CHF 1000</span>
+        <span class="text-2xl text-gray-500 line-through decoration-brand-purple decoration-2">CHF 1000</span>
         <span class="text-6xl font-display font-bold text-white">149</span>
         <span class="text-xl text-gray-400">/ yr</span>
       </div>
@@ -179,7 +185,7 @@
         Unlock a full year of elite training, scholarships, and exposure. The perfect start to a pro journey.
       </p>
       
-      <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-gold to-[#B38728] text-black font-bold text-lg hover:shadow-[0_0_20px_rgba(255,215,0,0.3)] hover:scale-[1.02] transition-all transform">
+      <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-lg hover:shadow-[0_0_20px_rgba(208,65,230,0.4)] hover:scale-[1.02] transition-all transform">
         Get the Gift 🎁
       </button>
       
@@ -203,18 +209,18 @@
     <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel1', this)">
         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-gold text-sm font-bold border border-white/10">1</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-gold transition-colors">Scholarships & Player Pathway</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">1</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Scholarships & Player Pathway</span>
         </div>
         <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel1" class="accordion-content">
         <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Chance to receive support from our CHF 100k scholarship pool</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Guaranteed entry into TalentiDO’s long-term development pathway</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Priority access to TalentiDO camps and advanced squads</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Selection opportunities for tournament squads</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Visibility to clubs, scouts and agents</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Chance to receive support from our CHF 100k scholarship pool</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Guaranteed entry into TalentiDO’s long-term development pathway</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Priority access to TalentiDO camps and advanced squads</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Selection opportunities for tournament squads</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Visibility to clubs, scouts and agents</li>
         </ul>
       </div>
     </div>
@@ -222,18 +228,18 @@
     <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel2', this)">
         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-gold text-sm font-bold border border-white/10">2</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-gold transition-colors">Elite Training & Skill Development</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">2</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Elite Training & Skill Development</span>
         </div>
         <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel2" class="accordion-content">
         <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>European-standard elite training sessions</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Mastery of core football skills (control, dribbling, passing)</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Speed, agility and footwork development</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Simple tactical lessons to improve game intelligence</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Goalkeeper training slots based on availability</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>European-standard elite training sessions</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Mastery of core football skills (control, dribbling, passing)</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Speed, agility and footwork development</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Simple tactical lessons to improve game intelligence</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Goalkeeper training slots based on availability</li>
         </ul>
       </div>
     </div>
@@ -241,18 +247,18 @@
     <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel3', this)">
         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-gold text-sm font-bold border border-white/10">3</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-gold transition-colors">Performance Tracking & Assessment</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">3</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Performance Tracking & Assessment</span>
         </div>
         <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel3" class="accordion-content">
         <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Complete technical, physical and behavioural player assessment</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Personalized improvement plan for faster growth</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Baseline tests to measure real month-to-month progress</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>GPS-lite tracking for speed, distance and agility metrics</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Monthly performance certificate signed by coaches</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Complete technical, physical and behavioural player assessment</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Personalized improvement plan for faster growth</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Baseline tests to measure real month-to-month progress</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>GPS-lite tracking for speed, distance and agility metrics</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Monthly performance certificate signed by coaches</li>
         </ul>
       </div>
     </div>
@@ -260,18 +266,18 @@
     <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel4', this)">
          <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-gold text-sm font-bold border border-white/10">4</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-gold transition-colors">Coaching & Mentorship</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">4</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Coaching & Mentorship</span>
         </div>
         <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel4" class="accordion-content">
         <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Mentorship from certified coaches and experienced players</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Training that builds confidence, discipline and teamwork</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Mental coaching for focus, emotional control and leadership</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Regular coach review sessions with clear feedback</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Meet-and-learn events with Swiss players and coaches</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Mentorship from certified coaches and experienced players</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Training that builds confidence, discipline and teamwork</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Mental coaching for focus, emotional control and leadership</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Regular coach review sessions with clear feedback</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Meet-and-learn events with Swiss players and coaches</li>
         </ul>
       </div>
     </div>
@@ -279,18 +285,18 @@
     <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel5', this)">
          <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-gold text-sm font-bold border border-white/10">5</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-gold transition-colors">Matches & Exposure</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">5</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Matches & Exposure</span>
         </div>
         <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel5" class="accordion-content">
         <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Monthly internal mini-league matches</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Friendly matches and small competitions</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Video breakdowns for smarter decision-making</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Match video highlights sent to parents and posted online</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Short video clips to show visible improvement</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Monthly internal mini-league matches</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Friendly matches and small competitions</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Video breakdowns for smarter decision-making</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Match video highlights sent to parents and posted online</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Short video clips to show visible improvement</li>
         </ul>
       </div>
     </div>
@@ -298,18 +304,18 @@
     <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel6', this)">
          <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-gold text-sm font-bold border border-white/10">6</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-gold transition-colors">Profile, Safety & Communication</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">6</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Profile, Safety & Communication</span>
         </div>
         <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel6" class="accordion-content">
         <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Digital TalentiDO Football Pass Profile with stats</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Transparent monthly progress updates for parents</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Weekly parent communication and updates</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Safe, supervised Zurich environment</li>
-          <li class="flex gap-3"><span class="text-brand-gold">✦</span>Clear discipline and anti-harm policy for healthy habits</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Digital TalentiDO Football Pass Profile with stats</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Transparent monthly progress updates for parents</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Weekly parent communication and updates</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Safe, supervised Zurich environment</li>
+          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Clear discipline and anti-harm policy for healthy habits</li>
         </ul>
       </div>
     </div>
@@ -330,11 +336,37 @@
     The best gift you can give a young footballer.
   </p>
 
-  <button class="px-12 py-5 rounded-full bg-brand-gold text-black font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(255,215,0,0.3)]">
+  <button class="px-12 py-5 rounded-full bg-brand-lilac text-black font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(233,213,255,0.3)]">
     BUY PASS FOR CHF 149
   </button>
 
-  <div class="mt-16 flex flex-col items-center gap-2">
+  <div class="mt-20 flex justify-center gap-8 items-center">
+    <a href="https://x.com/TalentIDO_" target="_blank" class="text-gray-400 social-icon transition-all">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+      </svg>
+    </a>
+    
+    <a href="https://www.linkedin.com/company/talentido/" target="_blank" class="text-gray-400 social-icon transition-all">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path>
+      </svg>
+    </a>
+
+    <a href="https://www.instagram.com/talentido_?igsh=MXN2bWttNG5mZzVvcg==" target="_blank" class="text-gray-400 social-icon transition-all">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.38c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+      </svg>
+    </a>
+
+    <a href="https://www.tiktok.com/@talentido_" target="_blank" class="text-gray-400 social-icon transition-all">
+       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+         <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 3.18-2.58 5.74-5.76 5.74-3.18 0-5.76-2.58-5.76-5.76 0-3.18 2.58-5.76 5.76-5.76 1.01 0 1.95.3 2.76.81v-4.08c-.76-.46-1.64-.73-2.59-.73-2.95 0-5.33 2.39-5.33 5.34s2.39 5.34 5.33 5.34c2.95 0 5.33-2.39 5.33-5.34V4.77c0-.98.79-1.77 1.77-1.77h.23z" />
+       </svg>
+    </a>
+  </div>
+
+  <div class="mt-8 flex flex-col items-center gap-2">
     <p class="text-gray-600 text-sm">© 2025 TalentiDO · Zurich</p>
     <div class="flex gap-4 text-xs text-gray-700">
         <span>Terms & Conditions</span>
@@ -344,7 +376,7 @@
 </footer>
 
 <div id="chatbox">
-  <button onclick="toggleChat()" class="group flex items-center justify-center w-16 h-16 rounded-full bg-christmas-gradient text-white shadow-[0_10px_40px_-10px_rgba(208,65,230,0.5)] hover:scale-110 transition duration-300 border border-white/20">
+  <button onclick="toggleChat()" class="group flex items-center justify-center w-16 h-16 rounded-full bg-frost-gradient text-white shadow-[0_10px_40px_-10px_rgba(208,65,230,0.5)] hover:scale-110 transition duration-300 border border-white/20">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 group-hover:animate-pulse">
       <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813a3.75 3.75 0 002.576-2.576l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5z" clip-rule="evenodd" />
     </svg>
@@ -352,15 +384,15 @@
 
   <div id="chat-panel" class="hidden mt-4 w-80 glass-card rounded-2xl p-5 border-t border-brand-purple/50 shadow-2xl">
     <div class="flex items-center gap-3 mb-4">
-      <div class="w-2 h-2 rounded-full bg-brand-gold shadow-[0_0_10px_gold]"></div>
+      <div class="w-2 h-2 rounded-full bg-brand-lilac shadow-[0_0_10px_#E9D5FF]"></div>
       <p class="text-xs font-mono text-gray-400">CONCIERGE</p>
     </div>
     <p class="text-sm text-gray-200 mb-4 leading-relaxed">
       Hello! I can explain how the 1000 CHF value is packed into the 149 CHF Christmas Pass.
     </p>
     <div class="relative">
-       <input type="text" placeholder="Ask about scholarships…" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-brand-gold focus:outline-none transition"/>
-       <button class="absolute right-3 top-3 text-brand-gold">➜</button>
+       <input type="text" placeholder="Ask about scholarships…" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-brand-lilac focus:outline-none transition"/>
+       <button class="absolute right-3 top-3 text-brand-lilac">➜</button>
     </div>
   </div>
 </div>
