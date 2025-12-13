@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TalentiDO | Football Ecosystem</title>
+  <title>TalentiDO | The Football Ecosystem</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,600,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <script>
@@ -19,7 +17,7 @@
           colors: {
             brand: {
               purple: '#9D00FF',
-              violet: '#D041E6',
+              dark: '#0A0A0A',
               gold: '#FFD700'
             }
           },
@@ -28,12 +26,18 @@
             sans: ['Inter', 'sans-serif'],
           },
           animation: {
-            float: 'float 6s ease-in-out infinite',
+            'fade-up': 'fadeUp 0.8s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'shimmer': 'shimmer 2s linear infinite',
           },
           keyframes: {
-            float: {
-              '0%,100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-12px)' },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
             }
           }
         }
@@ -42,164 +46,310 @@
   </script>
 
   <style>
+    /* --- NEW PURPLE GLASS BACKGROUND --- */
     body {
-      background:#050505;
-      color:white;
+      /* Base dark color */
+      background-color: #0f0518; 
+      
+      /* Multi-layered gradients for the "Glassy" depth */
+      background-image: 
+        /* Top Center Glow (Main Light Source) */
+        radial-gradient(circle at 50% 0%, #4a0a7f 0%, transparent 60%),
+        /* Bottom Left subtle glow */
+        radial-gradient(circle at 0% 100%, #2a0547 0%, transparent 50%),
+        /* subtle texture overlay */
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      
+      /* Make the background pattern slightly visible */
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      background-attachment: fixed;
+      
+      color: white;
+      overflow-x: hidden;
     }
 
-    .glass {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.08);
+    /* Modern Gold Text */
+    .gold-gradient {
+      background: linear-gradient(135deg, #FFF5C3 0%, #BF953F 50%, #B8860B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 0px 30px rgba(191, 149, 63, 0.5);
     }
 
-    .gold-text {
-      background: linear-gradient(to right,#BF953F,#FCF6BA,#AA771C);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+    /* Spotlight Card Effect */
+    .spotlight-card {
+      position: relative;
+      /* More transparency for the purple bg to show through */
+      background: rgba(255, 255, 255, 0.02); 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      overflow: hidden;
+    }
+    
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(
+        800px circle at var(--mouse-x) var(--mouse-y),
+        rgba(157, 0, 255, 0.6), /* Purple Glow Border */
+        transparent 40%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
     }
 
-    .ecosystem-card {
-      transition: all .4s ease;
+    .spotlight-card:hover::before {
+      opacity: 1;
     }
 
-    .ecosystem-card.active {
-      background: rgba(255,255,255,0.08);
-      transform: scale(1.03);
+    .spotlight-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y),
+        rgba(157, 0, 255, 0.1), /* Purple Inner Glow */
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+      z-index: -1;
     }
 
+    .spotlight-card:hover::after {
+      opacity: 1;
+    }
+
+    /* Details Expansion */
     .details {
-      max-height:0;
-      opacity:0;
-      overflow:hidden;
-      transition: all .4s ease;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s ease-out;
+    }
+    
+    .details > div {
+      overflow: hidden;
     }
 
-    .ecosystem-card.active .details {
-      max-height:300px;
-      opacity:1;
-      margin-top:1rem;
+    .spotlight-card.active .details {
+      grid-template-rows: 1fr;
     }
 
+    .spotlight-card.active {
+      background: rgba(157, 0, 255, 0.08); /* Active state is slightly purple */
+      box-shadow: 0 0 40px rgba(157, 0, 255, 0.15);
+      border-color: rgba(157, 0, 255, 0.4);
+    }
+
+    /* Snow */
     .snowflake {
       position: fixed;
-      top: -10px;
-      opacity: .6;
+      top: -20px;
+      color: white;
+      opacity: 0.3;
       pointer-events: none;
       animation: fall linear infinite;
+      z-index: 50;
     }
 
     @keyframes fall {
-      to { transform: translateY(110vh); }
+      to { transform: translateY(105vh); }
     }
   </style>
 </head>
 
-<body>
+<body class="antialiased selection:bg-brand-purple selection:text-white">
 
-<!-- Snow -->
 <div id="snow"></div>
 
-<!-- NAV -->
-<nav class="sticky top-0 z-50 glass px-6 py-4 flex justify-between items-center">
-  <span class="font-display font-bold text-xl">
-    talent<span class="text-brand-purple">iDO</span>
-  </span>
-  <span class="text-xs border border-white/20 px-3 py-1 rounded-full">
-    Christmas Launch
-  </span>
+<nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+  <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+    <div class="glass px-4 py-2 rounded-full border border-white/10 backdrop-blur-md bg-white/5 flex items-center gap-3">
+      <span class="font-display font-bold text-lg tracking-wide">
+        Talenti<span class="text-brand-purple">DO</span>
+      </span>
+    </div>
+    
+    <a href="#" class="group relative px-5 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-brand-purple/20 transition-all overflow-hidden">
+      <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-shimmer"></div>
+      <span class="text-xs font-semibold tracking-wider text-gray-200 group-hover:text-white transition-colors">
+        CHRISTMAS LAUNCH 🎄
+      </span>
+    </a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="text-center px-6 pt-28 pb-20">
-  <div class="inline-block mb-6 px-4 py-1 rounded-full glass text-xs tracking-widest">
-    🎄 UNWRAP YOUR FUTURE
+<section class="relative pt-40 pb-20 px-6 min-h-[90vh] flex flex-col justify-center items-center text-center z-10">
+  
+  <div class="opacity-0 animate-fade-up" style="animation-delay: 0.1s;">
+    <span class="inline-block py-1 px-3 rounded-full bg-brand-purple/20 border border-brand-purple/30 text-purple-200 text-[10px] font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(157,0,255,0.3)]">
+      SWISS ENGINEERED FOOTBALL
+    </span>
   </div>
 
-  <h1 class="text-5xl md:text-7xl font-display font-bold mb-6">
+  <h1 class="text-6xl md:text-8xl font-display font-bold mb-8 leading-[0.9] tracking-tight opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
     THE FOOTBALL<br>
-    <span class="gold-text">ECOSYSTEM</span>
+    <span class="gold-gradient">ECOSYSTEM</span>
   </h1>
 
-  <p class="text-gray-400 max-w-2xl mx-auto mb-12 text-lg">
-    A single platform where players, parents, clubs and supporters grow together.
+  <p class="text-gray-300 max-w-xl mx-auto mb-12 text-lg md:text-xl font-light opacity-0 animate-fade-up" style="animation-delay: 0.3s;">
+    Empowering players, connecting parents, and upgrading clubs. The future of talent development starts here.
   </p>
+
+  <div class="flex gap-4 opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
+    <a href="#ecosystem" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition duration-300">
+      Explore Ecosystem
+    </a>
+  </div>
 </section>
 
-<!-- ECOSYSTEM -->
-<section class="max-w-7xl mx-auto px-6 pb-28 grid grid-cols-1 md:grid-cols-3 gap-6">
-
-  <!-- CARD -->
-  <div onclick="toggle(this)" class="ecosystem-card glass rounded-2xl p-6 cursor-pointer">
-    <h3 class="font-display text-2xl mb-2">PLAYER</h3>
-    <p class="text-gray-400 text-sm">Improve faster. Get visibility.</p>
-    <div class="details text-sm text-gray-300">
-      <ul class="mt-4 space-y-2">
-        <li>✓ Performance tracking</li>
-        <li>✓ Verified profile</li>
-        <li>✓ Scholarship access</li>
-      </ul>
-      <p class="mt-4 font-bold">CHF 149 / year</p>
-    </div>
+<section id="ecosystem" class="max-w-7xl mx-auto px-6 pb-32 relative z-10">
+  <div class="text-center mb-16">
+    <h2 class="font-display text-3xl font-semibold text-purple-100">Choose Your Path</h2>
   </div>
 
-  <div onclick="toggle(this)" class="ecosystem-card glass rounded-2xl p-6 cursor-pointer">
-    <h3 class="font-display text-2xl mb-2">PARENT</h3>
-    <p class="text-gray-400 text-sm">Transparency & progress.</p>
-    <div class="details text-sm text-gray-300">
-      <ul class="mt-4 space-y-2">
-        <li>✓ Monthly updates</li>
-        <li>✓ Coach feedback</li>
-      </ul>
-      <p class="mt-4 font-bold">CHF 99 / year</p>
-    </div>
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="cards-container">
 
-  <div onclick="toggle(this)" class="ecosystem-card glass rounded-2xl p-6 cursor-pointer">
-    <h3 class="font-display text-2xl mb-2">CLUB</h3>
-    <p class="text-gray-400 text-sm">Data-backed recruitment.</p>
-    <div class="details text-sm text-gray-300">
-      <ul class="mt-4 space-y-2">
-        <li>✓ Player database</li>
-        <li>✓ Scouting tools</li>
-      </ul>
-      <p class="mt-4 font-bold">CHF 499 / month</p>
+    <div onclick="toggle(this)" class="spotlight-card rounded-3xl p-8 cursor-pointer group transition-all duration-300 hover:-translate-y-2">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-display text-3xl font-bold">PLAYER</h3>
+        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 group-hover:bg-brand-purple group-hover:text-white transition">↗</div>
+      </div>
+      <p class="text-gray-400 text-sm leading-relaxed">Improve faster with data. Get seen by the best scouts in the region.</p>
+      
+      <div class="details">
+        <div class="pt-6 border-t border-white/10 mt-6">
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Pro Performance Stats</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Verified Digital CV</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Scholarship Opportunities</li>
+          </ul>
+          <div class="mt-6 flex justify-between items-end">
+             <span class="text-2xl font-display font-bold text-white">CHF 149</span>
+             <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
+    <div onclick="toggle(this)" class="spotlight-card rounded-3xl p-8 cursor-pointer group transition-all duration-300 hover:-translate-y-2">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-display text-3xl font-bold">PARENT</h3>
+        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 group-hover:bg-brand-purple group-hover:text-white transition">↗</div>
+      </div>
+      <p class="text-gray-400 text-sm leading-relaxed">Track progress transparently. Direct feedback loop with coaches.</p>
+      
+      <div class="details">
+        <div class="pt-6 border-t border-white/10 mt-6">
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Monthly Progression Reports</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Health & Safety Alerts</li>
+          </ul>
+          <div class="mt-6 flex justify-between items-end">
+             <span class="text-2xl font-display font-bold text-white">CHF 99</span>
+             <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div onclick="toggle(this)" class="spotlight-card rounded-3xl p-8 cursor-pointer group transition-all duration-300 hover:-translate-y-2">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-display text-3xl font-bold">CLUB</h3>
+        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 group-hover:bg-brand-purple group-hover:text-white transition">↗</div>
+      </div>
+      <p class="text-gray-400 text-sm leading-relaxed">Modernize recruitment. Manage your talent pipeline efficiently.</p>
+      
+      <div class="details">
+        <div class="pt-6 border-t border-white/10 mt-6">
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Full Scouting Database</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Team Management Tools</li>
+          </ul>
+          <div class="mt-6 flex justify-between items-end">
+             <span class="text-2xl font-display font-bold text-white">CHF 499</span>
+             <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">/ Month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- CTA -->
-<section class="text-center pb-32 px-6">
-  <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">
+<section class="relative py-32 px-6 text-center overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none"></div>
+  
+  <h2 class="text-5xl md:text-7xl font-display font-bold mb-8 relative z-10">
     READY TO RISE?
   </h2>
-  <p class="text-gray-400 mb-10 max-w-xl mx-auto">
-    Limited founder access. Swiss-built. Parent-friendly.
+  <p class="text-gray-300 mb-10 max-w-xl mx-auto relative z-10 text-lg">
+    Limited founder access available for this winter season.
   </p>
-  <a href="#" class="inline-block px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition">
+  <a href="#" class="relative z-10 inline-block px-12 py-5 bg-white text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition duration-300">
     Become a Member
   </a>
 </section>
 
 <script>
+  // Card Toggle Logic
   function toggle(card){
-    document.querySelectorAll('.ecosystem-card').forEach(c => {
-      if(c !== card) c.classList.remove('active');
-    });
     card.classList.toggle('active');
   }
 
+  // Spotlight Effect Logic
+  const cardsContainer = document.getElementById("cards-container");
+  const cards = document.querySelectorAll(".spotlight-card");
+
+  cardsContainer.onmousemove = e => {
+    for(const card of cards) {
+      const rect = card.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    };
+  }
+
+  // Snow Logic
   const snow = document.getElementById("snow");
-  for(let i=0;i<35;i++){
-    const s=document.createElement("div");
-    s.className="snowflake";
-    s.innerText="❄";
-    s.style.left=Math.random()*100+"vw";
-    s.style.fontSize=4+Math.random()*10+"px";
-    s.style.animationDuration=5+Math.random()*5+"s";
+  const symbols = ["❄", "•", "⋆"];
+  
+  for(let i=0; i<40; i++){
+    const s = document.createElement("div");
+    s.className = "snowflake";
+    s.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.fontSize = 8 + Math.random() * 10 + "px";
+    s.style.animationDuration = 5 + Math.random() * 10 + "s";
+    s.style.opacity = Math.random() * 0.5;
+    s.style.filter = `blur(${Math.random()}px)`;
     snow.appendChild(s);
   }
+
+  // Navbar Scroll Effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      nav.classList.add('py-4');
+      nav.classList.remove('py-6');
+      nav.firstElementChild.classList.add('bg-black/60', 'backdrop-blur-xl');
+    } else {
+      nav.classList.add('py-6');
+      nav.classList.remove('py-4');
+      nav.firstElementChild.classList.remove('bg-black/60', 'backdrop-blur-xl');
+    }
+  });
 </script>
 
 </body>
