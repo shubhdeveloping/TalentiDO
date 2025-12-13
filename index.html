@@ -33,7 +33,7 @@
             'snow': 'snow 10s linear infinite',
             'float': 'float 6s ease-in-out infinite',
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'shimmer': 'shimmer 2s linear infinite',
+            'shimmer': 'shimmer 3s linear infinite',
           },
           keyframes: {
             snow: {
@@ -79,6 +79,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      will-change: transform;
     }
 
     .glass-card {
@@ -87,6 +88,8 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      /* GPU HACK for smoother rendering */
+      transform: translateZ(0);
     }
 
     /* The Hero Offer Card */
@@ -97,6 +100,7 @@
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 50px -10px rgba(168, 85, 247, 0.3);
       position: relative;
       overflow: hidden;
+      transform: translateZ(0);
     }
     
     .holographic-card::before {
@@ -109,30 +113,53 @@
     }
 
     /* Text Gradients */
-    .text-gradient {
-      background: linear-gradient(to right, #fff, #E9D5FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
     .text-gradient-purple {
       background: linear-gradient(to right, #D946EF, #A855F7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Accordion Transitions */
+    /* --- ULTIMATE SMOOTH ACCORDION PHYSICS --- */
     .accordion-content {
-      transition: grid-template-rows 0.4s ease-out;
       display: grid;
       grid-template-rows: 0fr;
+      /* The Secret Sauce: Custom Cubic Bezier for "Heavy Luxury" feel */
+      transition: grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: grid-template-rows;
     }
-    .accordion-content > div { overflow: hidden; }
-    .accordion-content.active { grid-template-rows: 1fr; }
     
-    .accordion-icon { transition: transform 0.3s ease; }
+    /* The inner wrapper handles the content animation */
+    .accordion-inner {
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      /* Prevent blur lag by isolating painting */
+      transform: translateZ(0); 
+    }
+
+    /* Active State */
+    .accordion-content.active {
+      grid-template-rows: 1fr;
+    }
+    
+    .accordion-content.active .accordion-inner {
+      opacity: 1;
+      transform: translateY(0);
+      /* Staggered delay: The box opens, THEN text slides in. Pure class. */
+      transition-delay: 0.2s;
+    }
+    
+    .accordion-icon { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     .rotate-45 { transform: rotate(45deg); }
     
+    /* Active Card Glow */
+    .glass-card.active-card {
+        border-color: rgba(217, 70, 239, 0.4);
+        background: linear-gradient(180deg, rgba(217, 70, 239, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+        box-shadow: 0 0 30px rgba(217, 70, 239, 0.1);
+    }
+
     /* Snow particles */
     .snow-bg {
         background-image: radial-gradient(white 1.5px, transparent 1.5px), radial-gradient(white 1px, transparent 1px);
@@ -286,8 +313,8 @@
     </div>
 
     <div class="space-y-4">
-      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-colors duration-300">
-        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel1', this)">
+      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card1">
+        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel1', 'card1', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">01</span>
               <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Scholarships & Pathway</span>
@@ -295,7 +322,7 @@
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel1" class="accordion-content">
-          <div class="px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
+          <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
             <p class="text-gray-400 text-sm leading-relaxed mb-4">Direct access to our development ecosystem with financial support opportunities.</p>
             <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
               <li class="flex gap-3"><span class="text-brand-purple">✦</span>Access to CHF 100k scholarship pool</li>
@@ -306,8 +333,8 @@
         </div>
       </div>
 
-      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-colors duration-300">
-        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel2', this)">
+      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card2">
+        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel2', 'card2', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">02</span>
               <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Elite Training</span>
@@ -315,7 +342,7 @@
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel2" class="accordion-content">
-          <div class="px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
+          <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
              <p class="text-gray-400 text-sm leading-relaxed mb-4">European standard coaching focused on high-performance metrics.</p>
              <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
               <li class="flex gap-3"><span class="text-brand-purple">✦</span>Technical mastery (control, dribbling)</li>
@@ -326,8 +353,8 @@
         </div>
       </div>
 
-      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-colors duration-300">
-        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel3', this)">
+      <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card3">
+        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel3', 'card3', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">03</span>
               <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Data & Feedback</span>
@@ -335,7 +362,7 @@
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel3" class="accordion-content">
-          <div class="px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
+          <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
              <p class="text-gray-400 text-sm leading-relaxed mb-4">We don't guess. We measure. Professional grade assessment.</p>
              <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
               <li class="flex gap-3"><span class="text-brand-purple">✦</span>GPS-lite speed & distance tracking</li>
@@ -346,8 +373,8 @@
         </div>
       </div>
 
-       <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-colors duration-300">
-        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel4', this)">
+       <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-purple/40 transition-all duration-300" id="card4">
+        <button class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion('panel4', 'card4', this)">
           <div class="flex items-center gap-6">
               <span class="text-brand-purple font-mono text-xl">04</span>
               <span class="text-lg md:text-2xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Matches & Exposure</span>
@@ -355,7 +382,7 @@
           <span class="text-2xl font-light text-white/30 accordion-icon group-hover:text-white transition">+</span>
         </button>
         <div id="panel4" class="accordion-content">
-          <div class="px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
+          <div class="accordion-inner px-8 pb-8 pl-[4.5rem] md:pl-[5.5rem]">
              <ul class="space-y-2 text-gray-300 font-sans font-light text-sm">
               <li class="flex gap-3"><span class="text-brand-purple">✦</span>Internal mini-leagues</li>
               <li class="flex gap-3"><span class="text-brand-purple">✦</span>Video highlights for parents</li>
@@ -405,24 +432,19 @@
 </footer>
 
 <script>
-  // Cleaned up Logic - Maximum Performance
-  
   function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
       const body = document.body;
       const isOpen = !menu.classList.contains('hidden');
       
       if (isOpen) {
-          // Close
           menu.style.opacity = '0';
           setTimeout(() => {
               menu.classList.add('hidden');
               body.classList.remove('overflow-hidden');
           }, 300);
       } else {
-          // Open
           menu.classList.remove('hidden');
-          // small delay to allow display block to render before opacity fade in
           requestAnimationFrame(() => {
               menu.style.opacity = '1';
               body.classList.add('overflow-hidden');
@@ -430,21 +452,26 @@
       }
   }
 
-  function toggleAccordion(panelId, btn) {
+  // --- UPDATED PHYSICS LOGIC ---
+  function toggleAccordion(panelId, cardId, btn) {
     const content = document.getElementById(panelId);
+    const card = document.getElementById(cardId);
     const icon = btn.querySelector('.accordion-icon');
-    
-    // Close others
-    document.querySelectorAll('.accordion-content').forEach(el => {
-      if (el.id !== panelId) el.classList.remove('active');
-    });
-    document.querySelectorAll('.accordion-icon').forEach(ic => {
-      if (ic !== icon) ic.classList.remove('rotate-45');
-    });
+    const isActive = content.classList.contains('active');
 
-    // Toggle current
-    content.classList.toggle('active');
-    icon.classList.toggle('rotate-45');
+    // Reset all others with smooth transition
+    document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.accordion-icon').forEach(ic => ic.classList.remove('rotate-45'));
+    document.querySelectorAll('.glass-card').forEach(c => c.classList.remove('active-card'));
+
+    if (!isActive) {
+      // Small delay to allow CSS reset to paint, then activate
+      requestAnimationFrame(() => {
+        content.classList.add('active');
+        icon.classList.add('rotate-45');
+        card.classList.add('active-card');
+      });
+    }
   }
 </script>
 
