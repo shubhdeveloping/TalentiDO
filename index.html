@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>TalentiDO | The Football Ecosystem</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,7 +27,6 @@
           },
           animation: {
             'fade-up': 'fadeUp 0.8s ease-out forwards',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'shimmer': 'shimmer 2s linear infinite',
           },
           keyframes: {
@@ -46,30 +45,22 @@
   </script>
 
   <style>
-    /* --- NEW PURPLE GLASS BACKGROUND --- */
+    /* --- CORE STYLES --- */
     body {
-      /* Base dark color */
       background-color: #0f0518; 
-      
-      /* Multi-layered gradients for the "Glassy" depth */
       background-image: 
-        /* Top Center Glow (Main Light Source) */
         radial-gradient(circle at 50% 0%, #4a0a7f 0%, transparent 60%),
-        /* Bottom Left subtle glow */
         radial-gradient(circle at 0% 100%, #2a0547 0%, transparent 50%),
-        /* subtle texture overlay */
         linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      
-      /* Make the background pattern slightly visible */
       background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
       background-attachment: fixed;
-      
       color: white;
+      /* Prevent horizontal scroll on mobile */
       overflow-x: hidden;
+      width: 100%; 
     }
 
-    /* Modern Gold Text */
     .gold-gradient {
       background: linear-gradient(135deg, #FFF5C3 0%, #BF953F 50%, #B8860B 100%);
       -webkit-background-clip: text;
@@ -77,80 +68,59 @@
       text-shadow: 0px 0px 30px rgba(191, 149, 63, 0.5);
     }
 
-    /* Spotlight Card Effect */
+    /* --- CARDS --- */
     .spotlight-card {
       position: relative;
-      /* More transparency for the purple bg to show through */
       background: rgba(255, 255, 255, 0.02); 
       border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px); /* Frosted glass effect */
+      backdrop-filter: blur(10px);
       overflow: hidden;
+      transition: all 0.3s ease;
     }
     
-    .spotlight-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: radial-gradient(
-        800px circle at var(--mouse-x) var(--mouse-y),
-        rgba(157, 0, 255, 0.6), /* Purple Glow Border */
-        transparent 40%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
+    /* Only enable mouse spotlight on devices that support hover (Desktops) */
+    @media (hover: hover) {
+      .spotlight-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(157, 0, 255, 0.6), transparent 40%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+      }
+      .spotlight-card:hover::before { opacity: 1; }
     }
 
-    .spotlight-card:hover::before {
-      opacity: 1;
-    }
-
-    .spotlight-card::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(
-        600px circle at var(--mouse-x) var(--mouse-y),
-        rgba(157, 0, 255, 0.1), /* Purple Inner Glow */
-        transparent 40%
-      );
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .spotlight-card:hover::after {
-      opacity: 1;
-    }
-
-    /* Details Expansion */
     .details {
       display: grid;
       grid-template-rows: 0fr;
       transition: grid-template-rows 0.5s ease-out;
     }
-    
-    .details > div {
-      overflow: hidden;
-    }
-
-    .spotlight-card.active .details {
-      grid-template-rows: 1fr;
-    }
-
+    .details > div { overflow: hidden; }
+    .spotlight-card.active .details { grid-template-rows: 1fr; }
     .spotlight-card.active {
-      background: rgba(157, 0, 255, 0.08); /* Active state is slightly purple */
-      box-shadow: 0 0 40px rgba(157, 0, 255, 0.15);
+      background: rgba(157, 0, 255, 0.08);
       border-color: rgba(157, 0, 255, 0.4);
     }
 
-    /* Snow */
+    /* --- CHATBOX --- */
+    .chat-container {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: bottom right;
+    }
+    .chat-container.hidden-chat {
+      transform: scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* --- SNOW --- */
     .snowflake {
       position: fixed;
       top: -20px;
@@ -160,10 +130,7 @@
       animation: fall linear infinite;
       z-index: 50;
     }
-
-    @keyframes fall {
-      to { transform: translateY(105vh); }
-    }
+    @keyframes fall { to { transform: translateY(105vh); } }
   </style>
 </head>
 
@@ -172,112 +139,134 @@
 <div id="snow"></div>
 
 <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
-  <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+  <div class="max-w-7xl mx-auto px-6 py-4 md:py-6 flex justify-between items-center relative z-50">
+    
     <div class="glass px-4 py-2 rounded-full border border-white/10 backdrop-blur-md bg-white/5 flex items-center gap-3">
       <span class="font-display font-bold text-lg tracking-wide">
         Talenti<span class="text-brand-purple">DO</span>
       </span>
     </div>
-    
-    <a href="#" class="group relative px-5 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-brand-purple/20 transition-all overflow-hidden">
-      <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-shimmer"></div>
-      <span class="text-xs font-semibold tracking-wider text-gray-200 group-hover:text-white transition-colors">
-        CHRISTMAS LAUNCH 🎄
-      </span>
-    </a>
+
+    <div class="hidden md:flex gap-4">
+      <a href="#ecosystem" class="text-sm text-gray-300 hover:text-white py-2 px-4 transition">Features</a>
+      <a href="#" class="group relative px-5 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-brand-purple/20 transition-all overflow-hidden">
+        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-shimmer"></div>
+        <span class="text-xs font-semibold tracking-wider text-gray-200 group-hover:text-white transition-colors">
+          JOIN NOW
+        </span>
+      </a>
+    </div>
+
+    <button onclick="toggleMenu()" class="md:hidden p-2 text-white/80 hover:text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="fixed inset-0 bg-[#0f0518]/95 backdrop-blur-xl z-40 transform translate-y-[-100%] transition-transform duration-300 flex flex-col justify-center items-center">
+    <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2 text-white/50 hover:text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="flex flex-col gap-8 text-center">
+      <a href="#ecosystem" onclick="toggleMenu()" class="text-3xl font-display font-bold hover:text-brand-purple transition">Ecosystem</a>
+      <a href="#" onclick="toggleMenu()" class="text-3xl font-display font-bold hover:text-brand-purple transition">Pricing</a>
+      <a href="#" onclick="toggleMenu()" class="text-3xl font-display font-bold text-brand-gold hover:text-white transition">Sign Up</a>
+    </div>
   </div>
 </nav>
 
-<section class="relative pt-40 pb-20 px-6 min-h-[90vh] flex flex-col justify-center items-center text-center z-10">
+<section class="relative pt-32 pb-20 px-4 md:px-6 min-h-[90vh] flex flex-col justify-center items-center text-center z-10 w-full overflow-hidden">
   
   <div class="opacity-0 animate-fade-up" style="animation-delay: 0.1s;">
     <span class="inline-block py-1 px-3 rounded-full bg-brand-purple/20 border border-brand-purple/30 text-purple-200 text-[10px] font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(157,0,255,0.3)]">
-      SWISS ENGINEERED FOOTBALL
+      SWISS ENGINEERED
     </span>
   </div>
 
-  <h1 class="text-6xl md:text-8xl font-display font-bold mb-8 leading-[0.9] tracking-tight opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
+  <h1 class="text-4xl sm:text-6xl md:text-8xl font-display font-bold mb-6 leading-tight tracking-tight opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
     THE FOOTBALL<br>
     <span class="gold-gradient">ECOSYSTEM</span>
   </h1>
 
-  <p class="text-gray-300 max-w-xl mx-auto mb-12 text-lg md:text-xl font-light opacity-0 animate-fade-up" style="animation-delay: 0.3s;">
-    Empowering players, connecting parents, and upgrading clubs. The future of talent development starts here.
+  <p class="text-gray-300 max-w-xl mx-auto mb-10 text-base md:text-xl font-light opacity-0 animate-fade-up px-4" style="animation-delay: 0.3s;">
+    Empowering players, connecting parents, and upgrading clubs.
   </p>
 
-  <div class="flex gap-4 opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
-    <a href="#ecosystem" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition duration-300">
+  <div class="flex flex-col md:flex-row gap-4 opacity-0 animate-fade-up w-full md:w-auto px-4" style="animation-delay: 0.4s;">
+    <a href="#ecosystem" class="px-8 py-4 bg-white text-black font-bold rounded-full text-center hover:scale-105 transition duration-300">
       Explore Ecosystem
     </a>
   </div>
 </section>
 
-<section id="ecosystem" class="max-w-7xl mx-auto px-6 pb-32 relative z-10">
-  <div class="text-center mb-16">
-    <h2 class="font-display text-3xl font-semibold text-purple-100">Choose Your Path</h2>
+<section id="ecosystem" class="max-w-7xl mx-auto px-4 md:px-6 pb-32 relative z-10">
+  <div class="text-center mb-12">
+    <h2 class="font-display text-2xl md:text-3xl font-semibold text-purple-100">Choose Your Path</h2>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="cards-container">
 
-    <div onclick="toggle(this)" class="spotlight-card rounded-3xl p-8 cursor-pointer group transition-all duration-300 hover:-translate-y-2">
+    <div onclick="toggleCard(this)" class="spotlight-card rounded-3xl p-6 md:p-8 cursor-pointer group active:scale-95 transition-all">
       <div class="flex justify-between items-start mb-4">
-        <h3 class="font-display text-3xl font-bold">PLAYER</h3>
-        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 group-hover:bg-brand-purple group-hover:text-white transition">↗</div>
+        <h3 class="font-display text-2xl md:text-3xl font-bold">PLAYER</h3>
+        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400">↗</div>
       </div>
-      <p class="text-gray-400 text-sm leading-relaxed">Improve faster with data. Get seen by the best scouts in the region.</p>
+      <p class="text-gray-400 text-sm leading-relaxed">Improve faster with data. Get seen by scouts.</p>
       
       <div class="details">
         <div class="pt-6 border-t border-white/10 mt-6">
           <ul class="space-y-3 text-sm text-gray-300">
             <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Pro Performance Stats</li>
             <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Verified Digital CV</li>
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Scholarship Opportunities</li>
           </ul>
           <div class="mt-6 flex justify-between items-end">
-             <span class="text-2xl font-display font-bold text-white">CHF 149</span>
-             <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
+             <span class="text-xl md:text-2xl font-display font-bold text-white">CHF 149</span>
+             <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div onclick="toggle(this)" class="spotlight-card rounded-3xl p-8 cursor-pointer group transition-all duration-300 hover:-translate-y-2">
+    <div onclick="toggleCard(this)" class="spotlight-card rounded-3xl p-6 md:p-8 cursor-pointer group active:scale-95 transition-all">
       <div class="flex justify-between items-start mb-4">
-        <h3 class="font-display text-3xl font-bold">PARENT</h3>
-        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 group-hover:bg-brand-purple group-hover:text-white transition">↗</div>
+        <h3 class="font-display text-2xl md:text-3xl font-bold">PARENT</h3>
+        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400">↗</div>
       </div>
-      <p class="text-gray-400 text-sm leading-relaxed">Track progress transparently. Direct feedback loop with coaches.</p>
+      <p class="text-gray-400 text-sm leading-relaxed">Track progress transparently. Direct feedback.</p>
       
       <div class="details">
         <div class="pt-6 border-t border-white/10 mt-6">
           <ul class="space-y-3 text-sm text-gray-300">
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Monthly Progression Reports</li>
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Health & Safety Alerts</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Progress Reports</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Safety Alerts</li>
           </ul>
           <div class="mt-6 flex justify-between items-end">
-             <span class="text-2xl font-display font-bold text-white">CHF 99</span>
-             <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
+             <span class="text-xl md:text-2xl font-display font-bold text-white">CHF 99</span>
+             <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div onclick="toggle(this)" class="spotlight-card rounded-3xl p-8 cursor-pointer group transition-all duration-300 hover:-translate-y-2">
+    <div onclick="toggleCard(this)" class="spotlight-card rounded-3xl p-6 md:p-8 cursor-pointer group active:scale-95 transition-all">
       <div class="flex justify-between items-start mb-4">
-        <h3 class="font-display text-3xl font-bold">CLUB</h3>
-        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 group-hover:bg-brand-purple group-hover:text-white transition">↗</div>
+        <h3 class="font-display text-2xl md:text-3xl font-bold">CLUB</h3>
+        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400">↗</div>
       </div>
-      <p class="text-gray-400 text-sm leading-relaxed">Modernize recruitment. Manage your talent pipeline efficiently.</p>
+      <p class="text-gray-400 text-sm leading-relaxed">Modernize recruitment. Manage talent pipelines.</p>
       
       <div class="details">
         <div class="pt-6 border-t border-white/10 mt-6">
           <ul class="space-y-3 text-sm text-gray-300">
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Full Scouting Database</li>
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Team Management Tools</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Scouting Database</li>
+            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Team Mgmt Tools</li>
           </ul>
           <div class="mt-6 flex justify-between items-end">
-             <span class="text-2xl font-display font-bold text-white">CHF 499</span>
-             <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">/ Month</span>
+             <span class="text-xl md:text-2xl font-display font-bold text-white">CHF 499</span>
+             <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">/ Month</span>
           </div>
         </div>
       </div>
@@ -286,46 +275,88 @@
   </div>
 </section>
 
-<section class="relative py-32 px-6 text-center overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none"></div>
+<section class="relative py-24 px-6 text-center overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-brand-purple/20 blur-[80px] rounded-full pointer-events-none"></div>
   
-  <h2 class="text-5xl md:text-7xl font-display font-bold mb-8 relative z-10">
+  <h2 class="text-4xl md:text-7xl font-display font-bold mb-6 relative z-10">
     READY TO RISE?
   </h2>
-  <p class="text-gray-300 mb-10 max-w-xl mx-auto relative z-10 text-lg">
-    Limited founder access available for this winter season.
-  </p>
-  <a href="#" class="relative z-10 inline-block px-12 py-5 bg-white text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition duration-300">
+  <a href="#" class="relative z-10 inline-block px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
     Become a Member
   </a>
 </section>
 
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+  
+  <div id="chat-window" class="chat-container hidden-chat w-[300px] md:w-[350px] bg-[#1a0b2e] border border-white/10 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl">
+    <div class="bg-brand-purple p-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-brand-purple font-bold">T</div>
+        <span class="font-bold text-sm">TalentiDO Support</span>
+      </div>
+      <button onclick="toggleChat()" class="text-white/80 hover:text-white">✕</button>
+    </div>
+    <div class="p-4 h-[250px] flex flex-col justify-end gap-3 bg-white/5">
+      <div class="self-start bg-white/10 p-3 rounded-2xl rounded-tl-none text-xs text-gray-200 max-w-[80%]">
+        Hello! How can I help you join the ecosystem today? ⚽
+      </div>
+    </div>
+    <div class="p-3 border-t border-white/10 flex gap-2">
+      <input type="text" placeholder="Type a message..." class="w-full bg-transparent text-sm text-white outline-none placeholder-gray-500">
+      <button class="text-brand-purple font-bold text-sm">Send</button>
+    </div>
+  </div>
+
+  <button onclick="toggleChat()" class="w-14 h-14 bg-brand-purple rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(157,0,255,0.5)] hover:scale-110 transition duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+    </svg>
+  </button>
+</div>
+
 <script>
-  // Card Toggle Logic
-  function toggle(card){
+  // Mobile Menu Logic
+  const mobileMenu = document.getElementById('mobile-menu');
+  function toggleMenu() {
+    // If it contains the class that moves it up (hidden), remove it
+    if (mobileMenu.classList.contains('translate-y-[-100%]')) {
+      mobileMenu.classList.remove('translate-y-[-100%]');
+    } else {
+      mobileMenu.classList.add('translate-y-[-100%]');
+    }
+  }
+
+  // Chatbox Logic
+  const chatWindow = document.getElementById('chat-window');
+  function toggleChat() {
+    chatWindow.classList.toggle('hidden-chat');
+  }
+
+  // Card Toggle
+  function toggleCard(card){
     card.classList.toggle('active');
   }
 
-  // Spotlight Effect Logic
+  // Spotlight Logic (Desktop Only)
   const cardsContainer = document.getElementById("cards-container");
   const cards = document.querySelectorAll(".spotlight-card");
-
-  cardsContainer.onmousemove = e => {
-    for(const card of cards) {
-      const rect = card.getBoundingClientRect(),
-            x = e.clientX - rect.left,
-            y = e.clientY - rect.top;
-
-      card.style.setProperty("--mouse-x", `${x}px`);
-      card.style.setProperty("--mouse-y", `${y}px`);
-    };
+  
+  if (window.matchMedia("(hover: hover)").matches) {
+    cardsContainer.onmousemove = e => {
+      for(const card of cards) {
+        const rect = card.getBoundingClientRect(),
+              x = e.clientX - rect.left,
+              y = e.clientY - rect.top;
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      };
+    }
   }
 
   // Snow Logic
   const snow = document.getElementById("snow");
   const symbols = ["❄", "•", "⋆"];
-  
-  for(let i=0; i<40; i++){
+  for(let i=0; i<30; i++){
     const s = document.createElement("div");
     s.className = "snowflake";
     s.innerText = symbols[Math.floor(Math.random() * symbols.length)];
@@ -333,23 +364,8 @@
     s.style.fontSize = 8 + Math.random() * 10 + "px";
     s.style.animationDuration = 5 + Math.random() * 10 + "s";
     s.style.opacity = Math.random() * 0.5;
-    s.style.filter = `blur(${Math.random()}px)`;
     snow.appendChild(s);
   }
-
-  // Navbar Scroll Effect
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      nav.classList.add('py-4');
-      nav.classList.remove('py-6');
-      nav.firstElementChild.classList.add('bg-black/60', 'backdrop-blur-xl');
-    } else {
-      nav.classList.add('py-6');
-      nav.classList.remove('py-4');
-      nav.firstElementChild.classList.remove('bg-black/60', 'backdrop-blur-xl');
-    }
-  });
 </script>
 
 </body>
