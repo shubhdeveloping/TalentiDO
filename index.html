@@ -17,10 +17,10 @@
           colors: {
             black: '#050505',
             brand: {
-              purple: '#D041E6',   // Main Brand Purple
-              lilac: '#E9D5FF',    // Light Purple
+              purple: '#D041E6',   
+              lilac: '#E9D5FF',    
               dark: '#2E1065',
-              gold: '#FFD700',     // Added Gold for Price
+              gold: '#FFD700',     
             }
           },
           fontFamily: {
@@ -30,7 +30,8 @@
           },
           backgroundImage: {
             'frost-gradient': 'linear-gradient(135deg, #D041E6 0%, #A855F7 50%, #E9D5FF 100%)',
-            'purple-glass': 'linear-gradient(145deg, rgba(208, 65, 230, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%)',
+            // Purple Glass for Price Card
+            'glass-purple': 'linear-gradient(145deg, rgba(208, 65, 230, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%)',
           },
           animation: {
             'snow': 'snow 10s linear infinite',
@@ -70,9 +71,9 @@
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
 
-    /* NEW: Purple Glass for Price Card */
-    .glass-purple {
-      background: rgba(208, 65, 230, 0.15); /* Purple tint */
+    /* Purple Glass for Price Card */
+    .glass-purple-box {
+      background: rgba(208, 65, 230, 0.15);
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
       border: 1px solid rgba(208, 65, 230, 0.3);
@@ -100,9 +101,8 @@
       z-index:60;
     }
     
-    /* Chat Messages Area */
     #chat-messages {
-        height: 250px;
+        height: 300px; /* Taller for better reading */
         overflow-y: auto;
         padding-right: 5px;
         scroll-behavior: smooth;
@@ -187,7 +187,7 @@
   <div id="offer" class="w-full max-w-md relative group">
     <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
     
-    <div class="relative glass-purple rounded-3xl p-8 md:p-10">
+    <div class="relative glass-purple-box rounded-3xl p-8 md:p-10">
       <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl">
         SAVE 85%
       </div>
@@ -359,20 +359,17 @@
     BUY PASS FOR CHF 149
   </button>
 
-  <div class="mt-16 flex flex-col md:flex-row justify-center gap-10 items-center text-gray-400 font-light tracking-wide">
-    <div class="flex flex-col items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mb-2 text-brand-purple">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-        </svg>
-        <span>Baarerstrasse 141, Zug, 6300 Switzerland</span>
-    </div>
-    <div class="hidden md:block w-px h-10 bg-white/10"></div>
-    <div class="flex flex-col items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mb-2 text-brand-purple">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-        <a href="mailto:coo@talentido.com" class="hover:text-white transition">coo@talentido.com</a>
+  <div class="mt-16 flex flex-col items-center gap-6">
+    <p class="text-gray-600 text-sm">© 2025 TalentiDO · Zurich</p>
+    
+    <p class="text-gray-500 text-sm font-light tracking-wide">
+        Baarerstrasse 141, Zug, 6300 Switzerland
+    </p>
+
+    <div class="flex gap-6 text-xs text-gray-700 items-center">
+        <span>Terms & Conditions</span>
+        <span>Privacy Policy</span>
+        <a href="mailto:coo@talentido.com" class="text-brand-purple hover:text-white transition font-bold border border-brand-purple/30 px-3 py-1 rounded-full">Contact Us</a>
     </div>
   </div>
 
@@ -403,11 +400,6 @@
   </div>
 
   <div class="mt-8 flex flex-col items-center gap-2">
-    <p class="text-gray-600 text-sm">© 2025 TalentiDO · Zurich</p>
-    <div class="flex gap-4 text-xs text-gray-700">
-        <span>Terms & Conditions</span>
-        <span>Privacy Policy</span>
-    </div>
   </div>
 </footer>
 
@@ -418,7 +410,7 @@
     </svg>
   </button>
 
-  <div id="chat-panel" class="hidden mt-4 w-80 glass-card rounded-2xl p-4 border-t border-brand-purple/50 shadow-2xl flex flex-col">
+  <div id="chat-panel" class="hidden mt-4 w-96 glass-card rounded-2xl p-4 border-t border-brand-purple/50 shadow-2xl flex flex-col">
     <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
       <div class="w-2 h-2 rounded-full bg-brand-lilac shadow-[0_0_10px_#E9D5FF]"></div>
       <p class="text-xs font-mono text-gray-400">AI CONCIERGE</p>
@@ -426,7 +418,7 @@
 
     <div id="chat-messages" class="mb-4 text-sm space-y-3">
         <div class="bg-white/10 p-3 rounded-lg rounded-tl-none text-gray-200">
-            Hello! I can answer questions about scholarships, training, or the Christmas offer. How can I help?
+            Hello! I can answer questions about training, scholarships, safety, or the Christmas offer. Ask me anything!
         </div>
     </div>
 
@@ -468,20 +460,46 @@
     }
   }
 
-  /* --- AI CHATBOT LOGIC --- */
+  /* --- ADVANCED AI CHATBOT LOGIC --- */
   
   const chatMessages = document.getElementById('chat-messages');
   const userInput = document.getElementById('user-input');
 
-  // Simple "Knowledge Base"
+  // Expanded Knowledge Base
   const knowledgeBase = [
-    { keywords: ['price', 'cost', 'much', 'money', 'fee'], answer: "The TalentiDO Football Pass is currently on a Christmas Special for CHF 149/year (usually CHF 1000)." },
-    { keywords: ['scholarship', 'fund', 'support'], answer: "We have a CHF 100,000 scholarship pool. The Pass gives you a chance to be selected for financial support." },
-    { keywords: ['location', 'where', 'place', 'address'], answer: "Our main activities are in Zurich and Zug. Our office is at Baarerstrasse 141, Zug." },
-    { keywords: ['age', 'old', 'year'], answer: "The program is designed for aspiring players aged 6 to 16." },
-    { keywords: ['training', 'practice', 'coach'], answer: "Training includes elite sessions, technical mastery, and mental coaching from certified professionals." },
-    { keywords: ['safety', 'safe', 'parents'], answer: "Safety is our priority. All sessions are supervised in a safe environment with a clear anti-harm policy." },
-    { keywords: ['contact', 'email', 'phone', 'human'], answer: "send_email" } // Trigger
+    // PRICING & OFFER
+    { keywords: ['price', 'cost', 'much', 'money', 'fee', '149', '1000'], answer: "The Christmas Special is just CHF 149/year (saving you 85% off the usual CHF 1000 value). This is a limited-time offer." },
+    { keywords: ['included', 'benefits', 'get'], answer: "The pass includes elite training sessions, scholarship eligibility, player assessment, GPS tracking, and exposure to scouts." },
+    { keywords: ['hidden', 'extra', 'additional'], answer: "The CHF 149 covers the membership. Optional costs might include specific training kits or travel for external tournaments." },
+    
+    // SCHOLARSHIP
+    { keywords: ['scholarship', 'fund', 'support', 'financial'], answer: "We have a CHF 100,000 scholarship pool. The Pass gives you a chance to be selected for financial support based on talent and need." },
+    
+    // LOGISTICS (Location, Time)
+    { keywords: ['location', 'where', 'place', 'address', 'zug', 'zurich'], answer: "Our main activities are in Zurich and Zug. We use top-tier facilities ensuring a safe environment." },
+    { keywords: ['time', 'when', 'schedule', 'date', 'weekend', 'days'], answer: "Sessions are typically held on weekends and select weekday evenings. A detailed schedule is provided in the TalentiDO app upon joining." },
+    
+    // PLAYER DETAILS (Age, Level, Gender)
+    { keywords: ['age', 'old', 'year', 'young'], answer: "The program is designed for aspiring players aged 6 to 16 years old." },
+    { keywords: ['level', 'beginner', 'pro', 'advanced', 'good'], answer: "We accept all levels! Players are grouped by ability to ensure they develop at the right pace." },
+    { keywords: ['girl', 'boy', 'daughter', 'son', 'gender'], answer: "TalentiDO is inclusive. We have training available for both boys and girls." },
+    
+    // TRAINING & SAFETY
+    { keywords: ['training', 'drill', 'coach'], answer: "Training includes elite technical drills, tactical intelligence, and mental coaching from certified professionals." },
+    { keywords: ['safety', 'safe', 'supervision'], answer: "Safety is our priority. All sessions are supervised in a safe environment with a clear anti-harm policy." },
+    { keywords: ['parent', 'watch', 'stay'], answer: "Parents are welcome to watch sessions from designated areas. We also provide weekly digital updates." },
+    { keywords: ['kit', 'uniform', 'wear', 'boots'], answer: "Players should bring football boots, shin guards, and water. Official TalentiDO training kits are available for purchase." },
+    { keywords: ['insurance', 'accident', 'medical'], answer: "Players must have their own personal accident and health insurance to participate." },
+    
+    // JOINING
+    { keywords: ['trial', 'tryout', 'test'], answer: "With the TalentiDO Pass, no trial is needed to join! You get guaranteed entry into the development pathway." },
+    { keywords: ['club', 'team'], answer: "We are an academy ecosystem. You can absolutely stay with your current club while training with us for extra development." },
+
+    // CRITICAL / FALLBACK TRIGGERS
+    { keywords: ['refund', 'cancel', 'money back'], answer: "contact_support" },
+    { keywords: ['complaint', 'issue', 'problem', 'angry'], answer: "contact_support" },
+    { keywords: ['legal', 'law', 'contract'], answer: "contact_support" },
+    { keywords: ['human', 'person', 'talk'], answer: "contact_support" }
   ];
 
   function handleKeyPress(e) {
@@ -500,19 +518,15 @@
     setTimeout(() => {
         const response = findResponse(text.toLowerCase());
         
-        if (response === "send_email") {
-             addMessage("I'll connect you with our team immediately via email.", 'bot');
-             setTimeout(() => {
-                 window.location.href = `mailto:shubhamofficialhere@gmail.com?subject=TalentiDO Inquiry&body=${text}`;
-             }, 1500);
+        if (response === "contact_support") {
+             addMessage("For this specific request, please contact our COO directly. I've prepared a link for you:", 'bot');
+             addEmailButton();
         } else if (response) {
             addMessage(response, 'bot');
         } else {
             // Fallback for unknown queries
-            addMessage("That's a great specific question. I'll draft an email to our team for you so they can answer accurately.", 'bot');
-            setTimeout(() => {
-                 window.location.href = `mailto:shubhamofficialhere@gmail.com?subject=TalentiDO Question&body=${text}`;
-             }, 2000);
+            addMessage("That's a specific question that requires a human expert. Please contact our team directly:", 'bot');
+            addEmailButton();
         }
     }, 600);
   }
@@ -532,6 +546,14 @@
         ? "bg-brand-purple/50 p-3 rounded-lg rounded-tr-none text-white ml-auto max-w-[85%]" 
         : "bg-white/10 p-3 rounded-lg rounded-tl-none text-gray-200 max-w-[85%]";
     div.innerText = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addEmailButton() {
+    const div = document.createElement('div');
+    div.className = "mt-2";
+    div.innerHTML = `<a href="mailto:coo@talentido.com" class="inline-block bg-brand-purple text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-white hover:text-black transition">Email coo@talentido.com</a>`;
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
