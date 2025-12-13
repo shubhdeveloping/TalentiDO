@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TalentiDO | Football Ecosystem</title>
+  <meta name="description" content="TalentiDO Football Pass - Elite training, scholarships, and player pathways in Switzerland.">
 
-  <!-- Tailwind CDN (OK for Vercel MVP) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -56,24 +55,45 @@
       backdrop-filter:blur(16px);
       border:1px solid rgba(255,255,255,.08);
     }
+    
+    .glass-hover:hover {
+      background:rgba(255,255,255,.07);
+      border-color:rgba(255,255,255,.2);
+    }
 
     /* Chat */
     #chatbox {
       position:fixed;
-      bottom:24px;
-      right:24px;
+      bottom:30px;
+      right:30px;
       z-index:60;
+    }
+
+    /* Accordion Transition */
+    .accordion-content {
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .accordion-content.active {
+      opacity: 1;
+    }
+    
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+    .rotate-45 {
+      transform: rotate(45deg);
     }
   </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND GLOWS -->
 <div class="fixed top-0 left-1/4 w-[800px] h-[800px] bg-brand-purple rounded-full blur-[200px] opacity-[0.06] pointer-events-none"></div>
 <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-brand-violet rounded-full blur-[200px] opacity-[0.06] pointer-events-none"></div>
 
-<!-- NAV -->
 <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass rounded-2xl flex items-center justify-between px-6 z-50">
   <div class="flex items-center gap-1">
     <span class="text-2xl font-display font-bold">talent</span>
@@ -81,68 +101,173 @@
   </div>
 
   <div class="hidden md:flex gap-10 text-sm text-gray-400">
-    <a href="#ecosystem" class="hover:text-white">Ecosystem</a>
-    <a href="#trust" class="hover:text-white">Partners</a>
-    <a href="#join" class="hover:text-white">Join</a>
+    <a href="#ecosystem" class="hover:text-white transition-colors">Ecosystem</a>
+    <a href="#benefits" class="hover:text-white transition-colors">Benefits</a>
+    <a href="#trust" class="hover:text-white transition-colors">Partners</a>
   </div>
 
-  <a href="#join" class="hidden md:block px-6 py-2 rounded-full bg-white text-black font-bold hover:scale-105 transition">
+  <a href="#join" class="hidden md:block px-6 py-2 rounded-full bg-white text-black font-bold hover:scale-105 transition shadow-[0_0_20px_rgba(255,255,255,0.3)]">
     🎁 Offer
   </a>
 </nav>
 
-<!-- HERO -->
 <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-40">
-  <span class="text-xs font-mono tracking-widest text-gray-400 mb-6">
+  <span class="text-xs font-mono tracking-widest text-gray-400 mb-6 border border-white/10 px-3 py-1 rounded-full bg-white/5">
     CHRISTMAS LAUNCH • SWITZERLAND
   </span>
 
   <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-8">
     THE FOOTBALL<br/>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">
       ECOSYSTEM
     </span>
   </h1>
 
-  <p class="max-w-2xl text-lg text-gray-400 mb-14">
+  <p class="max-w-2xl text-lg text-gray-400 mb-14 leading-relaxed">
     Where players, parents, clubs & supporters rise together.
   </p>
 
-  <a href="#ecosystem" class="px-10 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition">
+  <a href="#ecosystem" class="px-10 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition shadow-2xl shadow-white/10">
     Explore the Vision →
   </a>
 </section>
 
-<!-- ECOSYSTEM -->
-<section id="ecosystem" class="py-32 px-6 max-w-7xl mx-auto">
+<section id="ecosystem" class="py-24 px-6 max-w-7xl mx-auto">
   <h2 class="text-4xl md:text-6xl font-display font-bold text-center mb-20">
     ONE PLATFORM. SIX ROLES.
   </h2>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- CARD -->
-    <div class="glass rounded-2xl p-8 hover:border-brand-purple transition">
-      <h3 class="text-2xl font-display font-bold mb-2">PLAYER</h3>
+    <div class="glass glass-hover rounded-2xl p-8 transition duration-300 group">
+      <h3 class="text-2xl font-display font-bold mb-2 group-hover:text-brand-purple transition-colors">PLAYER</h3>
       <p class="text-gray-400 mb-6">Train smarter. Get discovered.</p>
       <span class="text-xl font-bold">CHF 149 / year</span>
     </div>
 
-    <div class="glass rounded-2xl p-8">
-      <h3 class="text-2xl font-display font-bold mb-2">PARENT</h3>
+    <div class="glass glass-hover rounded-2xl p-8 transition duration-300 group">
+      <h3 class="text-2xl font-display font-bold mb-2 group-hover:text-brand-purple transition-colors">PARENT</h3>
       <p class="text-gray-400 mb-6">Transparent progress & trust.</p>
       <span class="text-xl font-bold">CHF 99 / year</span>
     </div>
 
-    <div class="glass rounded-2xl p-8">
-      <h3 class="text-2xl font-display font-bold mb-2">CLUB</h3>
+    <div class="glass glass-hover rounded-2xl p-8 transition duration-300 group">
+      <h3 class="text-2xl font-display font-bold mb-2 group-hover:text-brand-purple transition-colors">CLUB</h3>
       <p class="text-gray-400 mb-6">Data-backed recruitment.</p>
       <span class="text-xl font-bold">CHF 499 / month</span>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<section id="trust" class="py-32 text-center">
+<section id="benefits" class="py-24 px-6 max-w-4xl mx-auto">
+  <div class="text-center mb-16">
+    <span class="text-brand-purple font-mono text-sm tracking-widest uppercase mb-4 block">Included in Membership</span>
+    <h2 class="text-3xl md:text-5xl font-display font-bold text-white">
+      TalentiDO Pass – Player Benefits
+    </h2>
+  </div>
+
+  <div class="space-y-4">
+    
+    <div class="glass rounded-xl overflow-hidden transition-all duration-300">
+      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion('panel1', this)">
+        <span class="text-xl font-display font-semibold text-white">1. Scholarships & Player Pathway</span>
+        <span class="text-2xl font-light text-brand-purple accordion-icon">+</span>
+      </button>
+      <div id="panel1" class="accordion-content">
+        <ul class="px-6 pb-6 space-y-3 text-gray-300 font-sans font-light">
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Chance to receive support from our CHF 100,000 scholarship pool</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Guaranteed entry into TalentiDO’s long-term development pathway</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Priority access to TalentiDO camps and advanced squads</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Selection opportunities for tournament squads</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Visibility to clubs, scouts and agents</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass rounded-xl overflow-hidden transition-all duration-300">
+      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion('panel2', this)">
+        <span class="text-xl font-display font-semibold text-white">2. Elite Training & Skill Development</span>
+        <span class="text-2xl font-light text-brand-purple accordion-icon">+</span>
+      </button>
+      <div id="panel2" class="accordion-content">
+        <ul class="px-6 pb-6 space-y-3 text-gray-300 font-sans font-light">
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>European-standard elite training sessions</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Mastery of core football skills (control, dribbling, passing, shooting)</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Speed, agility and footwork development used in top academies</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Simple tactical lessons to improve game intelligence</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Goalkeeper training slots based on availability and performance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass rounded-xl overflow-hidden transition-all duration-300">
+      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion('panel3', this)">
+        <span class="text-xl font-display font-semibold text-white">3. Performance Tracking & Assessment</span>
+        <span class="text-2xl font-light text-brand-purple accordion-icon">+</span>
+      </button>
+      <div id="panel3" class="accordion-content">
+        <ul class="px-6 pb-6 space-y-3 text-gray-300 font-sans font-light">
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Complete technical, physical and behavioural player assessment</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Personalized improvement plan for faster growth</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Baseline tests to measure real month-to-month progress</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>GPS-lite tracking for speed, distance and agility metrics</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Monthly performance certificate signed by coaches</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass rounded-xl overflow-hidden transition-all duration-300">
+      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion('panel4', this)">
+        <span class="text-xl font-display font-semibold text-white">4. Coaching, Mentorship & Mental Strength</span>
+        <span class="text-2xl font-light text-brand-purple accordion-icon">+</span>
+      </button>
+      <div id="panel4" class="accordion-content">
+        <ul class="px-6 pb-6 space-y-3 text-gray-300 font-sans font-light">
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Mentorship from certified coaches and experienced players</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Training that builds confidence, discipline and teamwork</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Mental coaching for focus, emotional control and leadership</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Regular coach review sessions with clear feedback</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Meet-and-learn events with Swiss players and coaches</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass rounded-xl overflow-hidden transition-all duration-300">
+      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion('panel5', this)">
+        <span class="text-xl font-display font-semibold text-white">5. Matches, Exposure & Media</span>
+        <span class="text-2xl font-light text-brand-purple accordion-icon">+</span>
+      </button>
+      <div id="panel5" class="accordion-content">
+        <ul class="px-6 pb-6 space-y-3 text-gray-300 font-sans font-light">
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Monthly internal mini-league matches</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Friendly matches and small competitions</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Video breakdowns for smarter decision-making</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Match video highlights sent to parents and posted online</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Short video clips to show visible improvement (when available)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass rounded-xl overflow-hidden transition-all duration-300">
+      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion('panel6', this)">
+        <span class="text-xl font-display font-semibold text-white">6. Digital Profile, Safety & Parent Communication</span>
+        <span class="text-2xl font-light text-brand-purple accordion-icon">+</span>
+      </button>
+      <div id="panel6" class="accordion-content">
+        <ul class="px-6 pb-6 space-y-3 text-gray-300 font-sans font-light">
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Digital TalentiDO Football Pass Profile with stats and videos</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Transparent monthly progress updates for parents</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Weekly parent communication and updates</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Safe, supervised Zurich environment</li>
+          <li class="flex gap-3"><span class="text-brand-purple">•</span>Clear discipline and anti-harm policy for healthy habits</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="trust" class="py-24 text-center">
   <p class="text-sm font-mono tracking-widest text-gray-500 mb-8">
     TRUSTED IN SWITZERLAND
   </p>
@@ -151,8 +276,7 @@
   </h3>
 </section>
 
-<!-- CTA -->
-<footer id="join" class="py-32 text-center">
+<footer id="join" class="py-32 text-center border-t border-white/5">
   <h2 class="text-5xl md:text-7xl font-display font-bold mb-8">
     READY TO RISE?
   </h2>
@@ -170,23 +294,64 @@
   </p>
 </footer>
 
-<!-- CHATBOX -->
 <div id="chatbox">
-  <button onclick="toggleChat()" class="w-14 h-14 rounded-full bg-brand-gradient text-white text-2xl shadow-xl">
-    💬
+  <button onclick="toggleChat()" class="group flex items-center justify-center w-16 h-16 rounded-full bg-brand-gradient text-white shadow-[0_10px_40px_-10px_rgba(208,65,230,0.5)] hover:scale-110 transition duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 group-hover:animate-pulse">
+      <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813a3.75 3.75 0 002.576-2.576l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd" />
+    </svg>
   </button>
 
-  <div id="chat-panel" class="hidden mt-4 w-80 glass rounded-2xl p-4">
-    <p class="text-sm text-gray-300 mb-3">
-      👋 Hi! Want to know which membership fits you?
+  <div id="chat-panel" class="hidden mt-4 w-80 glass rounded-2xl p-5 border-t border-brand-purple/50 shadow-2xl">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-2 h-2 rounded-full bg-green-500"></div>
+      <p class="text-xs font-mono text-gray-400">ONLINE</p>
+    </div>
+    <p class="text-sm text-gray-200 mb-4 leading-relaxed">
+      👋 Hi! I can help you choose the right player pass for your child.
     </p>
-    <input type="text" placeholder="Type your message…" class="w-full p-3 rounded-lg bg-black border border-white/10 text-white text-sm"/>
+    <div class="relative">
+       <input type="text" placeholder="Type your message…" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-brand-purple focus:outline-none transition"/>
+       <button class="absolute right-3 top-3 text-brand-purple">➜</button>
+    </div>
   </div>
 </div>
 
 <script>
+  // Chat Toggle
   function toggleChat(){
     document.getElementById('chat-panel').classList.toggle('hidden');
+  }
+
+  // Accordion Logic
+  function toggleAccordion(panelId, btn) {
+    const content = document.getElementById(panelId);
+    const icon = btn.querySelector('.accordion-icon');
+    
+    // Check if currently open
+    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+    // Reset all other panels (optional: remove this loop if you want multiple to stay open)
+    document.querySelectorAll('.accordion-content').forEach(el => {
+      el.style.maxHeight = '0px';
+      el.classList.remove('active');
+    });
+    document.querySelectorAll('.accordion-icon').forEach(ic => {
+      ic.classList.remove('rotate-45');
+      ic.innerHTML = '+';
+    });
+
+    if (!isOpen) {
+      // Open this one
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.classList.add('active');
+      icon.classList.add('rotate-45');
+      icon.innerHTML = '+'; // Keep plus but rotated looks like X, or change logic to swap text if preferred
+    } else {
+      // Close (handled by reset above, but ensuring logic holds)
+      content.style.maxHeight = '0px';
+      content.classList.remove('active');
+      icon.classList.remove('rotate-45');
+    }
   }
 </script>
 
