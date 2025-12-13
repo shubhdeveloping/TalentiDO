@@ -18,8 +18,9 @@
             black: '#050505',
             brand: {
               purple: '#D041E6',   // Main Brand Purple
-              lilac: '#E9D5FF',    // Light Purple (Replaces Yellow/Gold)
+              lilac: '#E9D5FF',    // Light Purple
               dark: '#2E1065',
+              gold: '#FFD700',     // Added Gold for Price
             }
           },
           fontFamily: {
@@ -29,7 +30,7 @@
           },
           backgroundImage: {
             'frost-gradient': 'linear-gradient(135deg, #D041E6 0%, #A855F7 50%, #E9D5FF 100%)',
-            'lilac-glow': 'linear-gradient(to bottom, #F3E8FF, #D041E6)',
+            'purple-glass': 'linear-gradient(145deg, rgba(208, 65, 230, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%)',
           },
           animation: {
             'snow': 'snow 10s linear infinite',
@@ -68,6 +69,15 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
+
+    /* NEW: Purple Glass for Price Card */
+    .glass-purple {
+      background: rgba(208, 65, 230, 0.15); /* Purple tint */
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(208, 65, 230, 0.3);
+      box-shadow: 0 0 40px rgba(208, 65, 230, 0.15);
+    }
     
     .glass-panel {
       background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
@@ -78,7 +88,7 @@
 
     .glass-panel:hover {
       background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-      border-color: rgba(233, 213, 255, 0.4); /* Lilac hint on hover */
+      border-color: rgba(233, 213, 255, 0.4); 
       transform: translateY(-2px);
     }
 
@@ -89,6 +99,16 @@
       right:30px;
       z-index:60;
     }
+    
+    /* Chat Messages Area */
+    #chat-messages {
+        height: 250px;
+        overflow-y: auto;
+        padding-right: 5px;
+        scroll-behavior: smooth;
+    }
+    #chat-messages::-webkit-scrollbar { width: 4px; }
+    #chat-messages::-webkit-scrollbar-thumb { background: #555; border-radius: 2px; }
 
     /* Accordion */
     .accordion-content {
@@ -115,7 +135,6 @@
         opacity: 0.1;
     }
     
-    /* Social Icon Hover */
     .social-icon:hover {
         transform: translateY(-3px);
         color: #D041E6;
@@ -146,7 +165,7 @@
   </a>
 </nav>
 
-<section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-10 relative z-10">
+<section class="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-10 relative z-10">
   <div class="mb-6 animate-pulse-slow">
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9D5FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 3L14.5 8.5L20.5 9.25L16 13.25L17.25 19L12 16L6.75 19L8 13.25L3.5 9.25L9.5 8.5L12 3Z" />
@@ -166,22 +185,22 @@
   </p>
 
   <div id="offer" class="w-full max-w-md relative group">
-    <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+    <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
     
-    <div class="relative glass-card rounded-3xl p-8 md:p-10 border border-white/10">
+    <div class="relative glass-purple rounded-3xl p-8 md:p-10">
       <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl">
         SAVE 85%
       </div>
       
-      <h3 class="text-gray-400 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
+      <h3 class="text-gray-200 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
       
       <div class="flex items-baseline justify-center gap-4 mb-6">
-        <span class="text-2xl text-gray-500 line-through decoration-brand-purple decoration-2">CHF 1000</span>
-        <span class="text-6xl font-display font-bold text-white">149</span>
-        <span class="text-xl text-gray-400">/ yr</span>
+        <span class="text-2xl text-gray-400 line-through decoration-brand-lilac decoration-2">CHF 1000</span>
+        <span class="text-6xl font-display font-bold text-brand-gold drop-shadow-lg">149</span>
+        <span class="text-xl text-gray-300">/ yr</span>
       </div>
 
-      <p class="text-sm text-gray-300 mb-8 border-b border-white/10 pb-6">
+      <p class="text-sm text-gray-200 mb-8 border-b border-white/20 pb-6">
         Unlock a full year of elite training, scholarships, and exposure. The perfect start to a pro journey.
       </p>
       
@@ -189,7 +208,7 @@
         Get the Gift 🎁
       </button>
       
-      <p class="text-xs text-center text-gray-500 mt-4">
+      <p class="text-xs text-center text-gray-400 mt-4">
         Offer ends December 25th • Instant Digital Certificate
       </p>
     </div>
@@ -340,7 +359,24 @@
     BUY PASS FOR CHF 149
   </button>
 
-  <div class="mt-20 flex justify-center gap-8 items-center">
+  <div class="mt-16 flex flex-col md:flex-row justify-center gap-10 items-center text-gray-400 font-light tracking-wide">
+    <div class="flex flex-col items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mb-2 text-brand-purple">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>
+        <span>Baarerstrasse 141, Zug, 6300 Switzerland</span>
+    </div>
+    <div class="hidden md:block w-px h-10 bg-white/10"></div>
+    <div class="flex flex-col items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mb-2 text-brand-purple">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        <a href="mailto:coo@talentido.com" class="hover:text-white transition">coo@talentido.com</a>
+    </div>
+  </div>
+
+  <div class="mt-12 flex justify-center gap-8 items-center border-t border-white/5 pt-12 max-w-lg mx-auto">
     <a href="https://x.com/TalentIDO_" target="_blank" class="text-gray-400 social-icon transition-all">
       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
@@ -382,17 +418,21 @@
     </svg>
   </button>
 
-  <div id="chat-panel" class="hidden mt-4 w-80 glass-card rounded-2xl p-5 border-t border-brand-purple/50 shadow-2xl">
-    <div class="flex items-center gap-3 mb-4">
+  <div id="chat-panel" class="hidden mt-4 w-80 glass-card rounded-2xl p-4 border-t border-brand-purple/50 shadow-2xl flex flex-col">
+    <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
       <div class="w-2 h-2 rounded-full bg-brand-lilac shadow-[0_0_10px_#E9D5FF]"></div>
-      <p class="text-xs font-mono text-gray-400">CONCIERGE</p>
+      <p class="text-xs font-mono text-gray-400">AI CONCIERGE</p>
     </div>
-    <p class="text-sm text-gray-200 mb-4 leading-relaxed">
-      Hello! I can explain how the 1000 CHF value is packed into the 149 CHF Christmas Pass.
-    </p>
-    <div class="relative">
-       <input type="text" placeholder="Ask about scholarships…" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-brand-lilac focus:outline-none transition"/>
-       <button class="absolute right-3 top-3 text-brand-lilac">➜</button>
+
+    <div id="chat-messages" class="mb-4 text-sm space-y-3">
+        <div class="bg-white/10 p-3 rounded-lg rounded-tl-none text-gray-200">
+            Hello! I can answer questions about scholarships, training, or the Christmas offer. How can I help?
+        </div>
+    </div>
+
+    <div class="relative mt-auto">
+       <input type="text" id="user-input" placeholder="Type your question..." onkeypress="handleKeyPress(event)" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-brand-lilac focus:outline-none transition"/>
+       <button onclick="sendMessage()" class="absolute right-3 top-3 text-brand-lilac hover:text-white">➜</button>
     </div>
   </div>
 </div>
@@ -401,6 +441,10 @@
   // Chat Toggle
   function toggleChat(){
     document.getElementById('chat-panel').classList.toggle('hidden');
+    // Focus input when opened
+    if(!document.getElementById('chat-panel').classList.contains('hidden')){
+        document.getElementById('user-input').focus();
+    }
   }
 
   // Accordion Logic
@@ -409,7 +453,6 @@
     const icon = btn.querySelector('.accordion-icon');
     const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
 
-    // Close all
     document.querySelectorAll('.accordion-content').forEach(el => {
       el.style.maxHeight = '0px';
       el.classList.remove('active');
@@ -418,12 +461,79 @@
       ic.classList.remove('rotate-45');
     });
 
-    // Open clicked if closed
     if (!isOpen) {
       content.style.maxHeight = content.scrollHeight + "px";
       content.classList.add('active');
       icon.classList.add('rotate-45');
     }
+  }
+
+  /* --- AI CHATBOT LOGIC --- */
+  
+  const chatMessages = document.getElementById('chat-messages');
+  const userInput = document.getElementById('user-input');
+
+  // Simple "Knowledge Base"
+  const knowledgeBase = [
+    { keywords: ['price', 'cost', 'much', 'money', 'fee'], answer: "The TalentiDO Football Pass is currently on a Christmas Special for CHF 149/year (usually CHF 1000)." },
+    { keywords: ['scholarship', 'fund', 'support'], answer: "We have a CHF 100,000 scholarship pool. The Pass gives you a chance to be selected for financial support." },
+    { keywords: ['location', 'where', 'place', 'address'], answer: "Our main activities are in Zurich and Zug. Our office is at Baarerstrasse 141, Zug." },
+    { keywords: ['age', 'old', 'year'], answer: "The program is designed for aspiring players aged 6 to 16." },
+    { keywords: ['training', 'practice', 'coach'], answer: "Training includes elite sessions, technical mastery, and mental coaching from certified professionals." },
+    { keywords: ['safety', 'safe', 'parents'], answer: "Safety is our priority. All sessions are supervised in a safe environment with a clear anti-harm policy." },
+    { keywords: ['contact', 'email', 'phone', 'human'], answer: "send_email" } // Trigger
+  ];
+
+  function handleKeyPress(e) {
+    if (e.key === 'Enter') sendMessage();
+  }
+
+  function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    // Add User Message
+    addMessage(text, 'user');
+    userInput.value = '';
+
+    // Simulate AI Thinking
+    setTimeout(() => {
+        const response = findResponse(text.toLowerCase());
+        
+        if (response === "send_email") {
+             addMessage("I'll connect you with our team immediately via email.", 'bot');
+             setTimeout(() => {
+                 window.location.href = `mailto:shubhamofficialhere@gmail.com?subject=TalentiDO Inquiry&body=${text}`;
+             }, 1500);
+        } else if (response) {
+            addMessage(response, 'bot');
+        } else {
+            // Fallback for unknown queries
+            addMessage("That's a great specific question. I'll draft an email to our team for you so they can answer accurately.", 'bot');
+            setTimeout(() => {
+                 window.location.href = `mailto:shubhamofficialhere@gmail.com?subject=TalentiDO Question&body=${text}`;
+             }, 2000);
+        }
+    }, 600);
+  }
+
+  function findResponse(input) {
+    for (let item of knowledgeBase) {
+        if (item.keywords.some(keyword => input.includes(keyword))) {
+            return item.answer;
+        }
+    }
+    return null; // Unknown
+  }
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = sender === 'user' 
+        ? "bg-brand-purple/50 p-3 rounded-lg rounded-tr-none text-white ml-auto max-w-[85%]" 
+        : "bg-white/10 p-3 rounded-lg rounded-tl-none text-gray-200 max-w-[85%]";
+    div.innerText = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 </script>
 
