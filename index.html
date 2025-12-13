@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>TalentiDO | The Football Ecosystem</title>
+  <title>TalentiDO | Elite Football Ecosystem</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -16,27 +16,31 @@
         extend: {
           colors: {
             brand: {
-              purple: '#9D00FF',
-              dark: '#0A0A0A',
-              gold: '#FFD700'
+              black: '#050505',
+              gold: '#D4AF37',
+              goldLight: '#F3E5AB',
             }
           },
           fontFamily: {
             display: ['Clash Display', 'sans-serif'],
             sans: ['Inter', 'sans-serif'],
           },
+          letterSpacing: {
+            'luxury': '0.25em',
+          },
           animation: {
-            'fade-up': 'fadeUp 0.8s ease-out forwards',
-            'shimmer': 'shimmer 2s linear infinite',
+            'fade-up': 'fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'marquee': 'marquee 25s linear infinite',
+            'spin-slow': 'spin 12s linear infinite',
           },
           keyframes: {
             fadeUp: {
-              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '0%': { opacity: '0', transform: 'translateY(40px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' },
             },
-            shimmer: {
-              '0%': { transform: 'translateX(-100%)' },
-              '100%': { transform: 'translateX(100%)' }
+            marquee: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' }
             }
           }
         }
@@ -45,228 +49,257 @@
   </script>
 
   <style>
-    /* --- CORE STYLES --- */
+    /* --- LUXURY TEXTURES --- */
     body {
-      background-color: #0f0518; 
-      background-image: 
-        radial-gradient(circle at 50% 0%, #4a0a7f 0%, transparent 60%),
-        radial-gradient(circle at 0% 100%, #2a0547 0%, transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-      background-attachment: fixed;
-      color: white;
-      /* Prevent horizontal scroll on mobile */
+      background-color: #030005;
+      color: #EAEAEA;
       overflow-x: hidden;
-      width: 100%; 
     }
 
-    .gold-gradient {
-      background: linear-gradient(135deg, #FFF5C3 0%, #BF953F 50%, #B8860B 100%);
+    /* Film Grain Overlay - Adds Texture */
+    .noise-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Premium Metallic Gradient */
+    .gold-text {
+      background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0px 0px 30px rgba(191, 149, 63, 0.5);
+      background-clip: text;
+      color: transparent;
     }
 
-    /* --- CARDS --- */
-    .spotlight-card {
-      position: relative;
-      background: rgba(255, 255, 255, 0.02); 
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      overflow: hidden;
-      transition: all 0.3s ease;
+    .gold-border {
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
-    /* Only enable mouse spotlight on devices that support hover (Desktops) */
-    @media (hover: hover) {
-      .spotlight-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        padding: 1px;
-        border-radius: inherit;
-        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(157, 0, 255, 0.6), transparent 40%);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        opacity: 0;
-        transition: opacity 0.5s;
-        pointer-events: none;
-      }
-      .spotlight-card:hover::before { opacity: 1; }
+    .gold-border:hover {
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
     }
 
+    /* Glass Panels */
+    .glass-panel {
+      background: rgba(20, 20, 20, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Button Hover Shine */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+    .btn-shine:hover::after {
+      left: 100%;
+      transition: 0.7s;
+    }
+
+    /* Infinite Marquee */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+    }
+
+    /* Smooth detail opening */
     .details {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.5s ease-out;
+      transition: grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .details > div { overflow: hidden; }
-    .spotlight-card.active .details { grid-template-rows: 1fr; }
-    .spotlight-card.active {
-      background: rgba(157, 0, 255, 0.08);
-      border-color: rgba(157, 0, 255, 0.4);
-    }
+    .card.active .details { grid-template-rows: 1fr; }
 
-    /* --- CHATBOX --- */
-    .chat-container {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-origin: bottom right;
+    /* Custom Selection Color */
+    ::selection {
+      background: #D4AF37;
+      color: black;
     }
-    .chat-container.hidden-chat {
-      transform: scale(0);
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    /* --- SNOW --- */
-    .snowflake {
-      position: fixed;
-      top: -20px;
-      color: white;
-      opacity: 0.3;
-      pointer-events: none;
-      animation: fall linear infinite;
-      z-index: 50;
-    }
-    @keyframes fall { to { transform: translateY(105vh); } }
   </style>
 </head>
 
-<body class="antialiased selection:bg-brand-purple selection:text-white">
+<body class="antialiased">
 
-<div id="snow"></div>
+<div class="noise-overlay"></div>
 
-<nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
-  <div class="max-w-7xl mx-auto px-6 py-4 md:py-6 flex justify-between items-center relative z-50">
+<div class="fixed top-[-20%] left-[50%] translate-x-[-50%] w-[800px] h-[800px] bg-brand-gold/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
+
+<nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-black/50 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
     
-    <div class="glass px-4 py-2 rounded-full border border-white/10 backdrop-blur-md bg-white/5 flex items-center gap-3">
-      <span class="font-display font-bold text-lg tracking-wide">
-        Talenti<span class="text-brand-purple">DO</span>
-      </span>
+    <span class="font-display font-bold text-xl tracking-[0.2em] text-white">
+      TALENTI<span class="text-brand-gold">DO</span>
+    </span>
+
+    <div class="hidden md:flex items-center gap-6">
+       <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+       </a>
+       <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+       </a>
+       <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.14c0 3.48-2.32 6.66-5.69 7.64-3.65 1.07-7.53-.86-8.54-4.27-.96-3.21.92-6.53 4.07-7.46 1.21-.35 2.5-.31 3.69.09v4.07c-1.57-.75-3.33-.29-4.32 1.05-.72.96-.58 2.37.28 3.19 1.03.99 2.77.93 3.75-.17.65-.74.97-1.72.95-2.7l.02-15.65z"/></svg>
+       </a>
+       <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.321c0-4.62 5.08-4.927 5.08 0v8.321h5v-9.637c0-6.197-7.016-6.116-10.112-2.936v-1.748z"/></svg>
+       </a>
+
+       <a href="#" class="ml-4 px-6 py-2 border border-brand-gold/50 text-brand-gold text-xs tracking-widest hover:bg-brand-gold hover:text-black transition duration-500">
+        MEMBERS
+       </a>
     </div>
 
-    <div class="hidden md:flex gap-4">
-      <a href="#ecosystem" class="text-sm text-gray-300 hover:text-white py-2 px-4 transition">Features</a>
-      <a href="#" class="group relative px-5 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-brand-purple/20 transition-all overflow-hidden">
-        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-shimmer"></div>
-        <span class="text-xs font-semibold tracking-wider text-gray-200 group-hover:text-white transition-colors">
-          JOIN NOW
-        </span>
-      </a>
-    </div>
-
-    <button onclick="toggleMenu()" class="md:hidden p-2 text-white/80 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-      </svg>
+    <button onclick="toggleMenu()" class="md:hidden text-white">
+      <div class="space-y-2">
+        <span class="block w-8 h-0.5 bg-brand-gold"></span>
+        <span class="block w-5 h-0.5 bg-white ml-auto"></span>
+      </div>
     </button>
   </div>
 
-  <div id="mobile-menu" class="fixed inset-0 bg-[#0f0518]/95 backdrop-blur-xl z-40 transform translate-y-[-100%] transition-transform duration-300 flex flex-col justify-center items-center">
-    <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2 text-white/50 hover:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center">
+    <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
     <div class="flex flex-col gap-8 text-center">
-      <a href="#ecosystem" onclick="toggleMenu()" class="text-3xl font-display font-bold hover:text-brand-purple transition">Ecosystem</a>
-      <a href="#" onclick="toggleMenu()" class="text-3xl font-display font-bold hover:text-brand-purple transition">Pricing</a>
-      <a href="#" onclick="toggleMenu()" class="text-3xl font-display font-bold text-brand-gold hover:text-white transition">Sign Up</a>
+      <a href="#ecosystem" onclick="toggleMenu()" class="text-2xl font-display uppercase tracking-widest text-white">Ecosystem</a>
+      <div class="flex gap-6 mt-8 justify-center">
+         <a href="#" class="text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+         <a href="#" class="text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.14c0 3.48-2.32 6.66-5.69 7.64-3.65 1.07-7.53-.86-8.54-4.27-.96-3.21.92-6.53 4.07-7.46 1.21-.35 2.5-.31 3.69.09v4.07c-1.57-.75-3.33-.29-4.32 1.05-.72.96-.58 2.37.28 3.19 1.03.99 2.77.93 3.75-.17.65-.74.97-1.72.95-2.7l.02-15.65z"/></svg></a>
+      </div>
     </div>
   </div>
 </nav>
 
-<section class="relative pt-32 pb-20 px-4 md:px-6 min-h-[90vh] flex flex-col justify-center items-center text-center z-10 w-full overflow-hidden">
+<section class="relative pt-40 pb-20 px-6 min-h-screen flex flex-col justify-center items-center text-center z-10 w-full overflow-hidden">
   
-  <div class="opacity-0 animate-fade-up" style="animation-delay: 0.1s;">
-    <span class="inline-block py-1 px-3 rounded-full bg-brand-purple/20 border border-brand-purple/30 text-purple-200 text-[10px] font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(157,0,255,0.3)]">
-      SWISS ENGINEERED
+  <div class="opacity-0 animate-fade-up border-b border-brand-gold/30 pb-2 mb-8" style="animation-delay: 0.1s;">
+    <span class="text-brand-gold text-[10px] font-bold tracking-[0.4em] uppercase">
+      The Elite Circle
     </span>
   </div>
 
-  <h1 class="text-4xl sm:text-6xl md:text-8xl font-display font-bold mb-6 leading-tight tracking-tight opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
-    THE FOOTBALL<br>
-    <span class="gold-gradient">ECOSYSTEM</span>
+  <h1 class="text-4xl sm:text-6xl md:text-8xl font-display uppercase font-bold mb-6 leading-[0.9] tracking-tight opacity-0 animate-fade-up" style="animation-delay: 0.3s;">
+    Refining<br>
+    <span class="gold-text">Football</span>
   </h1>
 
-  <p class="text-gray-300 max-w-xl mx-auto mb-10 text-base md:text-xl font-light opacity-0 animate-fade-up px-4" style="animation-delay: 0.3s;">
-    Empowering players, connecting parents, and upgrading clubs.
+  <p class="text-gray-400 max-w-lg mx-auto mb-12 text-sm md:text-base font-light tracking-wide leading-relaxed opacity-0 animate-fade-up px-4" style="animation-delay: 0.5s;">
+    A closed ecosystem for those serious about the game.
+    Swiss precision. Global ambition.
   </p>
 
-  <div class="flex flex-col md:flex-row gap-4 opacity-0 animate-fade-up w-full md:w-auto px-4" style="animation-delay: 0.4s;">
-    <a href="#ecosystem" class="px-8 py-4 bg-white text-black font-bold rounded-full text-center hover:scale-105 transition duration-300">
-      Explore Ecosystem
+  <div class="opacity-0 animate-fade-up" style="animation-delay: 0.7s;">
+    <a href="#ecosystem" class="btn-shine inline-block px-10 py-4 bg-white text-black font-display font-semibold tracking-widest text-xs uppercase hover:bg-brand-gold transition duration-500">
+      Access Ecosystem
     </a>
   </div>
 </section>
 
-<section id="ecosystem" class="max-w-7xl mx-auto px-4 md:px-6 pb-32 relative z-10">
-  <div class="text-center mb-12">
-    <h2 class="font-display text-2xl md:text-3xl font-semibold text-purple-100">Choose Your Path</h2>
+<div class="py-6 border-y border-white/5 bg-black/40 backdrop-blur-sm z-20 relative overflow-hidden">
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">SWISS ENGINEERED</span>
+      <span class="text-brand-gold mx-8">✦</span>
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">ELITE SCOUTING</span>
+      <span class="text-brand-gold mx-8">✦</span>
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">PRO DATA</span>
+      <span class="text-brand-gold mx-8">✦</span>
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">FOUNDERS ACCESS</span>
+      <span class="text-brand-gold mx-8">✦</span>
+       <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">SWISS ENGINEERED</span>
+      <span class="text-brand-gold mx-8">✦</span>
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">ELITE SCOUTING</span>
+      <span class="text-brand-gold mx-8">✦</span>
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">PRO DATA</span>
+      <span class="text-brand-gold mx-8">✦</span>
+      <span class="text-gray-500 font-display text-sm tracking-[0.3em] mx-8">FOUNDERS ACCESS</span>
+      <span class="text-brand-gold mx-8">✦</span>
+    </div>
   </div>
+</div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="cards-container">
+<section id="ecosystem" class="max-w-6xl mx-auto px-6 py-32 relative z-10">
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    <div onclick="toggleCard(this)" class="spotlight-card rounded-3xl p-6 md:p-8 cursor-pointer group active:scale-95 transition-all">
-      <div class="flex justify-between items-start mb-4">
-        <h3 class="font-display text-2xl md:text-3xl font-bold">PLAYER</h3>
-        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400">↗</div>
+    <div onclick="toggleCard(this)" class="card gold-border glass-panel p-10 cursor-pointer group hover:-translate-y-2 transition duration-500">
+      <div class="flex justify-between items-start mb-8">
+        <h3 class="font-display text-2xl tracking-widest text-white">PLAYER</h3>
+        <span class="text-brand-gold text-xl opacity-50 group-hover:opacity-100">+</span>
       </div>
-      <p class="text-gray-400 text-sm leading-relaxed">Improve faster with data. Get seen by scouts.</p>
+      <p class="text-gray-500 text-xs tracking-widest uppercase mb-4">The Talent</p>
       
       <div class="details">
-        <div class="pt-6 border-t border-white/10 mt-6">
-          <ul class="space-y-3 text-sm text-gray-300">
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Pro Performance Stats</li>
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Verified Digital CV</li>
+        <div>
+          <ul class="space-y-4 text-xs text-gray-300 font-light tracking-wide border-t border-white/10 pt-6">
+            <li class="flex items-center gap-3"><span class="text-brand-gold">01</span> Performance Stats</li>
+            <li class="flex items-center gap-3"><span class="text-brand-gold">02</span> Verified CV</li>
           </ul>
-          <div class="mt-6 flex justify-between items-end">
-             <span class="text-xl md:text-2xl font-display font-bold text-white">CHF 149</span>
-             <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
+          <div class="mt-8">
+             <span class="text-xl font-display text-brand-gold">CHF 149</span>
+             <span class="text-[9px] text-gray-600 uppercase tracking-widest ml-2">/ Year</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div onclick="toggleCard(this)" class="spotlight-card rounded-3xl p-6 md:p-8 cursor-pointer group active:scale-95 transition-all">
-      <div class="flex justify-between items-start mb-4">
-        <h3 class="font-display text-2xl md:text-3xl font-bold">PARENT</h3>
-        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400">↗</div>
+    <div onclick="toggleCard(this)" class="card gold-border glass-panel p-10 cursor-pointer group hover:-translate-y-2 transition duration-500">
+      <div class="flex justify-between items-start mb-8">
+        <h3 class="font-display text-2xl tracking-widest text-white">PARENT</h3>
+        <span class="text-brand-gold text-xl opacity-50 group-hover:opacity-100">+</span>
       </div>
-      <p class="text-gray-400 text-sm leading-relaxed">Track progress transparently. Direct feedback.</p>
+      <p class="text-gray-500 text-xs tracking-widest uppercase mb-4">The Support</p>
       
       <div class="details">
-        <div class="pt-6 border-t border-white/10 mt-6">
-          <ul class="space-y-3 text-sm text-gray-300">
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Progress Reports</li>
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Safety Alerts</li>
+        <div>
+          <ul class="space-y-4 text-xs text-gray-300 font-light tracking-wide border-t border-white/10 pt-6">
+            <li class="flex items-center gap-3"><span class="text-brand-gold">01</span> Transparency</li>
+            <li class="flex items-center gap-3"><span class="text-brand-gold">02</span> Direct Feedback</li>
           </ul>
-          <div class="mt-6 flex justify-between items-end">
-             <span class="text-xl md:text-2xl font-display font-bold text-white">CHF 99</span>
-             <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">/ Year</span>
+          <div class="mt-8">
+             <span class="text-xl font-display text-brand-gold">CHF 99</span>
+             <span class="text-[9px] text-gray-600 uppercase tracking-widest ml-2">/ Year</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div onclick="toggleCard(this)" class="spotlight-card rounded-3xl p-6 md:p-8 cursor-pointer group active:scale-95 transition-all">
-      <div class="flex justify-between items-start mb-4">
-        <h3 class="font-display text-2xl md:text-3xl font-bold">CLUB</h3>
-        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400">↗</div>
+    <div onclick="toggleCard(this)" class="card gold-border glass-panel p-10 cursor-pointer group hover:-translate-y-2 transition duration-500">
+      <div class="flex justify-between items-start mb-8">
+        <h3 class="font-display text-2xl tracking-widest text-white">CLUB</h3>
+        <span class="text-brand-gold text-xl opacity-50 group-hover:opacity-100">+</span>
       </div>
-      <p class="text-gray-400 text-sm leading-relaxed">Modernize recruitment. Manage talent pipelines.</p>
+      <p class="text-gray-500 text-xs tracking-widest uppercase mb-4">The Stage</p>
       
       <div class="details">
-        <div class="pt-6 border-t border-white/10 mt-6">
-          <ul class="space-y-3 text-sm text-gray-300">
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Scouting Database</li>
-            <li class="flex items-center gap-3"><span class="text-brand-purple">✦</span> Team Mgmt Tools</li>
+        <div>
+          <ul class="space-y-4 text-xs text-gray-300 font-light tracking-wide border-t border-white/10 pt-6">
+            <li class="flex items-center gap-3"><span class="text-brand-gold">01</span> Scouting Database</li>
+            <li class="flex items-center gap-3"><span class="text-brand-gold">02</span> Pipeline Tools</li>
           </ul>
-          <div class="mt-6 flex justify-between items-end">
-             <span class="text-xl md:text-2xl font-display font-bold text-white">CHF 499</span>
-             <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">/ Month</span>
+          <div class="mt-8">
+             <span class="text-xl font-display text-brand-gold">CHF 499</span>
+             <span class="text-[9px] text-gray-600 uppercase tracking-widest ml-2">/ Month</span>
           </div>
         </div>
       </div>
@@ -275,96 +308,72 @@
   </div>
 </section>
 
-<section class="relative py-24 px-6 text-center overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-brand-purple/20 blur-[80px] rounded-full pointer-events-none"></div>
-  
-  <h2 class="text-4xl md:text-7xl font-display font-bold mb-6 relative z-10">
-    READY TO RISE?
+<section class="py-32 text-center relative">
+  <div class="absolute inset-0 bg-gradient-to-t from-brand-gold/5 to-transparent pointer-events-none"></div>
+  <h2 class="text-3xl md:text-5xl font-display uppercase tracking-widest mb-10">
+    Join the <span class="text-brand-gold italic">Elite</span>
   </h2>
-  <a href="#" class="relative z-10 inline-block px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-    Become a Member
+  <a href="#" class="inline-block px-12 py-4 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition duration-500 uppercase text-xs tracking-[0.2em]">
+    Begin Application
   </a>
 </section>
 
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
-  
-  <div id="chat-window" class="chat-container hidden-chat w-[300px] md:w-[350px] bg-[#1a0b2e] border border-white/10 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl">
-    <div class="bg-brand-purple p-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-brand-purple font-bold">T</div>
-        <span class="font-bold text-sm">TalentiDO Support</span>
-      </div>
-      <button onclick="toggleChat()" class="text-white/80 hover:text-white">✕</button>
+<footer class="border-t border-white/10 bg-black py-12">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="text-xs text-gray-600 tracking-widest">
+      &copy; 2024 TALENTIDO ZURICH
     </div>
-    <div class="p-4 h-[250px] flex flex-col justify-end gap-3 bg-white/5">
-      <div class="self-start bg-white/10 p-3 rounded-2xl rounded-tl-none text-xs text-gray-200 max-w-[80%]">
-        Hello! How can I help you join the ecosystem today? ⚽
+    <div class="flex gap-6 md:hidden">
+       <a href="#" class="text-gray-500 hover:text-brand-gold"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+       <a href="#" class="text-gray-500 hover:text-brand-gold"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="fixed bottom-6 right-6 z-50">
+  <div id="chat-window" class="absolute bottom-16 right-0 w-[300px] bg-[#0A0A0A] border border-brand-gold/30 shadow-2xl origin-bottom-right transform scale-0 transition-transform duration-300">
+    <div class="bg-brand-gold/10 p-4 border-b border-brand-gold/20 flex justify-between">
+      <span class="text-xs uppercase tracking-widest text-brand-gold">Concierge</span>
+      <button onclick="toggleChat()" class="text-white hover:text-brand-gold">&times;</button>
+    </div>
+    <div class="h-64 p-4">
+      <div class="text-xs text-gray-400 font-light leading-relaxed">
+        Welcome to TalentiDO. How may we assist your journey?
       </div>
     </div>
-    <div class="p-3 border-t border-white/10 flex gap-2">
-      <input type="text" placeholder="Type a message..." class="w-full bg-transparent text-sm text-white outline-none placeholder-gray-500">
-      <button class="text-brand-purple font-bold text-sm">Send</button>
+    <div class="p-4 border-t border-brand-gold/20">
+       <input class="w-full bg-transparent border-b border-gray-800 text-xs py-2 text-white focus:border-brand-gold outline-none transition" placeholder="Type your message...">
     </div>
   </div>
 
-  <button onclick="toggleChat()" class="w-14 h-14 bg-brand-purple rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(157,0,255,0.5)] hover:scale-110 transition duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
+  <button onclick="toggleChat()" class="w-12 h-12 bg-[#0A0A0A] border border-brand-gold/50 rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-black transition duration-300 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
     </svg>
   </button>
 </div>
 
 <script>
-  // Mobile Menu Logic
-  const mobileMenu = document.getElementById('mobile-menu');
   function toggleMenu() {
-    // If it contains the class that moves it up (hidden), remove it
-    if (mobileMenu.classList.contains('translate-y-[-100%]')) {
-      mobileMenu.classList.remove('translate-y-[-100%]');
+    const menu = document.getElementById('mobile-menu');
+    if(menu.classList.contains('translate-x-full')) {
+      menu.classList.remove('translate-x-full');
     } else {
-      mobileMenu.classList.add('translate-y-[-100%]');
+      menu.classList.add('translate-x-full');
     }
   }
 
-  // Chatbox Logic
-  const chatWindow = document.getElementById('chat-window');
-  function toggleChat() {
-    chatWindow.classList.toggle('hidden-chat');
-  }
-
-  // Card Toggle
   function toggleCard(card){
     card.classList.toggle('active');
   }
 
-  // Spotlight Logic (Desktop Only)
-  const cardsContainer = document.getElementById("cards-container");
-  const cards = document.querySelectorAll(".spotlight-card");
-  
-  if (window.matchMedia("(hover: hover)").matches) {
-    cardsContainer.onmousemove = e => {
-      for(const card of cards) {
-        const rect = card.getBoundingClientRect(),
-              x = e.clientX - rect.left,
-              y = e.clientY - rect.top;
-        card.style.setProperty("--mouse-x", `${x}px`);
-        card.style.setProperty("--mouse-y", `${y}px`);
-      };
+  function toggleChat() {
+    const chat = document.getElementById('chat-window');
+    if(chat.classList.contains('scale-0')) {
+      chat.classList.remove('scale-0');
+    } else {
+      chat.classList.add('scale-0');
     }
-  }
-
-  // Snow Logic
-  const snow = document.getElementById("snow");
-  const symbols = ["❄", "•", "⋆"];
-  for(let i=0; i<30; i++){
-    const s = document.createElement("div");
-    s.className = "snowflake";
-    s.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-    s.style.left = Math.random() * 100 + "vw";
-    s.style.fontSize = 8 + Math.random() * 10 + "px";
-    s.style.animationDuration = 5 + Math.random() * 10 + "s";
-    s.style.opacity = Math.random() * 0.5;
-    snow.appendChild(s);
   }
 </script>
 
