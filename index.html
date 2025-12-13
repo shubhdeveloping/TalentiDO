@@ -141,6 +141,25 @@
         transform: translateY(-3px);
         color: #D041E6;
     }
+
+    /* Mobile Menu Transition */
+    .mobile-menu-enter {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    .mobile-menu-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 300ms ease-out, transform 300ms ease-out;
+    }
+    .mobile-menu-exit {
+        opacity: 1;
+    }
+    .mobile-menu-exit-active {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 200ms ease-in, transform 200ms ease-in;
+    }
   </style>
 </head>
 
@@ -151,10 +170,15 @@
 <div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-lilac rounded-full blur-[150px] opacity-[0.08] pointer-events-none"></div>
 
 <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass-card rounded-2xl flex items-center justify-between px-6 z-50">
-  <div class="flex items-center gap-1">
-    <span class="text-2xl font-display font-bold text-white">talent</span>
-    <span class="text-2xl font-display font-bold text-brand-purple">iDO</span>
-    <span class="text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2">XMAS EDITION</span>
+  
+  <div class="relative flex items-center">
+    <img src="https://cdn-icons-png.flaticon.com/512/3530/3530254.png" alt="Santa" class="absolute -top-3 -left-5 w-12 h-12 z-0 opacity-90 -rotate-12 pointer-events-none filter drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]">
+    
+    <div class="flex items-center gap-1 relative z-10 font-display font-bold">
+        <span class="text-2xl text-white">talent</span>
+        <span class="text-2xl text-brand-purple">iDO</span>
+    </div>
+    <span class="relative z-10 text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2">XMAS EDITION</span>
   </div>
 
   <div class="hidden md:flex gap-10 text-sm text-gray-300">
@@ -165,7 +189,26 @@
   <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(233,213,255,0.4)]">
     Claim Pass
   </a>
+
+  <button onclick="toggleMenu()" class="md:hidden text-white p-2 relative z-50 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+  </button>
 </nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 transition-opacity duration-300">
+    <a href="#offer" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">The Offer</a>
+    <a href="#benefits" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">What's Included</a>
+    <a href="#offer" onclick="toggleMenu()" class="mt-4 px-10 py-4 rounded-full bg-brand-lilac text-black font-bold text-xl hover:scale-105 transition shadow-[0_0_20px_rgba(233,213,255,0.4)]">
+      Claim Pass
+    </a>
+    <button onclick="toggleMenu()" class="absolute top-8 right-8 text-white/50 hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+</div>
 
 <section class="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-10 relative z-10">
   <div class="mb-6 animate-pulse-slow">
@@ -432,6 +475,19 @@
 </div>
 
 <script>
+  // MOBILE MENU TOGGLE
+  function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const body = document.body;
+      menu.classList.toggle('hidden');
+      
+      if (menu.classList.contains('hidden')) {
+          body.classList.remove('overflow-hidden');
+      } else {
+          body.classList.add('overflow-hidden');
+      }
+  }
+
   // Chat Toggle
   function toggleChat(){
     document.getElementById('chat-panel').classList.toggle('hidden');
