@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TalentiDO | Christmas Offer</title>
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
@@ -15,38 +15,16 @@
       theme: {
         extend: {
           colors: {
-            black: '#050505',
             brand: {
-              purple: '#D041E6',   
-              lilac: '#E9D5FF',    
-              dark: '#2E1065',
-              gold: '#FFD700',     
+              purple: '#D041E6',
+              lilac: '#E9D5FF',
+              gold: '#FFD700',
             }
           },
           fontFamily: {
             display: ['Clash Display', 'sans-serif'],
             sans: ['Inter', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
-          },
-          backgroundImage: {
-            'frost-gradient': 'linear-gradient(135deg, #D041E6 0%, #A855F7 50%, #E9D5FF 100%)',
-            'glass-purple': 'linear-gradient(145deg, rgba(208, 65, 230, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%)',
-          },
-          animation: {
-            'snow': 'snow 10s linear infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'flash': 'flash 1.5s infinite',
-          },
-          keyframes: {
-            snow: {
-              '0%': { transform: 'translateY(-10px)', opacity: '0' },
-              '50%': { opacity: '1' },
-              '100%': { transform: 'translateY(100vh)', opacity: '0' },
-            },
-            flash: {
-              '0%, 100%': { opacity: '1' },
-              '50%': { opacity: '0.5' },
-            }
           }
         }
       }
@@ -54,535 +32,101 @@
   </script>
 
   <style>
-    body {
-      background:#050505;
-      color:white;
-      margin:0;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* Scrollbar */
+    body { background:#050505; color:white; margin:0; overflow-x:hidden }
     ::-webkit-scrollbar { width:6px }
     ::-webkit-scrollbar-thumb { background:#D041E6; border-radius:4px }
 
-    /* Ultra Premium Glass Effect */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Purple Glass for Price Card */
-    .glass-purple-box {
-      background: rgba(208, 65, 230, 0.15);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid rgba(208, 65, 230, 0.3);
-      box-shadow: 0 0 40px rgba(208, 65, 230, 0.15);
-    }
-    
     .glass-panel {
-      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
       backdrop-filter: blur(30px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all .3s ease;
     }
-
     .glass-panel:hover {
-      background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-      border-color: rgba(233, 213, 255, 0.4); 
-      transform: translateY(-2px);
-    }
-
-    /* Accordion */
-    .accordion-content {
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-    }
-    .accordion-content.active {
-      opacity: 1;
-    }
-    .accordion-icon {
-      transition: transform 0.3s ease;
-    }
-    .rotate-45 {
-      transform: rotate(45deg);
-    }
-    
-    /* Snow particles */
-    .snow-bg {
-        background-image: radial-gradient(white 1px, transparent 1px), radial-gradient(white 1px, transparent 1px);
-        background-size: 50px 50px;
-        background-position: 0 0, 25px 25px;
-        opacity: 0.1;
-    }
-    
-    .social-icon:hover {
-        transform: translateY(-3px);
-        color: #D041E6;
-    }
-
-    /* Mobile Menu Transition */
-    .mobile-menu-enter {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    .mobile-menu-enter-active {
-        opacity: 1;
-        transform: translateY(0);
-        transition: opacity 300ms ease-out, transform 300ms ease-out;
-    }
-    .mobile-menu-exit {
-        opacity: 1;
-    }
-    .mobile-menu-exit-active {
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: opacity 200ms ease-in, transform 200ms ease-in;
-    }
-
-    /* SANTA BODY WAVE ANIMATION */
-    @keyframes wave-santa-body {
-      0%, 100% { transform: rotate(-10deg); } 
-      50% { transform: rotate(5deg); } 
-    }
-    .animate-santa-wave {
-      display: inline-block;
-      animation: wave-santa-body 2s ease-in-out infinite;
-      transform-origin: bottom center;
+      transform: translateY(-3px);
+      border-color: rgba(233,213,255,.4);
     }
   </style>
 </head>
 
-<body class="relative">
+<body>
 
-<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-full snow-bg pointer-events-none z-0 animate-snow"></div>
-<div class="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple rounded-full blur-[150px] opacity-[0.15] pointer-events-none"></div>
-<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-lilac rounded-full blur-[150px] opacity-[0.08] pointer-events-none"></div>
-
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass-card rounded-2xl flex items-center justify-between px-6 z-50">
-  
-  <div class="relative flex items-center">
-    <div class="absolute -top-5 -left-6 z-0 opacity-90 pointer-events-none select-none">
-         <span class="text-4xl filter drop-shadow-lg animate-santa-wave">🎅</span>
-    </div>
-    
-    <div class="flex items-center gap-1 relative z-10 font-display font-bold">
-        <span class="text-2xl text-white">talent</span>
-        <span class="text-2xl text-brand-purple">iDO</span>
-    </div>
-    <span class="relative z-10 text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2 backdrop-blur-sm">XMAS EDITION</span>
-  </div>
-
-  <div class="hidden md:flex gap-10 text-sm text-gray-300">
-    <a href="#offer" class="hover:text-white transition-colors">The Offer</a>
-    <a href="#benefits" class="hover:text-white transition-colors">What's Included</a>
-    <a href="#partners" class="hover:text-white transition-colors">Partners</a>
-  </div>
-
-  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(233,213,255,0.4)]">
-    Claim Pass
-  </a>
-
-  <button onclick="toggleMenu()" class="md:hidden text-white p-2 relative z-50 focus:outline-none">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-    </svg>
-  </button>
-</nav>
-
-<div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 transition-opacity duration-300">
-    <a href="#offer" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">The Offer</a>
-    <a href="#benefits" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">What's Included</a>
-    <a href="#partners" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">Partners</a>
-    <a href="#offer" onclick="toggleMenu()" class="mt-4 px-10 py-4 rounded-full bg-brand-lilac text-black font-bold text-xl hover:scale-105 transition shadow-[0_0_20px_rgba(233,213,255,0.4)]">
-      Claim Pass
-    </a>
-    <button onclick="toggleMenu()" class="absolute top-8 right-8 text-white/50 hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-    </button>
-</div>
-
-<section class="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-10 relative z-10">
-  <div class="mb-6 animate-pulse-slow">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9D5FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3L14.5 8.5L20.5 9.25L16 13.25L17.25 19L12 16L6.75 19L8 13.25L3.5 9.25L9.5 8.5L12 3Z" />
-    </svg>
-  </div>
-
-  <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6 leading-none">
-    THE ULTIMATE<br/>
+<!-- HERO -->
+<section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+  <h1 class="text-5xl md:text-8xl font-display font-bold mb-6">
+    THE ULTIMATE<br>
     <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-lilac to-brand-purple">
       CHRISTMAS GIFT
     </span>
   </h1>
-
-  <p class="max-w-xl text-lg text-gray-400 mb-10 leading-relaxed">
-    Give your child the professional football advantage this holiday season. <br/>
-    <span class="text-white font-medium">Limited availability for 2025 intake.</span>
+  <p class="max-w-xl text-lg text-gray-400 mb-10">
+    Give your child the professional football advantage this holiday season.
   </p>
-
-  <div id="offer" class="w-full max-w-md relative group mt-8">
-    
-    <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-max z-20">
-        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/50 backdrop-blur-md shadow-[0_0_20px_rgba(220,38,38,0.4)] animate-pulse">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-            <span class="text-red-200 text-xs font-bold tracking-widest uppercase">Only 100 Passes Available</span>
-        </div>
-    </div>
-
-    <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-    
-    <div class="relative glass-purple-box rounded-3xl p-8 md:p-10">
-      <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl">
-        SAVE 85%
-      </div>
-      
-      <h3 class="text-gray-200 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
-      
-      <div class="flex items-baseline justify-center gap-4 mb-6">
-        <span class="text-2xl text-gray-400 line-through decoration-brand-lilac decoration-2">CHF 1000</span>
-        <span class="text-6xl font-display font-bold text-brand-gold drop-shadow-lg">149</span>
-        </div>
-
-      <p class="text-sm text-gray-200 mb-8 border-b border-white/20 pb-6">
-        Unlock a full year of elite training, scholarships, and exposure. The perfect start to a pro journey.
-      </p>
-      
-      <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-lg hover:shadow-[0_0_20px_rgba(208,65,230,0.4)] hover:scale-[1.02] transition-all transform">
-        Get the Gift 🎁
-      </button>
-      
-      <p class="text-xs text-center text-gray-400 mt-4">
-        Offer ends December 25th • Instant Digital Certificate
-      </p>
-    </div>
-  </div>
 </section>
 
-<section id="benefits" class="py-20 px-6 max-w-4xl mx-auto relative z-10">
-  <div class="text-center mb-16">
-    <span class="text-brand-purple font-mono text-sm tracking-widest uppercase mb-4 block">Total Value: CHF 1000+</span>
-    <h2 class="text-3xl md:text-5xl font-display font-bold text-white">
-      What's Inside The Box?
-    </h2>
-  </div>
-
-  <div class="space-y-5">
-    
-    <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
-      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel1', this)">
-        <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">1</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Scholarships & Player Pathway</span>
-        </div>
-        <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
-      </button>
-      <div id="panel1" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Chance to receive support from our CHF 100k scholarship pool</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Guaranteed entry into TalentiDO’s long-term development pathway</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Priority access to TalentiDO camps and advanced squads</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Selection opportunities for tournament squads</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Visibility to clubs, scouts and agents</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
-      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel2', this)">
-        <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">2</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Elite Training & Skill Development</span>
-        </div>
-        <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
-      </button>
-      <div id="panel2" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>European-standard elite training sessions</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Mastery of core football skills (control, dribbling, passing)</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Speed, agility and footwork development</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Simple tactical lessons to improve game intelligence</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Goalkeeper training slots based on availability</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
-      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel3', this)">
-        <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">3</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Performance Tracking & Assessment</span>
-        </div>
-        <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
-      </button>
-      <div id="panel3" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Complete technical, physical and behavioural player assessment</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Personalized improvement plan for faster growth</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Baseline tests to measure real month-to-month progress</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>GPS-lite tracking for speed, distance and agility metrics</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Monthly performance certificate signed by coaches</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
-      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel4', this)">
-         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">4</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Coaching & Mentorship</span>
-        </div>
-        <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
-      </button>
-      <div id="panel4" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Mentorship from certified coaches and experienced players</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Training that builds confidence, discipline and teamwork</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Mental coaching for focus, emotional control and leadership</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Regular coach review sessions with clear feedback</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Meet-and-learn events with Swiss players and coaches</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
-      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel5', this)">
-         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">5</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Matches & Exposure</span>
-        </div>
-        <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
-      </button>
-      <div id="panel5" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Monthly internal mini-league matches</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Friendly matches and small competitions</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Video breakdowns for smarter decision-making</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Match video highlights sent to parents and posted online</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Short video clips to show visible improvement</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
-      <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel6', this)">
-         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-lilac text-sm font-bold border border-white/10">6</span>
-            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-lilac transition-colors">Profile, Safety & Communication</span>
-        </div>
-        <span class="text-2xl font-light text-white/50 accordion-icon group-hover:text-white transition">+</span>
-      </button>
-      <div id="panel6" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Digital TalentiDO Football Pass Profile with stats</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Transparent monthly progress updates for parents</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Weekly parent communication and updates</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Safe, supervised Zurich environment</li>
-          <li class="flex gap-3"><span class="text-brand-lilac">✦</span>Clear discipline and anti-harm policy for healthy habits</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="partners" class="py-20 relative z-10 border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-4">
-              Our Network
-            </h2>
-            <p class="text-gray-400">Collaborating with the best to build the future.</p>
-        </div>
-
-        <div class="space-y-16">
-            
-            <div class="flex flex-col items-center">
-                <h3 class="text-brand-lilac font-mono text-sm tracking-[0.2em] uppercase mb-8 border-b border-white/10 pb-2">Official Sponsor</h3>
-                <div class="glass-panel px-10 py-8 rounded-2xl flex flex-col items-center justify-center gap-4 group hover:border-brand-purple/50 transition duration-300">
-                    <img src="https://placehold.co/200x80/2E1065/FFFFFF?text=Ge-Man" alt="Ge-Man Logo" class="h-16 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
-                    <span class="text-white font-display font-medium">Ge-Man</span>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-center text-brand-lilac font-mono text-sm tracking-[0.2em] uppercase mb-8 border-b border-white/10 pb-2 mx-auto max-w-xs">Partners</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=Bellinzona" alt="AC Bellinzona" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">AC Bellinzona</span>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=FC+Wohlen" alt="FC Wohlen" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">FC Wohlen</span>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=FC+Locarno" alt="FC Locarno" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">FC Locarno</span>
-                    </div>
-                    
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=FC+Kempttal" alt="FC Kempttal" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">FC Kempttal</span>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=Augšdaugavas" alt="Augšdaugavas novada sporta skola" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">Augšdaugavas</span>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=FC+Paradiso" alt="FC Paradiso" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">FC Paradiso</span>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=Slavia+KV" alt="FC Slavia Karlovy Vary" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">FC Slavia KV</span>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=Arsimi" alt="Fudbalski klub Arsimi Chegrane" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">FK Arsimi</span>
-                    </div>
-                    
-                    <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 group hover:-translate-y-1 transition duration-300">
-                        <img src="https://placehold.co/150x150/101010/FFFFFF?text=KF+Llapi" alt="KF Llapi" class="h-12 object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-xs text-gray-400 group-hover:text-white text-center">KF Llapi</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                
-                <div class="flex flex-col items-center">
-                    <h3 class="text-brand-lilac font-mono text-sm tracking-[0.2em] uppercase mb-8 border-b border-white/10 pb-2">Official Agent</h3>
-                    <div class="glass-panel w-full py-8 rounded-xl flex flex-col items-center justify-center gap-4 group hover:border-brand-purple/30 transition duration-300">
-                        <img src="https://placehold.co/200x80/101010/FFFFFF?text=Footuro+AG" alt="Footuro AG" class="h-12 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white font-display">Footuro AG</span>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <h3 class="text-brand-lilac font-mono text-sm tracking-[0.2em] uppercase mb-8 border-b border-white/10 pb-2">Business Partner</h3>
-                    <div class="glass-panel w-full py-8 rounded-xl flex flex-col items-center justify-center gap-4 group hover:border-brand-purple/30 transition duration-300">
-                        <img src="https://placehold.co/200x80/101010/FFFFFF?text=Blockspot" alt="Blockspot.io" class="h-12 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white font-display">Blockspot.io</span>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<footer class="py-24 text-center border-t border-white/5 relative z-10">
-  <div class="inline-block p-4 rounded-full bg-white/5 mb-8">
-    <span class="text-3xl">🎄</span>
-  </div>
-  
-  <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">
-    WRAP UP THEIR FUTURE.
+<!-- BENEFITS -->
+<section id="benefits" class="py-24 max-w-4xl mx-auto px-6">
+  <h2 class="text-4xl md:text-5xl font-display font-bold text-center mb-16">
+    What's Inside the Box?
   </h2>
+  <div class="space-y-6">
+    <div class="glass-panel p-6 rounded-xl">Elite European-standard football training</div>
+    <div class="glass-panel p-6 rounded-xl">Scholarship access & development pathway</div>
+    <div class="glass-panel p-6 rounded-xl">Performance tracking & monthly assessments</div>
+    <div class="glass-panel p-6 rounded-xl">Mentorship, psychology & discipline</div>
+    <div class="glass-panel p-6 rounded-xl">Matches, exposure & video highlights</div>
+  </div>
+</section>
 
-  <p class="text-xl text-gray-400 mb-12">
-    The best gift you can give a young footballer.
-  </p>
+<!-- PARTNERS (ONLY ONE ID – FIXED) -->
+<section id="partners" class="py-24 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
 
-  <button class="px-12 py-5 rounded-full bg-brand-lilac text-black font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(233,213,255,0.3)]">
-    BUY PASS FOR CHF 149
-  </button>
-
-  <div class="mt-16 flex flex-col items-center gap-6">
-    <p class="text-gray-600 text-sm">© 2025 TalentiDO · Zurich</p>
-    
-    <p class="text-gray-500 text-sm font-light tracking-wide">
-        Baarerstrasse 141, Zug, 6300 Switzerland
-    </p>
-
-    <div class="flex gap-6 text-xs text-gray-700 items-center">
-        <span>Terms & Conditions</span>
-        <span>Privacy Policy</span>
-        <a href="mailto:coo@talentido.com" class="text-brand-purple hover:text-white transition font-bold border border-brand-purple/30 px-3 py-1 rounded-full">Contact Us</a>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-display font-bold">Our Network</h2>
+      <p class="text-gray-400">Collaborating with the best to build the future.</p>
     </div>
+
+    <!-- Sponsor -->
+    <div class="flex justify-center mb-20">
+      <div class="glass-panel px-10 py-8 rounded-2xl text-center">
+        <img src="/logos/ge-man.png" alt="Ge-Man" class="h-16 mx-auto object-contain mb-3">
+        <span class="font-display">Ge-Man</span>
+      </div>
+    </div>
+
+    <!-- Partners Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-20">
+      <img src="/logos/ac-bellinzona.png" class="h-12 mx-auto object-contain" alt="AC Bellinzona">
+      <img src="/logos/fc-wohlen.png" class="h-12 mx-auto object-contain" alt="FC Wohlen">
+      <img src="/logos/fc-locarno.png" class="h-12 mx-auto object-contain" alt="FC Locarno">
+      <img src="/logos/fc-kempttal.png" class="h-12 mx-auto object-contain" alt="FC Kempttal">
+      <img src="/logos/augsdaugavas.png" class="h-12 mx-auto object-contain" alt="Augšdaugavas Sporta Skola">
+      <img src="/logos/fc-paradiso.png" class="h-12 mx-auto object-contain" alt="FC Paradiso">
+      <img src="/logos/slavia-kv.png" class="h-12 mx-auto object-contain" alt="FC Slavia Karlovy Vary">
+      <img src="/logos/arsimi.png" class="h-12 mx-auto object-contain" alt="FK Arsimi">
+      <img src="/logos/kf-llapi.png" class="h-12 mx-auto object-contain" alt="KF Llapi">
+    </div>
+
+    <!-- Agent & Business Partner -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+      <div class="glass-panel py-8 rounded-xl text-center">
+        <img src="/logos/footuro.png" class="h-12 mx-auto object-contain mb-3" alt="Footuro AG">
+        <span class="font-display">Footuro AG</span>
+      </div>
+      <div class="glass-panel py-8 rounded-xl text-center">
+        <img src="/logos/blockspot.png" class="h-12 mx-auto object-contain mb-3" alt="Blockspot.io">
+        <span class="font-display">Blockspot.io</span>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <div class="mt-12 flex justify-center gap-8 items-center border-t border-white/5 pt-12 max-w-lg mx-auto">
-    <a href="https://x.com/TalentIDO_" target="_blank" class="text-gray-400 social-icon transition-all">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-      </svg>
-    </a>
-    
-    <a href="https://www.linkedin.com/company/talentido/" target="_blank" class="text-gray-400 social-icon transition-all">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path>
-      </svg>
-    </a>
-
-    <a href="https://www.instagram.com/talentido_" target="_blank" class="text-gray-400 social-icon transition-all">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.38c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
-      </svg>
-    </a>
-
-    <a href="https://www.tiktok.com/@talentido_" target="_blank" class="text-gray-400 social-icon transition-all">
-       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-         <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 3.18-2.58 5.74-5.76 5.74-3.18 0-5.76-2.58-5.76-5.76 0-3.18 2.58-5.76 5.76-5.76 1.01 0 1.95.3 2.76.81v-4.08c-.76-.46-1.64-.73-2.59-.73-2.95 0-5.33 2.39-5.33 5.34s2.39 5.34 5.33 5.34c2.95 0 5.33-2.39 5.33-5.34V4.77c0-.98.79-1.77 1.77-1.77h.23z" />
-       </svg>
-    </a>
-  </div>
-
-  <div class="mt-8 flex flex-col items-center gap-2">
-  </div>
+<!-- FOOTER -->
+<footer class="py-16 text-center border-t border-white/5">
+  <p class="text-gray-500 text-sm">© 2025 TalentiDO · Zurich</p>
 </footer>
-
-<script>
-  // MOBILE MENU TOGGLE
-  function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const body = document.body;
-      menu.classList.toggle('hidden');
-      
-      if (menu.classList.contains('hidden')) {
-          body.classList.remove('overflow-hidden');
-      } else {
-          body.classList.add('overflow-hidden');
-      }
-  }
-
-  // Accordion Logic
-  function toggleAccordion(panelId, btn) {
-    const content = document.getElementById(panelId);
-    const icon = btn.querySelector('.accordion-icon');
-    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
-
-    document.querySelectorAll('.accordion-content').forEach(el => {
-      el.style.maxHeight = '0px';
-      el.classList.remove('active');
-    });
-    document.querySelectorAll('.accordion-icon').forEach(ic => {
-      ic.classList.remove('rotate-45');
-    });
-
-    if (!isOpen) {
-      content.style.maxHeight = content.scrollHeight + "px";
-      content.classList.add('active');
-      icon.classList.add('rotate-45');
-    }
-  }
-</script>
 
 </body>
 </html>
