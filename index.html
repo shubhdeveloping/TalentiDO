@@ -3,35 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TalentiDO | Football Ecosystem</title>
+  <title>TalentiDO | Football Pass</title>
 
-  <!-- Tailwind CDN (OK for Vercel MVP) -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Fonts -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            black: '#050505',
             brand: {
               purple: '#D041E6',
               violet: '#9D00FF',
-              gold: '#FFD700',
             }
           },
           fontFamily: {
             display: ['Clash Display', 'sans-serif'],
             sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          backgroundImage: {
-            'brand-gradient': 'linear-gradient(to right, #D041E6, #9D00FF)',
-            'gold-gradient': 'linear-gradient(to right, #BF953F, #FCF6BA, #B38728)',
           }
         }
       }
@@ -42,126 +35,133 @@
     body {
       background:#050505;
       color:white;
-      margin:0;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width:6px }
-    ::-webkit-scrollbar-thumb { background:#333;border-radius:4px }
-
-    /* Glass */
     .glass {
       background:rgba(255,255,255,.04);
       backdrop-filter:blur(16px);
       border:1px solid rgba(255,255,255,.08);
-    }
-
-    /* Chat */
-    #chatbox {
-      position:fixed;
-      bottom:24px;
-      right:24px;
-      z-index:60;
     }
   </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND GLOWS -->
-<div class="fixed top-0 left-1/4 w-[800px] h-[800px] bg-brand-purple rounded-full blur-[200px] opacity-[0.06] pointer-events-none"></div>
-<div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-brand-violet rounded-full blur-[200px] opacity-[0.06] pointer-events-none"></div>
-
-<!-- NAV -->
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass rounded-2xl flex items-center justify-between px-6 z-50">
-  <div class="flex items-center gap-1">
-    <span class="text-2xl font-display font-bold">talent</span>
-    <span class="text-2xl font-display font-bold text-transparent bg-clip-text bg-brand-gradient">iDO</span>
-  </div>
-
-  <div class="hidden md:flex gap-10 text-sm text-gray-400">
-    <a href="#ecosystem" class="hover:text-white">Ecosystem</a>
-    <a href="#trust" class="hover:text-white">Partners</a>
-    <a href="#join" class="hover:text-white">Join</a>
-  </div>
-
-  <a href="#join" class="hidden md:block px-6 py-2 rounded-full bg-white text-black font-bold hover:scale-105 transition">
-    🎁 Offer
-  </a>
-</nav>
-
 <!-- HERO -->
-<section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-40">
-  <span class="text-xs font-mono tracking-widest text-gray-400 mb-6">
-    CHRISTMAS LAUNCH • SWITZERLAND
+<section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32">
+  <span class="text-xs tracking-widest text-gray-400 mb-6">
+    TALENTIDO • SWITZERLAND
   </span>
 
-  <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-8">
-    THE FOOTBALL<br/>
+  <h1 class="text-5xl md:text-7xl font-display font-bold mb-8">
+    TALENTIDO<br/>
     <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-      ECOSYSTEM
+      FOOTBALL PASS
     </span>
   </h1>
 
-  <p class="max-w-2xl text-lg text-gray-400 mb-14">
-    Where players, parents, clubs & supporters rise together.
+  <p class="max-w-2xl text-lg text-gray-400 mb-12">
+    A complete football development system — training, guidance, progress and opportunities in one pass.
   </p>
 
-  <a href="#ecosystem" class="px-10 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition">
-    Explore the Vision →
+  <a href="#pass" class="px-10 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition">
+    Explore the Pass →
   </a>
 </section>
 
-<!-- ECOSYSTEM -->
-<section id="ecosystem" class="py-32 px-6 max-w-7xl mx-auto">
-  <h2 class="text-4xl md:text-6xl font-display font-bold text-center mb-20">
-    ONE PLATFORM. SIX ROLES.
+<!-- FOOTBALL PASS (COLLAPSIBLE) -->
+<section id="pass" class="py-32 px-6 max-w-4xl mx-auto">
+
+  <h2 class="text-4xl md:text-5xl font-display font-bold text-center mb-16">
+    What You Get With The Football Pass
   </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- CARD -->
-    <div class="glass rounded-2xl p-8 hover:border-brand-purple transition">
-      <h3 class="text-2xl font-display font-bold mb-2">PLAYER</h3>
-      <p class="text-gray-400 mb-6">Train smarter. Get discovered.</p>
-      <span class="text-xl font-bold">CHF 149 / year</span>
+  <div class="space-y-4">
+
+    <!-- ITEM 1 -->
+    <div class="glass rounded-2xl">
+      <button onclick="toggle(1)" class="w-full flex justify-between items-center px-8 py-6">
+        <span class="text-xl font-display font-bold">Training & Skill Development</span>
+        <span id="i1" class="text-2xl">+</span>
+      </button>
+      <div id="c1" class="hidden px-8 pb-6 text-gray-400">
+        European-standard training, core skill development, speed & agility work, and position-specific coaching.
+      </div>
     </div>
 
-    <div class="glass rounded-2xl p-8">
-      <h3 class="text-2xl font-display font-bold mb-2">PARENT</h3>
-      <p class="text-gray-400 mb-6">Transparent progress & trust.</p>
-      <span class="text-xl font-bold">CHF 99 / year</span>
+    <!-- ITEM 2 -->
+    <div class="glass rounded-2xl">
+      <button onclick="toggle(2)" class="w-full flex justify-between items-center px-8 py-6">
+        <span class="text-xl font-display font-bold">Progress Tracking & Evaluation</span>
+        <span id="i2" class="text-2xl">+</span>
+      </button>
+      <div id="c2" class="hidden px-8 pb-6 text-gray-400">
+        Player assessments, baseline tests, monthly progress tracking, digital Football Pass profile and certificates.
+      </div>
     </div>
 
-    <div class="glass rounded-2xl p-8">
-      <h3 class="text-2xl font-display font-bold mb-2">CLUB</h3>
-      <p class="text-gray-400 mb-6">Data-backed recruitment.</p>
-      <span class="text-xl font-bold">CHF 499 / month</span>
+    <!-- ITEM 3 -->
+    <div class="glass rounded-2xl">
+      <button onclick="toggle(3)" class="w-full flex justify-between items-center px-8 py-6">
+        <span class="text-xl font-display font-bold">Coaching & Mental Strength</span>
+        <span id="i3" class="text-2xl">+</span>
+      </button>
+      <div id="c3" class="hidden px-8 pb-6 text-gray-400">
+        Guidance from certified coaches, improvement feedback, confidence building and discipline development.
+      </div>
     </div>
+
+    <!-- ITEM 4 -->
+    <div class="glass rounded-2xl">
+      <button onclick="toggle(4)" class="w-full flex justify-between items-center px-8 py-6">
+        <span class="text-xl font-display font-bold">Game Intelligence & Matches</span>
+        <span id="i4" class="text-2xl">+</span>
+      </button>
+      <div id="c4" class="hidden px-8 pb-6 text-gray-400">
+        Tactical learning, video breakdowns, internal mini-leagues, friendly matches and competition exposure.
+      </div>
+    </div>
+
+    <!-- ITEM 5 -->
+    <div class="glass rounded-2xl">
+      <button onclick="toggle(5)" class="w-full flex justify-between items-center px-8 py-6">
+        <span class="text-xl font-display font-bold">Pathway & Opportunities</span>
+        <span id="i5" class="text-2xl">+</span>
+      </button>
+      <div id="c5" class="hidden px-8 pb-6 text-gray-400">
+        Entry into TalentiDO’s long-term pathway, visibility to clubs and scouts, and eligibility for our CHF 100,000 scholarship pool.
+      </div>
+    </div>
+
+    <!-- ITEM 6 -->
+    <div class="glass rounded-2xl">
+      <button onclick="toggle(6)" class="w-full flex justify-between items-center px-8 py-6">
+        <span class="text-xl font-display font-bold">Safety & Parent Communication</span>
+        <span id="i6" class="text-2xl">+</span>
+      </button>
+      <div id="c6" class="hidden px-8 pb-6 text-gray-400">
+        Safe supervised environment, discipline policies, weekly parent updates and match highlights.
+      </div>
+    </div>
+
   </div>
-</section>
 
-<!-- TRUST -->
-<section id="trust" class="py-32 text-center">
-  <p class="text-sm font-mono tracking-widest text-gray-500 mb-8">
-    TRUSTED IN SWITZERLAND
+  <p class="text-center text-gray-500 text-sm mt-16">
+    Features and sessions are delivered based on availability, performance and operational planning.
   </p>
-  <h3 class="text-3xl font-display font-bold">
-    BUILT IN ZURICH. BUILT TO LAST.
-  </h3>
 </section>
 
 <!-- CTA -->
-<footer id="join" class="py-32 text-center">
-  <h2 class="text-5xl md:text-7xl font-display font-bold mb-8">
-    READY TO RISE?
+<footer class="py-32 text-center">
+  <h2 class="text-5xl font-display font-bold mb-8">
+    Join The Founding 100
   </h2>
 
   <p class="text-xl text-gray-400 mb-12">
-    Become one of the 100 founding members.
+    Lifetime Football Pass access for the first 100 players.
   </p>
 
-  <button class="px-12 py-5 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition shadow-xl">
+  <button class="px-12 py-5 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition">
     JOIN FOR CHF 149
   </button>
 
@@ -170,23 +170,14 @@
   </p>
 </footer>
 
-<!-- CHATBOX -->
-<div id="chatbox">
-  <button onclick="toggleChat()" class="w-14 h-14 rounded-full bg-brand-gradient text-white text-2xl shadow-xl">
-    💬
-  </button>
-
-  <div id="chat-panel" class="hidden mt-4 w-80 glass rounded-2xl p-4">
-    <p class="text-sm text-gray-300 mb-3">
-      👋 Hi! Want to know which membership fits you?
-    </p>
-    <input type="text" placeholder="Type your message…" class="w-full p-3 rounded-lg bg-black border border-white/10 text-white text-sm"/>
-  </div>
-</div>
-
 <script>
-  function toggleChat(){
-    document.getElementById('chat-panel').classList.toggle('hidden');
+  function toggle(id) {
+    for (let i = 1; i <= 6; i++) {
+      document.getElementById('c'+i).classList.add('hidden');
+      document.getElementById('i'+i).innerText = '+';
+    }
+    document.getElementById('c'+id).classList.remove('hidden');
+    document.getElementById('i'+id).innerText = '–';
   }
 </script>
 
