@@ -20,6 +20,7 @@
               purple: '#D041E6',   
               lilac: '#E9D5FF',    
               dark: '#2E1065',
+              deep: '#1a0b2e',
               gold: '#FFD700',     
             }
           },
@@ -30,7 +31,7 @@
           },
           backgroundImage: {
             'frost-gradient': 'linear-gradient(135deg, #D041E6 0%, #A855F7 50%, #E9D5FF 100%)',
-            'glass-purple': 'linear-gradient(145deg, rgba(208, 65, 230, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%)',
+            'luxury-bg': 'radial-gradient(circle at 50% 0%, #2E1065 0%, #0f0518 50%, #050505 100%)',
           },
           animation: {
             'snow': 'snow 10s linear infinite',
@@ -68,36 +69,36 @@
 
     /* Ultra Premium Glass Effect */
     .glass-card {
-      background: rgba(20, 20, 20, 0.6); 
+      background: rgba(255, 255, 255, 0.03); 
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 
-    /* Purple Glass for Price Card */
-    .glass-purple-box {
-      background: rgba(208, 65, 230, 0.15);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid rgba(208, 65, 230, 0.3);
-      box-shadow: 0 0 40px rgba(208, 65, 230, 0.15);
+    /* LUXURY PURPLE PRICE CARD */
+    .glass-luxury-purple {
+      background: linear-gradient(145deg, rgba(88, 28, 135, 0.4) 0%, rgba(208, 65, 230, 0.1) 100%);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(208, 65, 230, 0.4);
+      box-shadow: 0 0 60px rgba(208, 65, 230, 0.15), inset 0 0 20px rgba(208, 65, 230, 0.1);
     }
     
     .glass-panel {
-      background: linear-gradient(145deg, rgba(20,20,20,0.7) 0%, rgba(20,20,20,0.4) 100%);
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
       backdrop-filter: blur(30px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02);
     }
 
     .glass-panel:hover {
-      background: linear-gradient(145deg, rgba(40,40,40,0.8) 0%, rgba(30,30,30,0.5) 100%);
+      background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
       border-color: rgba(233, 213, 255, 0.4); 
       transform: translateY(-2px);
     }
 
-    /* Chat Styling - Responsive Fix */
+    /* Chat Styling */
     #chatbox {
       position: fixed;
       bottom: 20px; 
@@ -139,11 +140,11 @@
         background-image: radial-gradient(white 1px, transparent 1px), radial-gradient(white 1px, transparent 1px);
         background-size: 50px 50px;
         background-position: 0 0, 25px 25px;
-        opacity: 0.1;
+        opacity: 0.15;
     }
     
     .social-icon {
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.6);
         transition: all 0.3s ease;
     }
     .social-icon:hover {
@@ -171,19 +172,11 @@
   </style>
 </head>
 
-<body class="relative">
-
-<div class="fixed inset-0 z-[-2] overflow-hidden">
-    <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-50 scale-105">
-        <source src="https://videos.pexels.com/video-files/3192308/3192308-uhd_2560_1440_25fps.mp4" type="video/mp4">
-        <img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?q=80&w=2000" class="w-full h-full object-cover">
-    </video>
-</div>
-<div class="fixed inset-0 z-[-1] bg-black/80"></div>
+<body class="relative bg-luxury-bg min-h-screen">
 
 <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-full snow-bg pointer-events-none z-0 animate-snow"></div>
-<div class="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple rounded-full blur-[150px] opacity-[0.15] pointer-events-none"></div>
-<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-lilac rounded-full blur-[150px] opacity-[0.08] pointer-events-none"></div>
+<div class="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple rounded-full blur-[150px] opacity-[0.2] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-lilac rounded-full blur-[150px] opacity-[0.1] pointer-events-none"></div>
 
 <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl h-20 glass-card rounded-2xl flex items-center justify-between px-6 z-50">
   
@@ -192,10 +185,10 @@
          <span class="text-4xl filter drop-shadow-lg animate-santa-wave">🎅</span>
     </div>
     
-    <div class="flex items-center gap-1 relative z-10 font-display font-bold">
+    <div class="flex items-center relative z-10 font-display font-bold">
         <span class="text-2xl text-white">talent</span>
         <span class="text-2xl text-brand-purple">iDO</span>
-        <span class="text-xl ml-2 filter drop-shadow-md">🇨🇭</span>
+        <span class="text-xl ml-1 filter drop-shadow-md">🇨🇭</span>
     </div>
     <span class="relative z-10 text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2 backdrop-blur-sm">XMAS EDITION</span>
   </div>
@@ -236,14 +229,14 @@
     </svg>
   </div>
 
-  <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6 leading-none drop-shadow-2xl">
+  <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6 leading-none drop-shadow-2xl text-white">
     THE ULTIMATE<br/>
     <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-lilac to-brand-purple">
       CHRISTMAS GIFT
     </span>
   </h1>
 
-  <p class="max-w-xl text-lg text-gray-300 mb-10 leading-relaxed font-light">
+  <p class="max-w-xl text-lg text-gray-400 mb-10 leading-relaxed font-light">
     Give your child the professional football advantage this holiday season. <br/>
     <span class="text-white font-medium">Limited availability for 2025 intake.</span>
   </p>
@@ -259,19 +252,19 @@
 
     <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
     
-    <div class="relative glass-purple-box rounded-3xl p-8 md:p-10">
+    <div class="relative glass-luxury-purple rounded-3xl p-8 md:p-10">
       <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl">
         SAVE 85%
       </div>
       
-      <h3 class="text-gray-200 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
+      <h3 class="text-gray-300 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
       
       <div class="flex items-baseline justify-center gap-4 mb-6">
         <span class="text-2xl text-gray-400 line-through decoration-brand-lilac decoration-2">CHF 1000</span>
         <span class="text-6xl font-display font-bold text-brand-gold drop-shadow-lg">149</span>
       </div>
 
-      <p class="text-sm text-gray-200 mb-8 border-b border-white/20 pb-6">
+      <p class="text-sm text-gray-300 mb-8 border-b border-white/10 pb-6">
         Unlock a full year of elite training, scholarships, and exposure. The perfect start to a pro journey.
       </p>
       
@@ -413,12 +406,12 @@
   </div>
 </section>
 
-<footer class="py-24 text-center border-t border-white/5 relative z-10">
+<footer class="py-24 text-center border-t border-white/10 relative z-10">
   <div class="inline-block p-4 rounded-full bg-white/5 mb-8">
     <span class="text-3xl">🎄</span>
   </div>
   
-  <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">
+  <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white drop-shadow-lg">
     WRAP UP THEIR FUTURE.
   </h2>
 
@@ -437,9 +430,12 @@
         Baarerstrasse 141, Zug, 6300 Switzerland
     </p>
 
-    <div class="flex gap-6 text-xs text-gray-300 items-center">
+    <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-300 items-center">
         <span class="hover:text-white cursor-pointer transition">Terms & Conditions</span>
         <span class="hover:text-white cursor-pointer transition">Privacy Policy</span>
+        
+        <a href="https://www.talentido.com" class="hover:text-white cursor-pointer transition text-brand-purple">NFTs : www.talentido.com</a>
+
         <a href="mailto:coo@talentido.com" class="text-brand-purple hover:text-white transition font-bold border border-brand-purple/30 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm">Contact Us</a>
     </div>
   </div>
@@ -461,6 +457,12 @@
       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.38c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
       </svg>
+    </a>
+
+    <a href="https://www.tiktok.com/@talentido_" target="_blank" class="social-icon transition-all">
+       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+         <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 3.18-2.58 5.74-5.76 5.74-3.18 0-5.76-2.58-5.76-5.76 0-3.18 2.58-5.76 5.76-5.76 1.01 0 1.95.3 2.76.81v-4.08c-.76-.46-1.64-.73-2.59-.73-2.95 0-5.33 2.39-5.33 5.34s2.39 5.34 5.33 5.34c2.95 0 5.33-2.39 5.33-5.34V4.77c0-.98.79-1.77 1.77-1.77h.23z" />
+       </svg>
     </a>
   </div>
 
