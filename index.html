@@ -511,9 +511,18 @@
   </div>
 </section>
 
-<footer class="py-24 text-center border-t border-white/10 relative z-10">
-  <div class="inline-block p-4 rounded-full bg-white/5 mb-8">
-    <span class="text-3xl">🎄</span>
+<footer class="py-24 text-center border-t border-white/10 relative z-10 flex flex-col items-center">
+  
+  <div class="relative flex items-center mb-10">
+    <div class="absolute -top-5 -left-6 z-0 opacity-90 pointer-events-none select-none">
+         <span class="text-4xl filter drop-shadow-lg animate-santa-wave">🎅</span>
+    </div>
+    <div class="flex items-center relative z-10 font-display font-bold">
+        <span class="text-2xl text-white">talent</span>
+        <span class="text-2xl text-brand-purple">iDO</span>
+        <span class="text-xl ml-1 filter drop-shadow-md">🇨🇭</span>
+    </div>
+    <span class="relative z-10 text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2 backdrop-blur-sm">2026 INTAKE</span>
   </div>
   
   <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white drop-shadow-lg">
@@ -566,9 +575,6 @@
       </svg>
     </a>
   </div>
-
-  <div class="mt-8 flex flex-col items-center gap-2">
-  </div>
 </footer>
 
 <script>
@@ -581,11 +587,6 @@
       } else {
           body.classList.add('overflow-hidden');
       }
-  }
-
-  function toggleChat(){
-    // Chatbox removed in this version as requested, functionality can be deleted if undesired.
-    // Keeping empty function if buttons still exist, but assuming full removal.
   }
 
   function toggleAccordion(panelId, btn) {
