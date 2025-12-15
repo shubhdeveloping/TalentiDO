@@ -38,7 +38,6 @@
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'flash': 'flash 1.5s infinite',
             'scroll': 'scroll 40s linear infinite',
-            'scroll-fast': 'scroll 20s linear infinite',
           },
           keyframes: {
             snow: {
@@ -97,17 +96,20 @@
         backdrop-filter: blur(12px);
         border-top: 1px solid rgba(255,255,255,0.05);
         border-bottom: 1px solid rgba(255,255,255,0.05);
-        position: relative;
     }
-    /* Add subtle snow grain to marquee background */
-    .glass-marquee::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: radial-gradient(white 1px, transparent 1px);
-        background-size: 30px 30px;
-        opacity: 0.05;
-        pointer-events: none;
+
+    /* STATIC PARTNER BADGE */
+    .glass-badge {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+    .glass-badge:hover {
+        background: rgba(208, 65, 230, 0.1);
+        border-color: rgba(208, 65, 230, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px -10px rgba(208, 65, 230, 0.3);
     }
 
     .glass-panel {
@@ -315,171 +317,80 @@
 </section>
 
 <section class="py-24 relative z-20">
-    <div class="text-center mb-10">
-        <h2 class="text-2xl md:text-3xl font-display font-bold text-white tracking-wide">TRUSTED PARTNERS</h2>
+    <div class="text-center mb-16">
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-white tracking-wide">TRUSTED ECOSYSTEM</h2>
         <div class="w-16 h-1 bg-brand-purple mx-auto mt-4 rounded-full"></div>
     </div>
 
-    <div class="mb-8">
-        <p class="text-center text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Official Sponsor</p>
-        <div class="relative w-full overflow-hidden glass-marquee py-6">
-            <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
-            <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
-            <div class="flex w-max animate-scroll-fast">
-                <div class="flex items-center gap-16 px-6">
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                </div>
-                <div class="flex items-center gap-16 px-6">
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                    <span class="text-3xl font-display font-bold text-white/40 hover:text-brand-purple transition duration-500 cursor-default">GE-MAN</span>
-                    <span class="text-brand-purple opacity-30 text-xl">✦</span>
-                </div>
+    <div class="max-w-5xl mx-auto px-6 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            
+            <div class="glass-badge rounded-2xl p-8 flex flex-col items-center justify-center group">
+                <span class="text-xs font-mono text-brand-purple tracking-widest uppercase mb-4 opacity-70">Official Sponsor</span>
+                <span class="text-3xl font-display font-bold text-white group-hover:text-brand-lilac transition duration-300">GE-MAN</span>
             </div>
+
+            <div class="glass-badge rounded-2xl p-8 flex flex-col items-center justify-center group">
+                <span class="text-xs font-mono text-brand-purple tracking-widest uppercase mb-4 opacity-70">Official Agency</span>
+                <span class="text-3xl font-display font-bold text-white group-hover:text-brand-lilac transition duration-300">FOOTURO AG</span>
+            </div>
+
+            <div class="glass-badge rounded-2xl p-8 flex flex-col items-center justify-center group">
+                <span class="text-xs font-mono text-brand-purple tracking-widest uppercase mb-4 opacity-70">Business Partner</span>
+                <span class="text-2xl font-display font-bold text-white group-hover:text-brand-lilac transition duration-300">BLOCKSPOT.IO</span>
+            </div>
+
         </div>
     </div>
 
-    <div class="mb-8">
-        <p class="text-center text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Club Partners</p>
-        <div class="relative w-full overflow-hidden glass-marquee py-6">
-            <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
-            <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
-            <div class="flex w-max animate-scroll">
-                <div class="flex items-center gap-12 px-6">
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">AC Bellinzona</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Wohlen</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Locarno</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Kempttal</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">Augšdaugavas NSS</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Paradiso</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Slavia Karlovy Vary</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FK Arsimi</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">KF Llapi</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                </div>
-                <div class="flex items-center gap-12 px-6">
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">AC Bellinzona</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Wohlen</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Locarno</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Kempttal</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">Augšdaugavas NSS</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Paradiso</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Slavia Karlovy Vary</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FK Arsimi</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                    <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">KF Llapi</span>
-                    <span class="text-brand-purple opacity-30">•</span>
-                </div>
-            </div>
+    <div class="relative w-full overflow-hidden glass-marquee py-8">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -mt-3 bg-black px-4 z-20">
+            <span class="text-xs font-mono text-gray-500 uppercase tracking-widest bg-black px-2">Club Partners</span>
         </div>
-    </div>
-
-    <div class="mb-8">
-        <p class="text-center text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Official Agency</p>
-        <div class="relative w-full overflow-hidden glass-marquee py-6">
-            <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
-            <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
-            <div class="flex w-max animate-scroll-fast">
-                <div class="flex items-center gap-16 px-6">
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                </div>
-                <div class="flex items-center gap-16 px-6">
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-500 cursor-default">FOOTURO AG</span>
-                    <span class="text-brand-purple opacity-30 text-lg">♦</span>
-                </div>
+        
+        <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
+        
+        <div class="flex w-max animate-scroll">
+            <div class="flex items-center gap-16 px-6">
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">AC Bellinzona</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Wohlen</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Locarno</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Kempttal</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">Augšdaugavas NSS</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Paradiso</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Slavia Karlovy Vary</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FK Arsimi</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">KF Llapi</span>
+                <span class="text-brand-purple opacity-30">•</span>
             </div>
-        </div>
-    </div>
-
-    <div>
-        <p class="text-center text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Business Partners</p>
-        <div class="relative w-full overflow-hidden glass-marquee py-6">
-            <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
-            <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
-            <div class="flex w-max animate-scroll-fast">
-                <div class="flex items-center gap-16 px-6">
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                </div>
-                <div class="flex items-center gap-16 px-6">
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                    <span class="text-2xl font-display font-bold text-gray-400 hover:text-white transition duration-300 cursor-default">BLOCKSPOT.IO</span>
-                    <span class="text-brand-purple opacity-30 text-lg">::</span>
-                </div>
+            <div class="flex items-center gap-16 px-6">
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">AC Bellinzona</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Wohlen</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Locarno</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Kempttal</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">Augšdaugavas NSS</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Paradiso</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Slavia Karlovy Vary</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FK Arsimi</span>
+                <span class="text-brand-purple opacity-30">•</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">KF Llapi</span>
+                <span class="text-brand-purple opacity-30">•</span>
             </div>
         </div>
     </div>
