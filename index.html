@@ -17,8 +17,8 @@
           colors: {
             black: '#050505',
             brand: {
-              purple: '#D041E6',   
-              lilac: '#E9D5FF',    
+              purple: '#9333EA',   // CHANGED: True Purple (was #D041E6 Pinkish)
+              lilac: '#DDD6FE',    // CHANGED: Cooler Lilac (was #E9D5FF)
               dark: '#2E1065',
               deep: '#1a0b2e',
               gold: '#FFD700',     
@@ -30,8 +30,9 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           backgroundImage: {
-            'frost-gradient': 'linear-gradient(135deg, #D041E6 0%, #A855F7 50%, #E9D5FF 100%)',
-            'luxury-bg': 'radial-gradient(circle at 50% 0%, #2E1065 0%, #0f0518 50%, #050505 100%)',
+            // CHANGED: Gradients to focus on Purple/Violet/Indigo
+            'frost-gradient': 'linear-gradient(135deg, #9333EA 0%, #7C3AED 50%, #C4B5FD 100%)',
+            'luxury-bg': 'radial-gradient(circle at 50% 0%, #4C1D95 0%, #0f0518 50%, #050505 100%)',
           },
           animation: {
             'snow': 'snow 10s linear infinite',
@@ -70,7 +71,7 @@
 
     /* Scrollbar */
     ::-webkit-scrollbar { width:6px }
-    ::-webkit-scrollbar-thumb { background:#D041E6; border-radius:4px }
+    ::-webkit-scrollbar-thumb { background:#9333EA; border-radius:4px }
 
     /* Ultra Premium Glass Effect */
     .glass-card {
@@ -81,13 +82,13 @@
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 
-    /* LUXURY PURPLE PRICE CARD */
+    /* LUXURY PURPLE PRICE CARD (UPDATED RGB to 147, 51, 234) */
     .glass-luxury-purple {
-      background: linear-gradient(145deg, rgba(88, 28, 135, 0.4) 0%, rgba(208, 65, 230, 0.1) 100%);
+      background: linear-gradient(145deg, rgba(76, 29, 149, 0.4) 0%, rgba(147, 51, 234, 0.1) 100%);
       backdrop-filter: blur(40px);
       -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(208, 65, 230, 0.4);
-      box-shadow: 0 0 60px rgba(208, 65, 230, 0.15), inset 0 0 20px rgba(208, 65, 230, 0.1);
+      border: 1px solid rgba(147, 51, 234, 0.4);
+      box-shadow: 0 0 60px rgba(147, 51, 234, 0.15), inset 0 0 20px rgba(147, 51, 234, 0.1);
     }
     
     /* MARQUEE SPECIFIC GLASS */
@@ -98,7 +99,7 @@
         border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* STATIC PARTNER BADGE */
+    /* STATIC PARTNER BADGE (UPDATED RGB) */
     .glass-badge {
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -106,10 +107,10 @@
         transition: all 0.3s ease;
     }
     .glass-badge:hover {
-        background: rgba(208, 65, 230, 0.1);
-        border-color: rgba(208, 65, 230, 0.4);
+        background: rgba(147, 51, 234, 0.1);
+        border-color: rgba(147, 51, 234, 0.4);
         transform: translateY(-2px);
-        box-shadow: 0 10px 30px -10px rgba(208, 65, 230, 0.3);
+        box-shadow: 0 10px 30px -10px rgba(147, 51, 234, 0.3);
     }
 
     .glass-panel {
@@ -121,7 +122,7 @@
 
     .glass-panel:hover {
       background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-      border-color: rgba(233, 213, 255, 0.4); 
+      border-color: rgba(147, 51, 234, 0.4); 
       transform: translateY(-2px);
     }
 
@@ -156,8 +157,8 @@
     }
     .social-icon:hover {
         transform: translateY(-3px);
-        color: #D041E6;
-        filter: drop-shadow(0 0 8px #D041E6);
+        color: #9333EA;
+        filter: drop-shadow(0 0 8px #9333EA);
     }
 
     /* Mobile Menu Transition */
@@ -205,7 +206,7 @@
     <a href="#benefits" class="hover:text-white transition-colors">Why TalentiDO</a>
   </div>
 
-  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(233,213,255,0.4)]">
+  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-lilac text-black font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(147,51,234,0.4)]">
     Get the Gift
   </a>
 
@@ -219,7 +220,7 @@
 <div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 transition-opacity duration-300">
     <a href="#offer" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">The Offer</a>
     <a href="#benefits" onclick="toggleMenu()" class="text-3xl font-display font-bold text-gray-300 hover:text-white">Why TalentiDO</a>
-    <a href="#offer" onclick="toggleMenu()" class="mt-4 px-10 py-4 rounded-full bg-brand-lilac text-black font-bold text-xl hover:scale-105 transition shadow-[0_0_20px_rgba(233,213,255,0.4)]">
+    <a href="#offer" onclick="toggleMenu()" class="mt-4 px-10 py-4 rounded-full bg-brand-lilac text-black font-bold text-xl hover:scale-105 transition shadow-[0_0_20px_rgba(147,51,234,0.4)]">
       Get the Gift
     </a>
     <button onclick="toggleMenu()" class="absolute top-8 right-8 text-white/50 hover:text-white">
@@ -231,7 +232,7 @@
 
 <section class="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-10 relative z-10">
   <div class="mb-6 animate-pulse-slow">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9D5FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#DDD6FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 3L14.5 8.5L20.5 9.25L16 13.25L17.25 19L12 16L6.75 19L8 13.25L3.5 9.25L9.5 8.5L12 3Z" />
     </svg>
   </div>
@@ -280,7 +281,7 @@
         A full year of structured football development, progress tracking, and opportunity — created to help talented players move forward with clarity and confidence.
       </p>
       
-      <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-lg hover:shadow-[0_0_20px_rgba(208,65,230,0.4)] hover:scale-[1.02] transition-all transform">
+      <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-lg hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] hover:scale-[1.02] transition-all transform">
         👉 Get the Gift 🎄
       </button>
       
@@ -535,7 +536,7 @@
     This Christmas, give your child something that lasts longer than a season.
   </p>
 
-  <button class="px-12 py-5 rounded-full bg-brand-lilac text-black font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(233,213,255,0.3)]">
+  <button class="px-12 py-5 rounded-full bg-brand-lilac text-black font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(147,51,234,0.3)]">
     👉 Buy the TalentiDO Football Pass — CHF 149
   </button>
 
