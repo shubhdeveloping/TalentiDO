@@ -21,7 +21,7 @@
               lilac: '#DDD6FE',    
               dark: '#2E1065',
               deep: '#1a0b2e',
-              gold: '#FFD700',     
+              gold: '#FFD700',       
             }
           },
           fontFamily: {
@@ -30,9 +30,8 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           backgroundImage: {
-            'frost-gradient': 'linear-gradient(135deg, #9333EA 0%, #7C3AED 50%, #C4B5FD 100%)',
+            'frost-glass': 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(5, 5, 5, 0) 100%)',
             'luxury-bg': 'radial-gradient(circle at 50% 0%, #4C1D95 0%, #0f0518 50%, #050505 100%)',
-            'upper-luxury': 'linear-gradient(180deg, rgba(15, 5, 24, 0.95) 0%, rgba(46, 16, 101, 0.8) 50%, rgba(5, 5, 5, 0) 100%)',
           },
           animation: {
             'snow': 'snow 10s linear infinite',
@@ -86,7 +85,7 @@
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 
-    /* MILLION CHF LUXURY CARD */
+    /* MILLION CHF LUXURY CARD (Ticket Style) */
     .glass-luxury-purple {
       /* Deep Royal Midnight Background */
       background: radial-gradient(120% 120% at 50% 0%, rgba(58, 12, 100, 0.5) 0%, rgba(5, 2, 10, 0.95) 100%);
@@ -260,9 +259,11 @@
     </button>
 </div>
 
-<section class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 pt-32 lg:pt-48 relative z-10 max-w-7xl mx-auto gap-12 lg:gap-20 bg-upper-luxury backdrop-blur-3xl rounded-b-[4rem] mb-12 border-b border-white/5">
+<section class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 pt-32 lg:pt-48 relative z-10 max-w-7xl mx-auto gap-12 lg:gap-20 bg-frost-glass backdrop-blur-[40px] rounded-b-[4rem] mb-12 border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
   
-  <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+  <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-white/5 rounded-b-[4rem] pointer-events-none"></div>
+
+  <div class="relative z-10 flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
       <div class="mb-6 inline-block px-4 py-1.5 rounded-full border border-brand-purple/30 bg-brand-purple/10 backdrop-blur-sm animate-pulse-slow">
          <span class="text-brand-lilac font-mono text-xs tracking-widest uppercase">Where Talent Meets Direction</span>
       </div>
@@ -285,7 +286,7 @@
       </div>
   </div>
 
-  <div class="flex-1 w-full lg:max-w-3xl flex justify-center lg:justify-end">
+  <div class="flex-1 w-full lg:max-w-3xl flex justify-center lg:justify-end relative z-10">
       <div id="offer" class="w-full relative group">
         
         <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-max z-20">
@@ -297,43 +298,56 @@
 
         <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple via-brand-lilac to-brand-purple rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
         
-        <div class="relative glass-luxury-purple rounded-3xl p-8 md:p-10 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-center">
-          
-          <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl z-10 shadow-lg">
-            SAVE 85% — Christmas Special
-          </div>
+        <div class="relative glass-luxury-purple rounded-3xl overflow-hidden flex flex-col lg:flex-row">
+            
+            <div class="absolute top-0 right-0 bg-brand-lilac text-black text-xs font-bold px-4 py-1 rounded-bl-xl z-20 shadow-lg">
+              SAVE 85% — Christmas Special
+            </div>
 
-          <div class="text-center lg:text-left flex flex-col items-center lg:items-start">
-              <h3 class="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">TalentiDO Football Pass</h3>
+            <div class="p-8 md:p-10 flex flex-col items-center justify-center lg:items-start text-center lg:text-left lg:w-2/5 relative">
+              <h3 class="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">TalentiDO Pass</h3>
               
-              <div class="flex flex-col items-center lg:items-start mb-6 relative">
-                 <span class="text-lg lg:text-xl text-gray-500 font-mono line-through decoration-red-500/60 decoration-2 tracking-wide">CHF 1,000</span>
-                 <span class="text-6xl lg:text-5xl xl:text-6xl font-display font-bold text-gold-luxury drop-shadow-xl leading-none">CHF 149</span>
+              <div class="flex flex-col items-center lg:items-start mb-6">
+                 <span class="text-lg text-gray-500 font-mono line-through decoration-red-500/60 decoration-2 tracking-wide">CHF 1,000</span>
+                 <span class="text-6xl font-display font-bold text-gold-luxury drop-shadow-xl leading-none">CHF 149</span>
               </div>
 
-              <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-lg hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] hover:scale-[1.02] transition-all transform mb-4 lg:mb-2 border border-white/20">
-                Get the Football Gift 🎁
+              <button class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-base hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] hover:scale-[1.02] transition-all transform border border-white/20">
+                Get the Gift 🎁
               </button>
-          </div>
+            </div>
 
-          <div class="text-left mt-8 lg:mt-0 lg:border-l lg:border-white/5 lg:pl-10 relative">
-               <div class="hidden lg:block absolute left-[-1px] top-1/2 -translate-y-1/2 h-2/3 w-[1px] bg-gradient-to-b from-transparent via-brand-purple/50 to-transparent"></div>
+            <div class="relative hidden lg:flex flex-col items-center justify-center py-2">
+                <div class="h-full border-l-2 border-dashed border-white/20"></div>
+                <div class="absolute -top-3 left-[-12px] w-6 h-6 bg-[#050505] rounded-full shadow-[inset_0_-2px_4px_rgba(0,0,0,0.5)]"></div>
+                <div class="absolute -bottom-3 left-[-12px] w-6 h-6 bg-[#050505] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"></div>
+            </div>
 
-               <p class="text-white font-medium mb-4 text-center lg:text-left">What you unlock for your child:</p>
-               <ul class="space-y-3 text-sm text-gray-400 mb-6">
-                   <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5 drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">✦</span> Up to CHF 100,000 scholarship support</li>
-                   <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5 drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">✦</span> Guaranteed entry into pathway</li>
-                   <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5 drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">✦</span> Verified exposure to clubs</li>
-                   <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5 drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">✦</span> Personal performance tracking</li>
-                   <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5 drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">✦</span> Priority access to camps</li>
-               </ul>
-          </div>
+            <div class="p-8 lg:pl-10 lg:pr-8 pt-0 lg:pt-8 pb-6 flex-1 flex flex-col justify-between border-t border-dashed border-white/20 lg:border-t-0">
+               
+               <div class="lg:hidden absolute left-0 top-[35%] -translate-y-1/2 w-4 h-8 bg-[#050505] rounded-r-full"></div>
+               <div class="lg:hidden absolute right-0 top-[35%] -translate-y-1/2 w-4 h-8 bg-[#050505] rounded-l-full"></div>
+
+               <div>
+                 <p class="text-white font-medium mb-4 text-center lg:text-left mt-6 lg:mt-0">What you unlock for your child:</p>
+                 <ul class="space-y-2 text-sm text-gray-400">
+                     <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Up to CHF 100,000 scholarship support</li>
+                     <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Guaranteed entry into pathway</li>
+                     <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Verified exposure to clubs</li>
+                     <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Personal performance tracking</li>
+                     <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Priority access to camps</li>
+                 </ul>
+               </div>
+
+               <div class="mt-6 w-full py-2 px-3 rounded bg-white/5 border border-white/10 flex items-center justify-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500 font-bold text-xs uppercase tracking-wider shadow-gold">
+                    Unlocks Full Year of Development & Visibility
+                  </span>
+               </div>
+            </div>
+
         </div>
-        
-        <p class="text-xs text-brand-lilac/60 leading-relaxed italic text-center mt-4">
-             Unlock a full year of development, visibility, and opportunity.
-        </p>
-
       </div>
   </div>
 </section>
@@ -428,7 +442,7 @@
           Swiss parents don’t want promises. They want structure, safety, and honesty.
         </p>
         <p class="font-light leading-relaxed">
-            TalentiDO gives young players a clear, realistic football pathway — not hype.<br/>
+            TalentiDO gives young players a clear, realistic football pathway not hype.<br/>
             We help families understand where their child stands today, what can be improved, and what steps come next without pressure.
         </p>
         <div class="text-sm text-brand-lilac italic space-y-1">
