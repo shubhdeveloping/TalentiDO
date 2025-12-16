@@ -606,6 +606,7 @@
       }
   }
 
+  // PRIVACY POLICY TOGGLE
   function togglePrivacy() {
       const privacy = document.getElementById('privacy-overlay');
       const body = document.body;
@@ -617,6 +618,7 @@
       }
   }
 
+  // TERMS & CONDITIONS TOGGLE
   function toggleTerms() {
       const terms = document.getElementById('terms-overlay');
       const body = document.body;
@@ -630,7 +632,17 @@
 
   function toggleAccordion(panelId, btn) {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-    const pairs = { 'panel1': 'panel2', 'panel2': 'panel1', 'panel3': 'panel4', 'panel4': 'panel3', 'panel5': 'panel6', 'panel6': 'panel5' };
+    
+    // Define Pairs for Desktop Sync
+    const pairs = {
+        'panel1': 'panel2',
+        'panel2': 'panel1',
+        'panel3': 'panel4',
+        'panel4': 'panel3',
+        'panel5': 'panel6',
+        'panel6': 'panel5'
+    };
+
     const targetContent = document.getElementById(panelId);
     const targetIcon = btn.querySelector('.accordion-icon');
     const currentlyOpen = targetContent.style.maxHeight && targetContent.style.maxHeight !== '0px';
@@ -644,9 +656,11 @@
     });
 
     if (!currentlyOpen) {
+      
       const openPanel = (id, buttonEl) => {
           const content = document.getElementById(id);
           const icon = buttonEl ? buttonEl.querySelector('.accordion-icon') : null;
+          
           if(content) {
               content.style.maxHeight = content.scrollHeight + "px";
               content.classList.add('active');
@@ -655,11 +669,14 @@
               icon.classList.add('rotate-45');
           }
       };
+
       openPanel(panelId, btn);
+
       if (isDesktop && pairs[panelId]) {
           const partnerId = pairs[panelId];
           const partnerContent = document.getElementById(partnerId);
           const partnerBtn = partnerContent.previousElementSibling; 
+          
           openPanel(partnerId, partnerBtn);
       }
     }
