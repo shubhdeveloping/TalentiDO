@@ -62,7 +62,7 @@
       overflow-x: hidden;
     }
 
-    /* ATMOSPHERE: Hidden on mobile for performance, visible on desktop */
+    /* ATMOSPHERE */
     @media (min-width: 768px) {
         .atmos-sphere-1 {
             position: fixed;
@@ -107,8 +107,6 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* Subtle shine effect */
     .liquid-card::before {
         content: '';
         position: absolute;
@@ -129,14 +127,19 @@
       transform: translateY(-2px);
     }
 
-    /* Hero Text Glass Background */
+    /* --- HERO COMPACT GLASS PANEL --- */
+    /* Updated for compact, better shape */
     .hero-glass-panel {
         background: rgba(15, 7, 32, 0.4);
         backdrop-filter: blur(10px);
-        border-radius: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Asymmetrical modern shape */
+        border-radius: 40px 10px 40px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 40px;
         box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.05);
+        /* Make it fit the content, not full width */
+        width: fit-content;
+        max-width: 100%;
     }
 
     /* Typography & Gradients */
@@ -147,7 +150,7 @@
         filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
     }
     
-    /* Neon Buttons - High Performance */
+    /* Neon Buttons */
     .btn-neon {
         background: linear-gradient(90deg, #9333EA 0%, #DB2777 100%);
         color: white;
@@ -160,7 +163,7 @@
         transform: scale(0.98);
     }
 
-    /* Accordion styles - Smoother */
+    /* Accordion styles */
     .accordion-content {
       transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
       max-height: 0;
@@ -183,7 +186,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    /* Spacing Fixes */
     .section-spacing { margin-bottom: 4rem; }
     @media (min-width: 768px) { .section-spacing { margin-bottom: 8rem; } }
   </style>
@@ -208,27 +210,75 @@
             <h1 class="text-3xl font-display font-bold text-white mb-2">Privacy Policy</h1>
             <p class="text-brand-accent font-mono text-xs mb-6">Last updated: 2025</p>
             
-            <div class="space-y-6 font-light text-gray-300 text-sm leading-relaxed">
+            <div class="prose prose-invert max-w-none space-y-8 font-light text-gray-300 text-sm leading-relaxed">
+                
                 <div class="bg-brand-accent/10 border border-brand-accent/20 p-4 rounded-lg">
-                    <p class="font-bold text-white">Applicable law: Swiss Federal Act on Data Protection (FADP) & EU GDPR</p>
-                    <p class="mt-2">TalentiDO (“we”, “us”, “our”) takes the protection of personal data very seriously. This Privacy Policy explains what data we collect, why we collect it, and how we protect it, especially for children and parents.</p>
+                    <p class="text-sm font-bold text-white">Applicable law: Swiss Federal Act on Data Protection (FADP) & EU GDPR</p>
+                    <p class="text-sm mt-2 text-gray-300">TalentiDO (“we”, “us”, “our”) takes the protection of personal data very seriously. This Privacy Policy explains what data we collect, why we collect it, and how we protect it, especially for children and parents.</p>
                 </div>
 
-                <h2 class="text-xl font-display font-bold text-white mt-6">1. Who We Are</h2>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li><strong>Company:</strong> TalentiDO</li>
-                    <li><strong>Location:</strong> Switzerland</li>
-                    <li><strong>Contact Email:</strong> coo@talentido.com</li>
-                </ul>
+                <section>
+                    <h2 class="text-xl font-display font-bold text-white mb-2">1. Who We Are</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>Company:</strong> TalentiDO</li>
+                        <li><strong>Location:</strong> Switzerland</li>
+                        <li><strong>Contact Email:</strong> <a href="mailto:coo@talentido.com" class="text-brand-accent hover:underline">coo@talentido.com</a></li>
+                    </ul>
+                </section>
 
-                <h2 class="text-xl font-display font-bold text-white mt-6">2. Data Collection</h2>
-                <p>We only collect data necessary to provide TalentiDO services, including player name, age, DO, parent details, and performance metrics (speed, agility, skills).</p>
-                
-                <h2 class="text-xl font-display font-bold text-white mt-6">3. Why We Collect Data</h2>
-                <p>To create player profiles, deliver Football Pass services, track progress, and enable visibility (if activated). We <strong class="text-brand-accent">never sell</strong> personal data.</p>
-                
-                <h2 class="text-xl font-display font-bold text-white mt-6">4. Data Security</h2>
-                <p>Data is stored on secure servers with strict access controls. Payments are processed by Payrexx (PCI-DSS compliant). We do not store credit card details.</p>
+                <section>
+                    <h2 class="text-xl font-display font-bold text-white mb-2">2. Who This Policy Applies To</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Players (including minors)</li>
+                        <li>Parents or legal guardians</li>
+                        <li>Scouts, coaches, and partners</li>
+                        <li>Website visitors and users of TalentiDO services</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-display font-bold text-white mb-2">3. What Data We Collect</h2>
+                    <div class="grid md:grid-cols-2 gap-4 mt-2">
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                            <h3 class="font-bold text-white mb-2">a) Personal Information</h3>
+                            <ul class="list-disc pl-4 text-sm text-gray-400 space-y-1">
+                                <li>Player name, age, date of birth</li>
+                                <li>Parent/guardian contact details</li>
+                                <li>Email address</li>
+                                <li>Country and region</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/5">
+                            <h3 class="font-bold text-white mb-2">b) Football & Performance</h3>
+                            <ul class="list-disc pl-4 text-sm text-gray-400 space-y-1">
+                                <li>Test results (speed, agility, skills)</li>
+                                <li>Training feedback</li>
+                                <li>Uploaded photos/videos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-display font-bold text-white mb-2">4. Why We Collect Data</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Create and manage player profiles</li>
+                        <li>Deliver Football Pass services</li>
+                        <li>Track player progress</li>
+                        <li>Communicate with parents/players</li>
+                        <li>Enable scouting visibility (only if activated)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-display font-bold text-white mb-2">5. Data Sharing</h2>
+                    <p>We only share data with authorized staff, verified scouts (if enabled), and service providers (hosting). All partners are bound by data protection laws.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-display font-bold text-white mb-2">6. Children’s Data Protection</h2>
+                    <p>Parental consent is required for minors. We never knowingly exploit children’s data. Parents can request deletion at any time.</p>
+                </section>
             </div>
             
             <div class="mt-8 text-center border-t border-white/5 pt-6">
@@ -249,26 +299,190 @@
     <div class="relative z-10 max-w-4xl mx-auto pt-24 pb-12 px-6">
         <div class="liquid-card p-6 md:p-10 rounded-2xl">
             <h1 class="text-3xl font-display font-bold text-white mb-2">Terms & Conditions</h1>
-            <p class="text-brand-accent font-mono text-xs mb-6">TalentiDO Football Pass</p>
+            <p class="text-brand-accent font-mono text-xs mb-6">TalentiDO Football Pass - Last updated: December 2025</p>
             
-            <div class="space-y-6 font-light text-gray-300 text-sm leading-relaxed">
-                <p class="font-bold text-white">By purchasing or using the TalentiDO Football Pass, the player and/or their legal guardian agree to the following Terms & Conditions.</p>
+            <div class="space-y-8 font-light text-gray-300 text-sm leading-relaxed">
+                <div class="bg-brand-accent/10 border border-brand-accent/20 p-4 rounded-xl">
+                    <p class="font-bold text-white">By purchasing, activating, or using the TalentiDO Football Pass, the player and/or their legal parent or guardian (“User”) confirm that they have read, understood, and agreed to these Terms & Conditions in full.</p>
+                </div>
 
-                <h2 class="text-xl font-display font-bold text-white mt-6">1. Nature of Service</h2>
-                <p>The Football Pass is a development and evaluation program. It is not an employment contract, agency agreement, or guarantee of professional success. All services are provided on a best-effort basis.</p>
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">1. Nature of the TalentiDO Football Pass</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>1.1 The TalentiDO Football Pass is a development, assessment, and exposure program only.</li>
+                        <li>1.2 It is not: A professional contract, A football academy enrolment, or A promise of trials/contracts.</li>
+                        <li>1.3 All services are provided on a best-effort basis, subject to: Availability, Schedule, Operational capacity, Budgetary constraints.</li>
+                        <li>1.4 The Football Pass may include digital, remote, hybrid, or occasional in-person elements. It is not a full-time onsite training academy.</li>
+                    </ul>
+                </section>
 
-                <h2 class="text-xl font-display font-bold text-white mt-6">2. Scholarship (CHF 100,000 Pool)</h2>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li>The scholarship pool is not guaranteed per player.</li>
-                    <li>Selection is conducted internally once per year based on performance.</li>
-                    <li>Awards range from <span class="text-brand-accent">CHF 0 up to CHF 100,000</span>.</li>
-                </ul>
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">2. Scholarship Pool (Up to CHF 100,000)</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>2.1 TalentiDO may award scholarships from a total annual pool of up to CHF 100,000.</li>
+                        <li>2.2 Scholarships are: Not guaranteed, Not evenly distributed, Not automatically awarded.</li>
+                        <li>2.3 Selection is conducted once per year, internally, at the sole discretion of the TalentiDO coaching team.</li>
+                        <li>2.4 Criteria may include: Performance, Consistency, Attitude, Completion of tasks.</li>
+                        <li>2.5 The final amount awarded to any player may range from CHF 0 to CHF 100,000.</li>
+                        <li>2.6 No legal right, claim, or entitlement to scholarship funds exists.</li>
+                    </ul>
+                </section>
 
-                <h2 class="text-xl font-display font-bold text-white mt-6">3. Refund Policy</h2>
-                <p>All fees are non-refundable except where required by Swiss or EU consumer law. Payments are securely processed via Payrexx.</p>
-                
-                <h2 class="text-xl font-display font-bold text-white mt-6">4. Liability</h2>
-                <p>TalentiDO is not liable for injuries unless caused by gross negligence. Players participate at their own risk.</p>
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">3. Long-Term Development Pathway</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>3.1 “Guaranteed entry” means: Inclusion in TalentiDO’s internal player system, Ongoing observation, Priority consideration.</li>
+                        <li>3.2 It does not guarantee: Squad selection, Club trials, Professional contracts, National/international placement.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">4. Training Sessions & Coaching</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>4.1 Training sessions are conducted by TalentiDO-approved or FIFA-certified coaches, when available.</li>
+                        <li>4.2 Session frequency, format, and location depend on coach availability, safety, and logistics.</li>
+                        <li>4.3 TalentiDO may modify, reschedule, replace, or cancel sessions without liability.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">5. Player Assessments & Improvement Plans</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>5.1 Assessments are observational, non-medical, and based on coaching judgment.</li>
+                        <li>5.2 Improvement plans provide guidance only, not guaranteed results.</li>
+                        <li>5.3 Development depends on individual effort, health, and external factors.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">6. Performance Tracking & GPS-Lite Metrics</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>6.1 Tracking may include free third-party apps, manual timing, or fixed-route measurements.</li>
+                        <li>6.2 TalentiDO does not provide professional GPS hardware or medical-grade tracking.</li>
+                        <li>6.3 All metrics are indicative estimates, not precise scientific measurements.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">7. Video Content & Highlights</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>7.1 Video clips and highlights are provided when feasible.</li>
+                        <li>7.2 Availability depends on equipment, consent, and match conditions.</li>
+                        <li>7.3 TalentiDO is not liable for missing or low-quality footage.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">8. Matches, Mini-Leagues & Competitions</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>8.1 Matches are organised when feasible.</li>
+                        <li>8.2 Participation depends on performance, fitness, behaviour, and tactical suitability.</li>
+                        <li>8.3 Selection for tournaments or squads is not guaranteed.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">9. Exposure, Visibility & Scouts</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>9.1 TalentiDO provides visibility opportunities, not outcomes.</li>
+                        <li>9.2 We do not guarantee scout attendance, trials, contracts, or offers.</li>
+                        <li>9.3 All third-party decisions are independent of TalentiDO.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">10. Digital Player Profiles & Certificates</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>10.1 Digital profiles are informational, non-transferable, and non-commercial.</li>
+                        <li>10.2 Certificates confirm participation and progress only; they do not represent professional qualifications.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">11. Mental Coaching & Mentorship</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>11.1 Mental coaching includes motivation, confidence building, and positive guidance.</li>
+                        <li>11.2 We do not provide therapy, medical treatment, or psychological diagnosis.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">12. Goalkeeper Training</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>12.1 Sessions are limited, performance-based, and subject to availability.</li>
+                        <li>12.2 No minimum number of sessions is guaranteed.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">13. Safety & Risk Acknowledgement</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>13.1 TalentiDO applies reasonable safety measures.</li>
+                        <li>13.2 Football involves inherent risk, including injury.</li>
+                        <li>13.3 TalentiDO is not liable for injuries unless caused by proven gross negligence.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">14. Parent Communication</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>14.1 Updates are provided periodically, not continuously.</li>
+                        <li>14.2 Frequency may vary due to operational workload.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">15. Discipline & Conduct</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>15.1 We may warn, suspend, or remove a player for misconduct, unsafe behaviour, or policy violations.</li>
+                        <li>15.2 No refunds apply in disciplinary cases.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">16. Payments & Refunds</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>16.1 Payments are processed via Payrexx.</li>
+                        <li>16.2 Fees are non-refundable, except where required by Swiss or EU consumer law.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">17. Data Protection & Privacy</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>17.1 We comply with Swiss FADP and EU GDPR.</li>
+                        <li>17.2 Data is used solely for player development, evaluation, communication, and exposure.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">18. Limitation of Liability</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>18.1 TalentiDO is not liable for career outcomes, missed opportunities, or emotional disappointment.</li>
+                        <li>18.2 Liability is limited to the amount paid for the Football Pass.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">19. Service Changes</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>19.1 TalentiDO may update or modify features at any time.</li>
+                        <li>19.2 Equivalent alternatives may be offered, but no compensation is guaranteed.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">20. Governing Law & Jurisdiction</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>20.1 These Terms are governed exclusively by Swiss law.</li>
+                        <li>20.2 Jurisdiction lies exclusively in Switzerland.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-display font-bold text-white mb-2">21. Contact</h2>
+                    <p>📧 coo@talentido.com</p>
+                </section>
             </div>
 
             <div class="mt-8 text-center border-t border-white/5 pt-6">
@@ -559,8 +773,7 @@
 
   <div class="mt-8 text-center">
         <p class="text-[10px] uppercase tracking-widest text-gray-500 max-w-xl mx-auto leading-relaxed">
-            All services, benefits, and opportunities described are subject to availability, eligibility, and performance. 
-            <button onclick="toggleTerms()" class="hover:text-white transition underline decoration-gray-500 underline-offset-4">Terms & Conditions apply.</button>
+            All services, benefits, and opportunities described are subject to availability, eligibility, and performance.
         </p>
   </div>
 </section>
@@ -595,7 +808,7 @@
   <div class="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest text-gray-500 border-t border-white/5 pt-8">
       
       <div class="text-center md:text-left">
-        <p>© 2025 TalentiDO · Zurich · Baarerstrasse 141</p>
+        <p>© 2025 TalentiDO · Baarerstrasse 141 , 6300 Zug , Switzerland</p>
       </div>
 
       <div class="flex gap-6 items-center">
@@ -609,7 +822,9 @@
         <a href="https://www.tiktok.com/@talentido_" target="_blank" class="hover:text-brand-accent transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
         <a href="https://x.com/TalentIDO_" target="_blank" class="hover:text-brand-accent transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
         <a href="https://www.linkedin.com/company/talentido/" target="_blank" class="hover:text-brand-accent transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg></a>
-        <a href="https://www.instagram.com/talentido_" target="_blank" class="hover:text-brand-accent transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.38c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3.857.344 1.054.048 1.37.058 4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg></a>
+        <a href="https://www.instagram.com/talentido_" target="_blank" class="hover:text-brand-accent transition transform hover:scale-110">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM16.999 6a1.001 1.001 0 1 1 0 2.002 1.001 1.001 0 0 1 0-2.002Z"/></svg>
+        </a>
       </div>
   </div>
 </footer>
