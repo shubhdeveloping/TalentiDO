@@ -17,8 +17,8 @@
           colors: {
             black: '#050505',
             brand: {
-              purple: '#9333EA',   // CHANGED: True Purple (was #D041E6 Pinkish)
-              lilac: '#DDD6FE',    // CHANGED: Cooler Lilac (was #E9D5FF)
+              purple: '#9333EA',   // True Purple
+              lilac: '#DDD6FE',    // Cooler Lilac
               dark: '#2E1065',
               deep: '#1a0b2e',
               gold: '#FFD700',     
@@ -30,7 +30,6 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           backgroundImage: {
-            // CHANGED: Gradients to focus on Purple/Violet/Indigo
             'frost-gradient': 'linear-gradient(135deg, #9333EA 0%, #7C3AED 50%, #C4B5FD 100%)',
             'luxury-bg': 'radial-gradient(circle at 50% 0%, #4C1D95 0%, #0f0518 50%, #050505 100%)',
           },
@@ -82,7 +81,7 @@
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 
-    /* LUXURY PURPLE PRICE CARD (UPDATED RGB to 147, 51, 234) */
+    /* LUXURY PURPLE PRICE CARD */
     .glass-luxury-purple {
       background: linear-gradient(145deg, rgba(76, 29, 149, 0.4) 0%, rgba(147, 51, 234, 0.1) 100%);
       backdrop-filter: blur(40px);
@@ -99,7 +98,7 @@
         border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* STATIC PARTNER BADGE (UPDATED RGB) */
+    /* STATIC PARTNER BADGE */
     .glass-badge {
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -515,15 +514,11 @@
 <footer class="py-24 text-center border-t border-white/10 relative z-10 flex flex-col items-center">
   
   <div class="relative flex items-center mb-10">
-    <div class="absolute -top-5 -left-6 z-0 opacity-90 pointer-events-none select-none">
-         <span class="text-4xl filter drop-shadow-lg animate-santa-wave">🎅</span>
-    </div>
     <div class="flex items-center relative z-10 font-display font-bold">
         <span class="text-2xl text-white">talent</span>
         <span class="text-2xl text-brand-purple">iDO</span>
         <span class="text-xl ml-1 filter drop-shadow-md">🇨🇭</span>
     </div>
-    <span class="relative z-10 text-xs font-mono text-brand-lilac border border-brand-lilac/30 px-2 py-0.5 rounded ml-2 backdrop-blur-sm">2026 INTAKE</span>
   </div>
   
   <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white drop-shadow-lg">
