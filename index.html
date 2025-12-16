@@ -16,11 +16,11 @@
         extend: {
           colors: {
             brand: {
-              purple: '#7E22CE',   /* Royal Purple */
-              vivid: '#9333EA',    /* Vivid Purple */
-              lilac: '#E9D5FF',    /* Pale Lilac */
-              deep: '#3B0764',     /* Darkest Purple (Text) */
-              gold: '#D97706',     /* Luxury Gold */
+              purple: '#9333EA',    /* PRIMARY PURPLE */
+              dark: '#050505',      /* DARK BACKGROUND */
+              violet: '#1a0f2e',    /* GRADIENT VIOLET */
+              red: '#b91c1c',       /* ACCENT RED */
+              white: '#FFFFFF',     /* WHITE */
             }
           },
           fontFamily: {
@@ -29,8 +29,8 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           backgroundImage: {
-            'purple-dream': 'linear-gradient(135deg, #F3E8FF 0%, #D8B4FE 50%, #C084FC 100%)',
-            'gold-text': 'linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%)', 
+            'midnight-gradient': 'radial-gradient(circle at 50% 0%, #1a0f2e 0%, #050505 60%)',
+            'purple-beam': 'linear-gradient(180deg, rgba(147,51,234,0.2) 0%, rgba(5,5,5,0) 100%)',
           },
           animation: {
             'snow': 'snow 15s linear infinite',
@@ -43,7 +43,7 @@
           keyframes: {
             snow: {
               '0%': { transform: 'translateY(-10px)', opacity: '0' },
-              '50%': { opacity: '0.7' },
+              '50%': { opacity: '0.5' },
               '100%': { transform: 'translateY(100vh)', opacity: '0' },
             },
             float: {
@@ -65,15 +65,15 @@
   </script>
 
   <style>
+    :root {
+      --glass-6: rgba(255, 255, 255, 0.06);
+      --glass-10: rgba(255, 255, 255, 0.10);
+      --purple-glow: rgba(147, 51, 234, 0.70);
+    }
+
     body {
-      background: #F3E8FF; 
-      /* Monochromatic Purple Mesh Gradient */
-      background-image: 
-        radial-gradient(at 0% 0%, #E9D5FF 0px, transparent 50%), 
-        radial-gradient(at 100% 0%, #D8B4FE 0px, transparent 50%), 
-        radial-gradient(at 100% 100%, #C084FC 0px, transparent 50%), 
-        radial-gradient(at 0% 100%, #E9D5FF 0px, transparent 50%);
-      color: #3B0764; /* Deep Purple Text */
+      background: #050505;
+      color: #FFFFFF;
       margin: 0;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -81,81 +81,68 @@
 
     /* Scrollbar */
     ::-webkit-scrollbar { width:6px }
-    ::-webkit-scrollbar-thumb { background:#7E22CE; border-radius:4px }
-    ::-webkit-scrollbar-track { background:#E9D5FF; }
+    ::-webkit-scrollbar-thumb { background:#9333EA; border-radius:4px }
+    ::-webkit-scrollbar-track { background:#050505; }
 
-    /* --- THE PURPLE GLASS ENGINE --- */
+    /* --- SPECIFIC GLASS ENGINE (Based on provided colors) --- */
     
-    /* Nav & Headers */
+    /* Nav & Headers (10% Glass) */
     .glass-card {
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(40px) saturate(140%);
-      -webkit-backdrop-filter: blur(40px) saturate(140%);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 
-        0 20px 40px -10px rgba(59, 7, 100, 0.1),
-        inset 0 0 20px rgba(255, 255, 255, 0.5);
+      background: var(--glass-10);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* Content Panels */
+    /* Content Panels (6% Glass) */
     .glass-frosted {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.5) 0%, rgba(243, 232, 255, 0.3) 100%);
-      backdrop-filter: blur(50px);
-      -webkit-backdrop-filter: blur(50px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 
-        0 15px 35px rgba(59, 7, 100, 0.05),
-        inset 0 0 30px rgba(255, 255, 255, 0.4);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background: var(--glass-6);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
     }
 
     .glass-frosted:hover {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7) 0%, rgba(243, 232, 255, 0.5) 100%);
-      transform: translateY(-6px);
-      box-shadow: 0 30px 60px -10px rgba(126, 34, 206, 0.15);
-      border-color: #A855F7;
+      background: var(--glass-10);
+      border-color: #9333EA;
+      box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
+      transform: translateY(-4px);
     }
 
-    /* THE CRYSTAL PORTAL - Price Card (Purple Edition) */
+    /* THE PORTAL (Specific Glow) */
     .glass-portal {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(216, 180, 254, 0.4) 100%);
-      backdrop-filter: blur(60px);
-      -webkit-backdrop-filter: blur(60px);
+      background: linear-gradient(180deg, var(--glass-10) 0%, rgba(5,5,5,0.8) 100%);
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
       
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(147, 51, 234, 0.3);
       
-      /* Glowing Purple Aura */
+      /* The specific Purple Glow requested */
       box-shadow: 
-        0 40px 100px -20px rgba(126, 34, 206, 0.25),
-        inset 0 0 60px rgba(255, 255, 255, 0.6);
-    }
-
-    /* Typography */
-    .text-gold-luxury {
-        background: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 2px 5px rgba(217, 119, 6, 0.15));
+        0 0 80px -20px var(--purple-glow),
+        inset 0 0 30px rgba(147, 51, 234, 0.1);
     }
 
     .glass-marquee {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(15px);
-        border-top: 1px solid rgba(126, 34, 206, 0.1);
-        border-bottom: 1px solid rgba(126, 34, 206, 0.1);
+        background: var(--glass-6);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .glass-badge {
-        background: rgba(255, 255, 255, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(20px);
+        background: var(--glass-6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
         transition: all 0.3s ease;
     }
     .glass-badge:hover {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: #7E22CE;
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px -5px rgba(126, 34, 206, 0.2);
+        background: var(--glass-10);
+        border-color: #9333EA;
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px var(--purple-glow);
     }
 
     /* Accordion */
@@ -180,68 +167,60 @@
         position: fixed;
         top: -10px;
         background: #FFFFFF;
-        box-shadow: 0 0 5px #D8B4FE;
-        border-radius: 50%;
         opacity: 0;
         pointer-events: none;
+        border-radius: 50%;
         animation: snow linear infinite;
         will-change: transform;
     }
 
     .social-icon {
-        color: #7E22CE;
+        color: rgba(255,255,255,0.6);
         transition: all 0.3s ease;
     }
     .social-icon:hover {
         transform: translateY(-3px);
-        color: #D97706;
-        filter: drop-shadow(0 0 8px rgba(217, 119, 6, 0.4));
+        color: #9333EA;
+        filter: drop-shadow(0 0 8px #9333EA);
     }
 
     /* Mobile Menu */
     #mobile-menu {
-        background: rgba(243, 232, 255, 0.98); 
-        color: #3B0764;
+        background: #050505;
+        border: 1px solid rgba(255,255,255,0.1);
     }
     
     footer {
-        background: linear-gradient(0deg, #E9D5FF 0%, transparent 100%);
-        color: #3B0764;
+        border-top: 1px solid rgba(255,255,255,0.06);
     }
-    
-    /* Global Text Fixes for Light Purple Theme */
-    .text-gray-300, .text-gray-400, .text-gray-500 { color: #581C87 !important; opacity: 0.8; }
-    .text-white { color: #3B0764 !important; } /* Invert white titles to deep purple */
-    
-    /* Force white only on specific buttons */
-    .text-white-force { color: white !important; opacity: 1 !important; }
-    
-    .border-white\/5 { border-color: rgba(126, 34, 206, 0.1) !important; }
-    .bg-white\/5 { background-color: rgba(126, 34, 206, 0.05) !important; }
 
+    /* Text Colors */
+    .text-gray-300 { color: rgba(255,255,255,0.7) !important; }
+    .text-gray-400 { color: rgba(255,255,255,0.5) !important; }
+    .text-gray-500 { color: rgba(255,255,255,0.4) !important; }
+    
   </style>
 </head>
 
-<body class="relative min-h-screen flex flex-col">
+<body class="relative min-h-screen flex flex-col bg-midnight-gradient">
 
-<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0" style="background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.2) 0%, transparent 70%);"></div>
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 bg-midnight-gradient"></div>
 
-<div class="snow-particle w-1.5 h-1.5 left-[10%] animate-snow" style="animation-duration: 8s; animation-delay: 0s;"></div>
-<div class="snow-particle w-1 h-1 left-[20%] animate-snow" style="animation-duration: 12s; animation-delay: 2s;"></div>
-<div class="snow-particle w-2 h-2 left-[50%] animate-snow" style="animation-duration: 10s; animation-delay: 4s;"></div>
-<div class="snow-particle w-1.5 h-1.5 left-[70%] animate-snow" style="animation-duration: 15s; animation-delay: 1s;"></div>
-<div class="snow-particle w-1 h-1 left-[85%] animate-snow" style="animation-duration: 9s; animation-delay: 3s;"></div>
+<div class="snow-particle w-1 h-1 left-[10%] animate-snow" style="animation-duration: 10s; animation-delay: 0s;"></div>
+<div class="snow-particle w-1.5 h-1.5 left-[25%] animate-snow" style="animation-duration: 15s; animation-delay: 2s;"></div>
+<div class="snow-particle w-1 h-1 left-[50%] animate-snow" style="animation-duration: 12s; animation-delay: 4s;"></div>
+<div class="snow-particle w-2 h-2 left-[75%] animate-snow" style="animation-duration: 18s; animation-delay: 1s;"></div>
+<div class="snow-particle w-1 h-1 left-[90%] animate-snow" style="animation-duration: 11s; animation-delay: 3s;"></div>
 
-<div class="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-300 rounded-full blur-[100px] opacity-[0.3] pointer-events-none mix-blend-multiply animate-pulse-slow"></div>
-<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-200 rounded-full blur-[100px] opacity-[0.3] pointer-events-none mix-blend-multiply animate-pulse-slow"></div>
+<div class="fixed top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#1a0f2e] rounded-full blur-[120px] opacity-100 pointer-events-none z-0"></div>
 
 
-<div id="privacy-overlay" class="fixed inset-0 z-[100] bg-white/90 hidden overflow-y-auto transform transition-all duration-300 backdrop-blur-xl">
-    <div class="fixed top-0 left-0 w-full h-20 glass-card z-50 flex items-center justify-between px-6 md:px-12 rounded-none border-b border-purple-100">
+<div id="privacy-overlay" class="fixed inset-0 z-[100] bg-[#050505]/95 hidden overflow-y-auto transform transition-all duration-300 backdrop-blur-md">
+    <div class="fixed top-0 left-0 w-full h-20 glass-card z-50 flex items-center justify-between px-6 md:px-12 rounded-none border-b border-white/10">
         <div class="font-display font-bold text-xl">
-             <span class="text-brand-deep">talent</span><span class="text-brand-purple">iDO</span> <span class="text-gray-500 text-sm ml-2">Privacy Policy</span>
+             <span class="text-white">talent</span><span class="text-brand-purple">iDO</span> <span class="text-gray-500 text-sm ml-2">Privacy Policy</span>
         </div>
-        <button onclick="togglePrivacy()" class="text-brand-deep hover:text-brand-purple flex items-center gap-2 group">
+        <button onclick="togglePrivacy()" class="text-gray-400 hover:text-white flex items-center gap-2 group">
             <span class="text-sm font-medium uppercase tracking-widest transition">Close</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -249,16 +228,16 @@
         </button>
     </div>
     <div class="relative z-10 max-w-4xl mx-auto pt-32 pb-24 px-6 md:px-12">
-        <div class="glass-card p-8 md:p-12 rounded-3xl border border-white/50">
-            <h1 class="text-3xl md:text-5xl font-display font-bold text-brand-deep mb-2">Privacy Policy</h1>
+        <div class="glass-card p-8 md:p-12 rounded-3xl border border-white/10">
+            <h1 class="text-3xl md:text-5xl font-display font-bold text-white mb-2">Privacy Policy</h1>
             <p class="text-brand-purple font-mono text-sm mb-8">Last updated: 2025</p>
-            <div class="prose max-w-none space-y-8 font-light text-brand-deep">
-                <div class="bg-purple-50 border border-purple-200 p-4 rounded-xl">
-                    <p class="text-sm font-bold text-brand-deep">Applicable law: Swiss Federal Act on Data Protection (FADP) & EU GDPR</p>
+            <div class="prose max-w-none space-y-8 font-light text-gray-300">
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl">
+                    <p class="text-sm font-bold text-white">Applicable law: Swiss Federal Act on Data Protection (FADP) & EU GDPR</p>
                     <p class="text-sm mt-2">TalentiDO (“we”, “us”, “our”) takes the protection of personal data very seriously...</p>
                 </div>
                 <section>
-                    <h2 class="text-2xl font-display font-bold mb-4 text-brand-deep">1. Who We Are</h2>
+                    <h2 class="text-2xl font-display font-bold mb-4 text-white">1. Who We Are</h2>
                     <ul class="list-disc pl-5 space-y-2 text-sm">
                         <li><strong>Company:</strong> TalentiDO</li>
                         <li><strong>Location:</strong> Switzerland</li>
@@ -267,22 +246,22 @@
                 </section>
                 <section class="text-center pt-8">
                     <h2 class="text-xl font-display font-bold mb-2">Contact</h2>
-                    <a href="mailto:coo@talentido.com" class="inline-block bg-purple-100 border border-purple-200 px-6 py-2 rounded-full text-brand-deep hover:bg-purple-200 transition mb-2">📧 coo@talentido.com</a>
+                    <a href="mailto:coo@talentido.com" class="inline-block bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white hover:bg-brand-purple transition mb-2">📧 coo@talentido.com</a>
                 </section>
             </div>
             <div class="mt-12 text-center">
-                 <button onclick="togglePrivacy()" class="text-gray-500 underline hover:text-brand-purple">Close Privacy Policy</button>
+                 <button onclick="togglePrivacy()" class="text-gray-500 underline hover:text-white">Close Privacy Policy</button>
             </div>
         </div>
     </div>
 </div>
 
-<div id="terms-overlay" class="fixed inset-0 z-[100] bg-white/90 hidden overflow-y-auto transform transition-all duration-300 backdrop-blur-xl">
-    <div class="fixed top-0 left-0 w-full h-20 glass-card z-50 flex items-center justify-between px-6 md:px-12 rounded-none border-b border-purple-100">
+<div id="terms-overlay" class="fixed inset-0 z-[100] bg-[#050505]/95 hidden overflow-y-auto transform transition-all duration-300 backdrop-blur-md">
+    <div class="fixed top-0 left-0 w-full h-20 glass-card z-50 flex items-center justify-between px-6 md:px-12 rounded-none border-b border-white/10">
         <div class="font-display font-bold text-xl">
-             <span class="text-brand-deep">talent</span><span class="text-brand-purple">iDO</span> <span class="text-gray-500 text-sm ml-2">Terms</span>
+             <span class="text-white">talent</span><span class="text-brand-purple">iDO</span> <span class="text-gray-500 text-sm ml-2">Terms</span>
         </div>
-        <button onclick="toggleTerms()" class="text-brand-deep hover:text-brand-purple flex items-center gap-2 group">
+        <button onclick="toggleTerms()" class="text-gray-400 hover:text-white flex items-center gap-2 group">
             <span class="text-sm font-medium uppercase tracking-widest transition">Close</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -290,27 +269,27 @@
         </button>
     </div>
     <div class="relative z-10 max-w-4xl mx-auto pt-32 pb-24 px-6 md:px-12">
-        <div class="glass-card p-8 md:p-12 rounded-3xl border border-white/50">
-            <h1 class="text-3xl md:text-5xl font-display font-bold text-brand-deep mb-2">TalentiDO Football Pass</h1>
-            <h2 class="text-xl md:text-3xl font-light text-gray-500 mb-2">Terms & Conditions</h2>
+        <div class="glass-card p-8 md:p-12 rounded-3xl border border-white/10">
+            <h1 class="text-3xl md:text-5xl font-display font-bold text-white mb-2">TalentiDO Football Pass</h1>
+            <h2 class="text-xl md:text-3xl font-light text-gray-400 mb-2">Terms & Conditions</h2>
             <p class="text-brand-purple font-mono text-sm mb-8">Last updated: 2025</p>
-            <div class="prose max-w-none space-y-8 font-light text-brand-deep">
-                <div class="bg-purple-50 border border-purple-200 p-6 rounded-lg">
-                    <p class="font-bold text-brand-deep">By purchasing or using the TalentiDO Football Pass...</p>
+            <div class="prose max-w-none space-y-8 font-light text-gray-300">
+                <div class="bg-white/5 border border-white/10 p-6 rounded-lg">
+                    <p class="font-bold text-white">By purchasing or using the TalentiDO Football Pass...</p>
                 </div>
                 <section>
-                    <h2 class="text-xl font-display font-bold mb-3 text-brand-deep">1. Nature of the TalentiDO Football Pass</h2>
+                    <h2 class="text-xl font-display font-bold mb-3 text-white">1. Nature of the TalentiDO Football Pass</h2>
                     <ul class="list-disc pl-5 space-y-2 text-sm">
                         <li><strong>1.1</strong> The TalentiDO Football Pass is a development and evaluation program...</li>
                     </ul>
                 </section>
                 <section class="text-center pt-8">
                     <h2 class="text-xl font-display font-bold mb-2">Contact</h2>
-                    <a href="mailto:coo@talentido.com" class="inline-block bg-purple-100 border border-purple-200 px-6 py-2 rounded-full text-brand-deep hover:bg-purple-200 transition mb-2">📧 coo@talentido.com</a>
+                    <a href="mailto:coo@talentido.com" class="inline-block bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white hover:bg-brand-purple transition mb-2">📧 coo@talentido.com</a>
                 </section>
             </div>
             <div class="mt-12 text-center">
-                 <button onclick="toggleTerms()" class="text-gray-500 underline hover:text-brand-purple">Close Terms & Conditions</button>
+                 <button onclick="toggleTerms()" class="text-gray-500 underline hover:text-white">Close Terms & Conditions</button>
             </div>
         </div>
     </div>
@@ -322,57 +301,57 @@
          <span class="text-4xl filter drop-shadow-lg animate-santa-wave">🎅</span>
     </div>
     <div class="flex items-center relative z-10 font-display font-bold">
-        <span class="text-2xl text-brand-deep">talent</span>
+        <span class="text-2xl text-white">talent</span>
         <span class="text-2xl text-brand-purple">iDO</span>
         <span class="text-xl ml-1 filter drop-shadow-md">🇨🇭</span>
     </div>
-    <span class="relative z-10 text-xs font-mono text-brand-deep border border-purple-200 bg-white/30 px-2 py-0.5 rounded ml-2 backdrop-blur-md">2026 INTAKE</span>
+    <span class="relative z-10 text-xs font-mono text-white border border-white/20 bg-brand-red/20 px-2 py-0.5 rounded ml-2 backdrop-blur-md">2026 INTAKE</span>
   </div>
 
-  <div class="hidden md:flex gap-10 text-sm text-brand-deep font-medium">
-    <a href="#offer" class="hover:text-brand-purple transition-colors">The Offer</a>
-    <a href="#benefits" class="hover:text-brand-purple transition-colors">Why TalentiDO</a>
+  <div class="hidden md:flex gap-10 text-sm text-gray-300 font-medium">
+    <a href="#offer" class="hover:text-white transition-colors">The Offer</a>
+    <a href="#benefits" class="hover:text-white transition-colors">Why TalentiDO</a>
   </div>
 
-  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-purple text-white-force font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(126,34,206,0.3)]">
+  <a href="#offer" class="hidden md:block px-6 py-2 rounded-full bg-brand-purple text-white font-bold hover:scale-105 transition shadow-[0_0_20px_rgba(147,51,234,0.5)]">
     Get the Gift
   </a>
 
-  <button onclick="toggleMenu()" class="md:hidden text-brand-deep p-2 relative z-50 focus:outline-none">
+  <button onclick="toggleMenu()" class="md:hidden text-white p-2 relative z-50 focus:outline-none">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
     </svg>
   </button>
 </nav>
 
-<div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-[#F3E8FF]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-10 transition-opacity duration-300">
-    <a href="#offer" onclick="toggleMenu()" class="text-3xl font-display font-bold text-brand-deep hover:text-brand-purple">The Offer</a>
-    <a href="#benefits" onclick="toggleMenu()" class="text-3xl font-display font-bold text-brand-deep hover:text-brand-purple">Why TalentiDO</a>
-    <a href="#offer" onclick="toggleMenu()" class="mt-4 px-10 py-4 rounded-full bg-brand-purple text-white-force font-bold text-xl hover:scale-105 transition shadow-[0_0_20px_rgba(126,34,206,0.4)]">
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-[#050505] flex flex-col items-center justify-center gap-10 transition-opacity duration-300">
+    <a href="#offer" onclick="toggleMenu()" class="text-3xl font-display font-bold text-white hover:text-brand-purple">The Offer</a>
+    <a href="#benefits" onclick="toggleMenu()" class="text-3xl font-display font-bold text-white hover:text-brand-purple">Why TalentiDO</a>
+    <a href="#offer" onclick="toggleMenu()" class="mt-4 px-10 py-4 rounded-full bg-brand-purple text-white font-bold text-xl hover:scale-105 transition shadow-[0_0_20px_rgba(147,51,234,0.5)]">
       Get the Gift
     </a>
-    <button onclick="toggleMenu()" class="absolute top-8 right-8 text-brand-deep/50 hover:text-brand-deep">
+    <button onclick="toggleMenu()" class="absolute top-8 right-8 text-white/50 hover:text-white">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
 </div>
 
-<section class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 pt-32 lg:pt-48 relative z-10 max-w-7xl mx-auto gap-12 lg:gap-20 glass-frosted rounded-b-[4rem] mb-12 border-b border-purple-100">
+<section class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 pt-32 lg:pt-48 relative z-10 max-w-7xl mx-auto gap-12 lg:gap-20 glass-frosted rounded-b-[4rem] mb-12 border-b border-white/5">
   
   <div class="relative z-10 flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-      <div class="mb-6 inline-block px-4 py-1.5 rounded-full border border-purple-200 bg-white/40 backdrop-blur-md animate-pulse-slow">
+      <div class="mb-6 inline-block px-4 py-1.5 rounded-full border border-brand-purple/50 bg-brand-violet/50 backdrop-blur-md animate-pulse-slow">
          <span class="text-brand-purple font-mono text-xs tracking-widest uppercase font-bold">Where Talent Meets Direction</span>
       </div>
 
-      <h1 class="text-4xl md:text-7xl font-display font-bold tracking-tight mb-6 leading-tight text-brand-deep drop-shadow-sm">
+      <h1 class="text-4xl md:text-7xl font-display font-bold tracking-tight mb-6 leading-tight text-white drop-shadow-xl">
         Turn Your Football Dream Into a <br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-vivid to-brand-gold">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-purple to-brand-violet">
           Real Opportunity
         </span>
       </h1>
 
-      <div class="max-w-2xl text-lg text-brand-deep/80 mb-10 leading-relaxed font-light space-y-4">
+      <div class="max-w-2xl text-lg text-gray-300 mb-10 leading-relaxed font-light space-y-4">
         <p>
           The TalentiDO Football Pass gives young players structure, belief, and opportunity and gives parents clarity that their child is on the right path.
         </p>
@@ -386,54 +365,54 @@
   <div class="flex-1 w-full lg:max-w-xl flex justify-center lg:justify-end relative z-10">
       <div id="offer" class="w-full relative group animate-float">
         
-        <div class="absolute inset-0 bg-brand-purple/20 blur-[80px] rounded-[3rem] scale-105 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-brand-purple blur-[80px] rounded-[3rem] scale-90 opacity-40 pointer-events-none"></div>
 
-        <div class="relative glass-portal rounded-[2.5rem] overflow-hidden p-1 shadow-2xl">
+        <div class="relative glass-portal rounded-[2.5rem] overflow-hidden p-1">
             
-            <div class="bg-white/60 backdrop-blur-xl rounded-[2.3rem] h-full p-8 flex flex-col items-center text-center relative border border-white/80">
+            <div class="bg-[#050505]/80 backdrop-blur-md rounded-[2.3rem] h-full p-8 flex flex-col items-center text-center relative border border-white/10">
                 
                 <div class="relative z-10 w-full">
                     <div class="mb-6">
-                        <span class="inline-block py-1.5 px-4 rounded-full bg-purple-50 border border-purple-200 text-[10px] uppercase font-bold tracking-widest text-brand-purple mb-4 shadow-sm">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-brand-red/10 border border-brand-red text-[10px] uppercase font-bold tracking-widest text-brand-red mb-4 shadow-[0_0_10px_rgba(185,28,28,0.4)] animate-pulse">
                             2026 Intake Limited
                         </span>
-                        <h3 class="text-xl font-display text-brand-deep font-bold">Football Pass</h3>
+                        <h3 class="text-xl font-display text-white font-bold">Football Pass</h3>
                     </div>
 
                     <div class="mb-8 relative">
-                        <div class="text-sm text-gray-400 line-through decoration-red-400 mb-1 font-mono">CHF 1,000</div>
-                        <div class="text-7xl font-display font-bold text-gold-luxury tracking-tight leading-none drop-shadow-md">
+                        <div class="text-sm text-gray-500 line-through decoration-brand-red mb-1 font-mono">CHF 1,000</div>
+                        <div class="text-7xl font-display font-bold text-white tracking-tight leading-none drop-shadow-xl">
                             149
-                            <span class="text-2xl text-brand-gold/60 ml-[-10px]">CHF</span>
+                            <span class="text-2xl text-brand-purple ml-[-10px]">CHF</span>
                         </div>
-                        <p class="text-xs text-brand-deep/60 mt-2 font-medium">One-time payment. Lifetime value.</p>
+                        <p class="text-xs text-gray-500 mt-2 font-medium">One-time payment. Lifetime value.</p>
                     </div>
 
-                    <button class="group relative w-full overflow-hidden rounded-xl bg-brand-purple text-white-force shadow-[0_10px_30px_rgba(126,34,206,0.3)] transition-all duration-300 hover:shadow-[0_15px_40px_rgba(126,34,206,0.5)] hover:-translate-y-1">
+                    <button class="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-brand-purple to-brand-violet text-white shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(147,51,234,0.8)] hover:-translate-y-1 border border-white/20">
                         <div class="relative h-full w-full rounded-xl px-8 py-4">
-                            <span class="relative font-bold text-white-force uppercase tracking-widest text-sm flex items-center justify-center gap-2">
+                            <span class="relative font-bold text-white uppercase tracking-widest text-sm flex items-center justify-center gap-2">
                                 Get the Gift 🎁
                             </span>
                         </div>
-                        <div class="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] animate-shimmer"></div>
+                        <div class="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] animate-shimmer"></div>
                     </button>
 
-                    <div class="mt-8 w-full border-t border-purple-200 pt-6">
-                        <ul class="space-y-3 text-sm text-left text-brand-deep/80 px-2 font-medium">
+                    <div class="mt-8 w-full border-t border-white/10 pt-6">
+                        <ul class="space-y-3 text-sm text-left text-gray-300 px-2 font-medium">
                             <li class="flex items-center gap-3">
-                                <div class="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-xs">✓</div>
-                                <span>Up to <b class="text-brand-deep">CHF 100k</b> scholarship pool</span>
+                                <div class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-xs">✓</div>
+                                <span>Up to <b class="text-white">CHF 100k</b> scholarship pool</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <div class="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-xs">✓</div>
+                                <div class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-xs">✓</div>
                                 <span>Guaranteed pathway entry</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <div class="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-xs">✓</div>
+                                <div class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-xs">✓</div>
                                 <span>Verified club exposure</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <div class="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-xs">✓</div>
+                                <div class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-xs">✓</div>
                                 <span>Performance tracking profile</span>
                             </li>
                         </ul>
@@ -448,7 +427,7 @@
 
 <section class="py-12 relative z-20 w-full max-w-7xl mx-auto">
     <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-display font-bold text-brand-deep tracking-wide">TRUSTED ECOSYSTEM</h2>
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-white tracking-wide">TRUSTED ECOSYSTEM</h2>
         <div class="w-16 h-1 bg-brand-purple mx-auto mt-4 rounded-full"></div>
     </div>
 
@@ -456,65 +435,65 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div class="glass-badge rounded-2xl p-6 flex flex-col items-center justify-center group">
                 <span class="text-xs font-mono text-brand-purple tracking-widest uppercase mb-3 opacity-70">Official Sponsor</span>
-                <span class="text-2xl md:text-3xl font-display font-bold text-brand-deep group-hover:text-brand-purple transition duration-300">GE-MAN</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-white group-hover:text-brand-purple transition duration-300">GE-MAN</span>
             </div>
             <div class="glass-badge rounded-2xl p-6 flex flex-col items-center justify-center group">
                 <span class="text-xs font-mono text-brand-purple tracking-widest uppercase mb-3 opacity-70">Official Agency</span>
-                <span class="text-2xl md:text-3xl font-display font-bold text-brand-deep group-hover:text-brand-purple transition duration-300">FOOTURO AG</span>
+                <span class="text-2xl md:text-3xl font-display font-bold text-white group-hover:text-brand-purple transition duration-300">FOOTURO AG</span>
             </div>
             <div class="glass-badge rounded-2xl p-6 flex flex-col items-center justify-center group">
                 <span class="text-xs font-mono text-brand-purple tracking-widest uppercase mb-3 opacity-70">Business Partner</span>
-                <span class="text-xl md:text-2xl font-display font-bold text-brand-deep group-hover:text-brand-purple transition duration-300">BLOCKSPOT.IO</span>
+                <span class="text-xl md:text-2xl font-display font-bold text-white group-hover:text-brand-purple transition duration-300">BLOCKSPOT.IO</span>
             </div>
         </div>
     </div>
 
     <div class="w-full text-center mb-3">
-         <span class="text-xs font-mono text-brand-deep/60 tracking-widest uppercase opacity-70 bg-white/50 px-3 py-1 rounded-full border border-purple-200">Club Partners</span>
+         <span class="text-xs font-mono text-gray-500 tracking-widest uppercase opacity-70 bg-white/5 px-3 py-1 rounded-full border border-white/5">Club Partners</span>
     </div>
 
     <div class="relative w-full overflow-hidden glass-marquee py-6">
-        <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#F3E8FF] to-transparent z-10"></div>
-        <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#F3E8FF] to-transparent z-10"></div>
+        <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
         <div class="flex w-max animate-scroll">
             <div class="flex items-center gap-16 px-6">
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">AC Bellinzona</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">AC Bellinzona</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Wohlen</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Wohlen</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Locarno</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Locarno</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Kempttal</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Kempttal</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">Augšdaugavas NSS</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">Augšdaugavas NSS</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Paradiso</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Paradiso</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Slavia Karlovy Vary</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Slavia Karlovy Vary</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FK Arsimi</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FK Arsimi</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">KF Llapi</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">KF Llapi</span>
                 <span class="text-brand-purple opacity-30">•</span>
             </div>
             <div class="flex items-center gap-16 px-6">
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">AC Bellinzona</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">AC Bellinzona</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Wohlen</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Wohlen</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Locarno</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Locarno</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Kempttal</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Kempttal</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">Augšdaugavas NSS</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">Augšdaugavas NSS</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Paradiso</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Paradiso</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FC Slavia Karlovy Vary</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FC Slavia Karlovy Vary</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">FK Arsimi</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">FK Arsimi</span>
                 <span class="text-brand-purple opacity-30">•</span>
-                <span class="text-xl font-display font-bold text-gray-400 hover:text-brand-purple transition duration-300">KF Llapi</span>
+                <span class="text-xl font-display font-bold text-gray-500 hover:text-white transition duration-300">KF Llapi</span>
                 <span class="text-brand-purple opacity-30">•</span>
             </div>
         </div>
@@ -523,23 +502,23 @@
 
 <section id="benefits" class="py-12 px-6 max-w-7xl mx-auto relative z-10">
   <div class="text-center mb-16">
-    <span class="text-brand-gold font-mono text-sm tracking-widest uppercase mb-4 block font-bold">
+    <span class="text-brand-purple font-mono text-sm tracking-widest uppercase mb-4 block font-bold">
       Total Value: CHF 1,000+
     </span>
     
-    <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-deep mb-6">
+    <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-6">
       Why Swiss Parents Trust TalentiDO
     </h2>
     
-    <div class="max-w-2xl mx-auto text-brand-deep/80 space-y-6">
-        <p class="text-lg font-medium text-brand-purple">
+    <div class="max-w-2xl mx-auto text-gray-300 space-y-6">
+        <p class="text-lg font-medium text-white">
           Swiss parents don’t want promises. They want structure, safety, and honesty.
         </p>
         <p class="font-light leading-relaxed">
             TalentiDO gives young players a clear, realistic football pathway not hype.<br/>
             We help families understand where their child stands today, what can be improved, and what steps come next without pressure.
         </p>
-        <div class="text-sm text-brand-purple/70 italic space-y-1">
+        <div class="text-sm text-brand-purple italic space-y-1">
             <p>No false dreams.</p>
             <p>No talent politics.</p>
             <p>Just guidance, feedback, and a fair chance to grow.</p>
@@ -552,13 +531,13 @@
     <div class="glass-frosted rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel1', this)">
         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-sm font-bold border border-purple-200">1</span>
-            <span class="text-lg md:text-xl font-display font-medium text-brand-deep group-hover:text-brand-purple transition-colors">Scholarships & Player Pathway</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-sm font-bold border border-white/10">1</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Scholarships & Player Pathway</span>
         </div>
-        <span class="text-2xl font-light text-brand-purple/50 accordion-icon group-hover:text-brand-purple transition">+</span>
+        <span class="text-2xl font-light text-gray-500 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel1" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-brand-deep/80 font-sans font-light text-sm md:text-base">
+        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Chance to receive support from our CHF 100k scholarship pool</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Guaranteed entry into TalentiDO’s long-term development pathway</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Priority access to TalentiDO camps and advanced squads</li>
@@ -571,13 +550,13 @@
     <div class="glass-frosted rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel2', this)">
         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-sm font-bold border border-purple-200">2</span>
-            <span class="text-lg md:text-xl font-display font-medium text-brand-deep group-hover:text-brand-purple transition-colors">Elite Training & Skill Development</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-sm font-bold border border-white/10">2</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Elite Training & Skill Development</span>
         </div>
-        <span class="text-2xl font-light text-brand-purple/50 accordion-icon group-hover:text-brand-purple transition">+</span>
+        <span class="text-2xl font-light text-gray-500 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel2" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-brand-deep/80 font-sans font-light text-sm md:text-base">
+        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>European-standard elite training sessions</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Mastery of core football skills (control, dribbling, passing)</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Speed, agility and footwork development</li>
@@ -590,13 +569,13 @@
     <div class="glass-frosted rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel3', this)">
         <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-sm font-bold border border-purple-200">3</span>
-            <span class="text-lg md:text-xl font-display font-medium text-brand-deep group-hover:text-brand-purple transition-colors">Performance Tracking & Assessment</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-sm font-bold border border-white/10">3</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Performance Tracking & Assessment</span>
         </div>
-        <span class="text-2xl font-light text-brand-purple/50 accordion-icon group-hover:text-brand-purple transition">+</span>
+        <span class="text-2xl font-light text-gray-500 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel3" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-brand-deep/80 font-sans font-light text-sm md:text-base">
+        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Complete technical, physical and behavioural player assessment</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Personalized improvement plan for faster growth</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Baseline tests to measure real month-to-month progress</li>
@@ -609,13 +588,13 @@
     <div class="glass-frosted rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel4', this)">
          <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-sm font-bold border border-purple-200">4</span>
-            <span class="text-lg md:text-xl font-display font-medium text-brand-deep group-hover:text-brand-purple transition-colors">Coaching & Mentorship</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-sm font-bold border border-white/10">4</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Coaching & Mentorship</span>
         </div>
-        <span class="text-2xl font-light text-brand-purple/50 accordion-icon group-hover:text-brand-purple transition">+</span>
+        <span class="text-2xl font-light text-gray-500 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel4" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-brand-deep/80 font-sans font-light text-sm md:text-base">
+        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Mentorship from certified coaches and experienced players</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Training that builds confidence, discipline and teamwork</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Mental coaching for focus, emotional control and leadership</li>
@@ -628,13 +607,13 @@
     <div class="glass-frosted rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel5', this)">
          <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-sm font-bold border border-purple-200">5</span>
-            <span class="text-lg md:text-xl font-display font-medium text-brand-deep group-hover:text-brand-purple transition-colors">Matches & Exposure</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-sm font-bold border border-white/10">5</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Matches & Exposure</span>
         </div>
-        <span class="text-2xl font-light text-brand-purple/50 accordion-icon group-hover:text-brand-purple transition">+</span>
+        <span class="text-2xl font-light text-gray-500 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel5" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-brand-deep/80 font-sans font-light text-sm md:text-base">
+        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Monthly internal mini-league matches</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Friendly matches and small competitions</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Video breakdowns for smarter decision-making</li>
@@ -647,13 +626,13 @@
     <div class="glass-frosted rounded-2xl overflow-hidden transition-all duration-300">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel6', this)">
          <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-brand-purple text-sm font-bold border border-purple-200">6</span>
-            <span class="text-lg md:text-xl font-display font-medium text-brand-deep group-hover:text-brand-purple transition-colors">Profile, Safety & Communication</span>
+            <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-brand-purple text-sm font-bold border border-white/10">6</span>
+            <span class="text-lg md:text-xl font-display font-medium text-white group-hover:text-brand-purple transition-colors">Profile, Safety & Communication</span>
         </div>
-        <span class="text-2xl font-light text-brand-purple/50 accordion-icon group-hover:text-brand-purple transition">+</span>
+        <span class="text-2xl font-light text-gray-500 accordion-icon group-hover:text-white transition">+</span>
       </button>
       <div id="panel6" class="accordion-content">
-        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-brand-deep/80 font-sans font-light text-sm md:text-base">
+        <ul class="px-6 pb-8 pl-[4.5rem] space-y-3 text-gray-300 font-sans font-light text-sm md:text-base">
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Digital TalentiDO Football Pass Profile with stats</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Transparent monthly progress updates for parents</li>
           <li class="flex gap-3"><span class="text-brand-purple">✦</span>Weekly parent communication and updates</li>
@@ -666,7 +645,7 @@
   </div>
 
   <div class="mt-12 text-center">
-        <p class="text-[10px] md:text-xs text-brand-deep/50 font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
+        <p class="text-[10px] md:text-xs text-gray-500 font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
             All services, benefits, and opportunities described are subject to availability, eligibility, and performance. 
             Terms & Conditions apply.
         </p>
@@ -674,54 +653,54 @@
 
 </section>
 
-<footer class="py-24 text-center border-t border-purple-200 relative z-10 flex flex-col items-center">
+<footer class="py-24 text-center border-t border-white/10 relative z-10 flex flex-col items-center">
   
   <div class="relative flex items-center mb-10">
     <div class="flex items-center relative z-10 font-display font-bold">
-        <span class="text-3xl text-brand-deep">talent</span>
+        <span class="text-3xl text-white">talent</span>
         <span class="text-3xl text-brand-purple">iDO</span>
         <span class="text-2xl ml-2 filter drop-shadow-md">🇨🇭</span>
     </div>
   </div>
   
-  <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 text-brand-deep drop-shadow-sm">
+  <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white drop-shadow-sm">
     If You’re Serious About Football,<br/>
     <span class="text-gray-500">This Is Where You Start</span>
   </h2>
 
-  <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+  <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
     Talent needs direction.<br/>
     Effort needs visibility.<br/>
     Dreams need a system.<br/><br/>
     <span class="text-brand-purple font-medium">TalentiDO provides all three.</span>
   </p>
 
-  <button class="flex items-center gap-3 px-12 py-5 rounded-full bg-brand-deep text-brand-gold font-bold text-lg hover:scale-105 transition shadow-[0_4px_30px_rgba(126,34,206,0.3)] mb-16 border border-brand-purple/30">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#D97706" class="w-6 h-6 animate-pulse">
+  <button class="flex items-center gap-3 px-12 py-5 rounded-full bg-brand-purple text-white font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_var(--purple-glow)] mb-16 border border-white/20">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFFFFF" class="w-6 h-6 animate-pulse">
         <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" />
     </svg>
     Claim Your Football Future Now 
   </button>
 
-  <div class="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-purple-200 pt-10">
+  <div class="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-10">
       
       <div class="text-center md:text-left flex flex-col gap-2">
-        <p class="text-gray-600 text-sm font-medium tracking-wide">© 2025 TalentiDO · Zurich</p>
-        <p class="text-gray-400 text-sm font-light tracking-wide">Baarerstrasse 141, Zug, 6300 Switzerland</p>
+        <p class="text-gray-400 text-sm font-medium tracking-wide">© 2025 TalentiDO · Zurich</p>
+        <p class="text-gray-500 text-sm font-light tracking-wide">Baarerstrasse 141, Zug, 6300 Switzerland</p>
       </div>
 
       <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-500 items-center">
           <button onclick="toggleTerms()" class="hover:text-brand-purple cursor-pointer transition">Terms</button>
           <button onclick="togglePrivacy()" class="hover:text-brand-purple cursor-pointer transition">Privacy</button>
           <a href="https://www.talentido.com" target="_blank" class="hover:text-brand-purple cursor-pointer transition text-brand-purple font-medium">NFTs : www.talentido.com</a>
-          <a href="mailto:coo@talentido.com" class="text-brand-purple hover:text-brand-deep transition font-bold border border-purple-200 px-3 py-1 rounded-full bg-purple-50">Contact Us</a>
+          <a href="mailto:coo@talentido.com" class="text-brand-purple hover:text-white transition font-bold border border-white/10 px-3 py-1 rounded-full bg-white/5">Contact Us</a>
       </div>
 
       <div class="flex gap-6 items-center">
         <a href="https://www.tiktok.com/@talentido_" target="_blank" class="social-icon"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
         <a href="https://x.com/TalentIDO_" target="_blank" class="social-icon"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
         <a href="https://www.linkedin.com/company/talentido/" target="_blank" class="social-icon"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg></a>
-        <a href="https://www.instagram.com/talentido_" target="_blank" class="social-icon"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.38c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3.857.344 1.054.048 1.37.058 4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg></a>
+        <a href="https://www.instagram.com/talentido_" target="_blank" class="social-icon"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.38c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3.857.344 1.054.048 1.37.058 4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg></a>
       </div>
   </div>
 </footer>
@@ -797,5 +776,6 @@
     }
   }
 </script>
+
 </body>
 </html>
