@@ -272,16 +272,27 @@
       
       <h3 class="text-gray-300 text-sm font-mono uppercase tracking-widest mb-2">TalentiDO Football Pass</h3>
       
-      <div class="flex items-baseline justify-center gap-4 mb-4">
+      <div class="flex items-baseline justify-center gap-4 mb-6">
         <span class="text-6xl font-display font-bold text-brand-gold drop-shadow-lg">CHF 149</span>
       </div>
 
-      <p class="text-sm text-gray-300 mb-8 border-b border-white/10 pb-6 leading-relaxed">
-        A full year of structured football development, progress tracking, and opportunity — created to help talented players move forward with clarity and confidence.
-      </p>
+      <div class="text-left mb-8 border-b border-white/10 pb-6">
+           <p class="text-white font-medium mb-4">What you unlock for your child:</p>
+           <ul class="space-y-3 text-sm text-gray-300 mb-6">
+               <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Up to CHF 100,000 scholarship support</li>
+               <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Guaranteed entry into TalentiDO’s long-term development pathway</li>
+               <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Verified exposure to clubs, scouts & coaches</li>
+               <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Personal performance tracking & progress reports</li>
+               <li class="flex items-start gap-3"><span class="text-brand-gold mt-0.5">✦</span> Priority access to future TalentiDO programs & camps</li>
+           </ul>
+           <p class="text-xs text-brand-lilac/80 leading-relaxed italic">
+               Unlock a full year of development, visibility, and opportunity, without expensive academies.
+               A smart, affordable first step toward a professional journey.
+           </p>
+      </div>
       
       <button class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-lilac to-brand-purple text-black font-bold text-lg hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] hover:scale-[1.02] transition-all transform">
-        👉 Get the Gift 🎄
+        Get the Football Gift 🎁
       </button>
       
       <div class="mt-4 space-y-1">
@@ -573,6 +584,30 @@
   </div>
 </footer>
 
+<div id="chatbox">
+  <button onclick="toggleChat()" class="group flex items-center justify-center w-16 h-16 rounded-full bg-frost-gradient text-white shadow-[0_10px_40px_-10px_rgba(208,65,230,0.5)] hover:scale-110 transition duration-300 border border-white/20">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 group-hover:animate-pulse">
+      <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813a3.75 3.75 0 002.576-2.576l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd" />
+    </svg>
+  </button>
+
+  <div id="chat-panel" class="hidden mt-4 w-[calc(100vw-40px)] sm:w-96 glass-card rounded-2xl p-4 border-t border-brand-purple/50 shadow-2xl flex flex-col">
+    <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+      <div class="w-2 h-2 rounded-full bg-brand-lilac shadow-[0_0_10px_#E9D5FF]"></div>
+      <p class="text-xs font-mono text-gray-400">TalentiDO Coach</p>
+    </div>
+    <div id="chat-messages" class="mb-4 text-sm space-y-3">
+        <div class="bg-white/10 p-3 rounded-lg rounded-tl-none text-gray-200">
+            Hello! I can answer questions about training, scholarships, safety, or the Christmas offer. Ask me anything!
+        </div>
+    </div>
+    <div class="relative mt-auto">
+       <input type="text" id="user-input" placeholder="Type your question..." onkeypress="handleKeyPress(event)" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-brand-lilac focus:outline-none transition"/>
+       <button onclick="sendMessage()" class="absolute right-3 top-3 text-brand-lilac hover:text-white">➜</button>
+    </div>
+  </div>
+</div>
+
 <script>
   function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
@@ -583,6 +618,13 @@
       } else {
           body.classList.add('overflow-hidden');
       }
+  }
+
+  function toggleChat(){
+    document.getElementById('chat-panel').classList.toggle('hidden');
+    if(!document.getElementById('chat-panel').classList.contains('hidden')){
+        document.getElementById('user-input').focus();
+    }
   }
 
   function toggleAccordion(panelId, btn) {
@@ -603,6 +645,82 @@
       content.classList.add('active');
       icon.classList.add('rotate-45');
     }
+  }
+
+  const chatMessages = document.getElementById('chat-messages');
+  const userInput = document.getElementById('user-input');
+
+  const knowledgeBase = [
+    { keywords: ['price', 'cost', 'much', 'money', 'fee', '149', '1000'], answer: "The Christmas Special is just CHF 149/year (saving you 85% off the usual CHF 1000 value). This is a limited-time offer." },
+    { keywords: ['included', 'benefits', 'get'], answer: "The pass includes elite training sessions, scholarship eligibility, player assessment, GPS tracking, and exposure to scouts." },
+    { keywords: ['hidden', 'extra', 'additional'], answer: "The CHF 149 covers the membership. Optional costs might include specific training kits or travel for external tournaments." },
+    { keywords: ['scholarship', 'fund', 'support', 'financial'], answer: "We have a CHF 100,000 scholarship pool. The Pass gives you a chance to be selected for financial support based on talent and need." },
+    { keywords: ['location', 'where', 'place', 'address', 'zug', 'zurich'], answer: "Our main activities are in Zurich and Zug. We use top-tier facilities ensuring a safe environment." },
+    { keywords: ['time', 'when', 'schedule', 'date', 'weekend', 'days'], answer: "Sessions are typically held on weekends and select weekday evenings. A detailed schedule is provided in the TalentiDO app upon joining." },
+    { keywords: ['age', 'old', 'year', 'young'], answer: "The program is designed for aspiring players aged 6 to 16 years old." },
+    { keywords: ['level', 'beginner', 'pro', 'advanced', 'good'], answer: "We accept all levels! Players are grouped by ability to ensure they develop at the right pace." },
+    { keywords: ['girl', 'boy', 'daughter', 'son', 'gender'], answer: "TalentiDO is inclusive. We have training available for both boys and girls." },
+    { keywords: ['training', 'drill', 'coach'], answer: "Training includes elite technical drills, tactical intelligence, and mental coaching from certified professionals." },
+    { keywords: ['safety', 'safe', 'supervision'], answer: "Safety is our priority. All sessions are supervised in a safe environment with a clear anti-harm policy." },
+    { keywords: ['parent', 'watch', 'stay'], answer: "Parents are welcome to watch sessions from designated areas. We also provide weekly digital updates." },
+    { keywords: ['kit', 'uniform', 'wear', 'boots'], answer: "Players should bring football boots, shin guards, and water. Official TalentiDO training kits are available for purchase." },
+    { keywords: ['insurance', 'accident', 'medical'], answer: "Players must have their own personal accident and health insurance to participate." },
+    { keywords: ['trial', 'tryout', 'test'], answer: "With the TalentiDO Pass, no trial is needed to join! You get guaranteed entry into the development pathway." },
+    { keywords: ['club', 'team'], answer: "We are an academy ecosystem. You can absolutely stay with your current club while training with us for extra development." },
+    { keywords: ['refund', 'cancel', 'money back'], answer: "contact_support" },
+    { keywords: ['complaint', 'issue', 'problem', 'angry'], answer: "contact_support" },
+    { keywords: ['legal', 'law', 'contract'], answer: "contact_support" },
+    { keywords: ['human', 'person', 'talk'], answer: "contact_support" }
+  ];
+
+  function handleKeyPress(e) {
+    if (e.key === 'Enter') sendMessage();
+  }
+
+  function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    userInput.value = '';
+    setTimeout(() => {
+        const response = findResponse(text.toLowerCase());
+        if (response === "contact_support") {
+             addMessage("For this specific request, please contact our COO directly. I've prepared a link for you:", 'bot');
+             addEmailButton();
+        } else if (response) {
+            addMessage(response, 'bot');
+        } else {
+            addMessage("That's a specific question that requires a human expert. Please contact our team directly:", 'bot');
+            addEmailButton();
+        }
+    }, 600);
+  }
+
+  function findResponse(input) {
+    for (let item of knowledgeBase) {
+        if (item.keywords.some(keyword => input.includes(keyword))) {
+            return item.answer;
+        }
+    }
+    return null; // Unknown
+  }
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = sender === 'user' 
+        ? "bg-brand-purple/50 p-3 rounded-lg rounded-tr-none text-white ml-auto max-w-[85%]" 
+        : "bg-white/10 p-3 rounded-lg rounded-tl-none text-gray-200 max-w-[85%]";
+    div.innerText = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addEmailButton() {
+    const div = document.createElement('div');
+    div.className = "mt-2";
+    div.innerHTML = `<a href="mailto:coo@talentido.com" class="inline-block bg-brand-purple text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-white hover:text-black transition">Email coo@talentido.com</a>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 </script>
 
