@@ -229,7 +229,7 @@
     </button>
 </div>
 
-<section class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 pt-32 lg:pt-0 relative z-10 max-w-7xl mx-auto gap-12 lg:gap-20">
+<section class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 pt-32 lg:pt-48 relative z-10 max-w-7xl mx-auto gap-12 lg:gap-20">
   
   <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
       <div class="mb-6 animate-pulse-slow">
@@ -600,9 +600,6 @@
     const targetIcon = btn.querySelector('.accordion-icon');
     const currentlyOpen = targetContent.style.maxHeight && targetContent.style.maxHeight !== '0px';
 
-    // 1. Close ALL accordions first (reset state)
-    // Note: If on desktop, we want to keep the pair open if we are just switching context, 
-    // but the simplest logic is close all -> open target (and partner).
     document.querySelectorAll('.accordion-content').forEach(el => {
       el.style.maxHeight = '0px';
       el.classList.remove('active');
@@ -611,10 +608,8 @@
       ic.classList.remove('rotate-45');
     });
 
-    // 2. If it was NOT open, open it now
     if (!currentlyOpen) {
       
-      // Function to open a specific panel
       const openPanel = (id, buttonEl) => {
           const content = document.getElementById(id);
           const icon = buttonEl ? buttonEl.querySelector('.accordion-icon') : null;
@@ -628,14 +623,11 @@
           }
       };
 
-      // Open the clicked one
       openPanel(panelId, btn);
 
-      // 3. If Desktop, find and open the partner
       if (isDesktop && pairs[panelId]) {
           const partnerId = pairs[panelId];
           const partnerContent = document.getElementById(partnerId);
-          // Find the button that controls the partner (it's the previous sibling of the content div)
           const partnerBtn = partnerContent.previousElementSibling; 
           
           openPanel(partnerId, partnerBtn);
