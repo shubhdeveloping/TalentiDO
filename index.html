@@ -87,17 +87,10 @@
 
     /* THE MONOLITH - NEW PREMIUM CARD STYLE */
     .glass-monolith {
-      /* Deep Royal Midnight Background */
       background: linear-gradient(145deg, rgba(20, 5, 35, 0.8) 0%, rgba(5, 2, 10, 0.95) 100%);
-      
-      /* High Blur for Depth */
       backdrop-filter: blur(60px);
       -webkit-backdrop-filter: blur(60px);
-      
-      /* Subtle border gradient */
       border: 1px solid rgba(255, 255, 255, 0.08);
-      
-      /* Complex Shadow Layering */
       box-shadow: 
           0 40px 80px -20px rgba(0, 0, 0, 0.9),
           inset 0 1px 1px rgba(255, 255, 255, 0.15),
@@ -210,6 +203,218 @@
 </head>
 
 <body class="relative bg-luxury-bg min-h-screen flex flex-col">
+
+<div id="privacy-overlay" class="fixed inset-0 z-[100] bg-[#050505] hidden overflow-y-auto transform transition-all duration-300">
+    <div class="fixed top-0 left-0 w-full h-20 bg-black/80 backdrop-blur-xl border-b border-white/10 z-50 flex items-center justify-between px-6 md:px-12">
+        <div class="font-display font-bold text-xl">
+             <span class="text-white">talent</span><span class="text-brand-purple">iDO</span> <span class="text-gray-400 text-sm ml-2">Privacy Policy</span>
+        </div>
+        <button onclick="togglePrivacy()" class="text-gray-400 hover:text-white flex items-center gap-2 group">
+            <span class="text-sm font-medium uppercase tracking-widest group-hover:text-brand-purple transition">Close</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto pt-32 pb-24 px-6 md:px-12">
+        <div class="glass-card p-8 md:p-12 rounded-2xl border border-white/5">
+            <h1 class="text-3xl md:text-5xl font-display font-bold text-white mb-2">Privacy Policy</h1>
+            <p class="text-brand-purple font-mono text-sm mb-8">Last updated: 2025</p>
+            
+            <div class="prose prose-invert prose-p:text-gray-300 prose-headings:text-white max-w-none space-y-8 font-light">
+                
+                <div class="bg-brand-purple/5 border border-brand-purple/20 p-4 rounded-lg">
+                    <p class="text-sm font-semibold text-white">Applicable law: Swiss Federal Act on Data Protection (FADP) & EU GDPR</p>
+                    <p class="text-sm mt-2">TalentiDO (“we”, “us”, “our”) takes the protection of personal data very seriously. This Privacy Policy explains what data we collect, why we collect it, and how we protect it, especially for children and parents.</p>
+                </div>
+
+                <hr class="border-white/10" />
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">1. Who We Are</h2>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                        <li><strong>Company:</strong> TalentiDO</li>
+                        <li><strong>Location:</strong> Switzerland</li>
+                        <li><strong>Contact Email:</strong> <a href="mailto:coo@talentido.com" class="text-brand-purple hover:underline">coo@talentido.com</a></li>
+                    </ul>
+                    <p class="mt-2 text-sm text-gray-500">If you have any questions about data protection, privacy, or your rights, you can contact us anytime at the email above.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">2. Who This Policy Applies To</h2>
+                    <p class="mb-2">This policy applies to:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-400 mb-4">
+                        <li>Players (including minors)</li>
+                        <li>Parents or legal guardians</li>
+                        <li>Scouts, coaches, and partners</li>
+                        <li>Website visitors and users of TalentiDO services</li>
+                    </ul>
+                    <p class="text-brand-lilac text-sm italic">If the player is under 16, data is processed only with parental or guardian consent.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">3. What Data We Collect</h2>
+                    <p class="mb-4">We only collect data that is necessary to provide TalentiDO services.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <h3 class="font-bold text-white mb-2">a) Personal Information</h3>
+                            <ul class="list-disc pl-4 text-sm text-gray-400">
+                                <li>Player name, age, date of birth</li>
+                                <li>Parent/guardian contact details</li>
+                                <li>Email address</li>
+                                <li>Country and region</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <h3 class="font-bold text-white mb-2">b) Football & Performance Data</h3>
+                            <ul class="list-disc pl-4 text-sm text-gray-400">
+                                <li>Test results (speed, agility, skills)</li>
+                                <li>Training feedback and assessments</li>
+                                <li>Uploaded photos or videos</li>
+                                <li>Progress reports and certificates</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <h3 class="font-bold text-white mb-2">c) Technical & Usage Data</h3>
+                            <ul class="list-disc pl-4 text-sm text-gray-400">
+                                <li>IP address (anonymised where possible)</li>
+                                <li>Device and browser type</li>
+                                <li>Website interaction data (cookies)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <h3 class="font-bold text-white mb-2">d) Payment Data</h3>
+                            <ul class="list-disc pl-4 text-sm text-gray-400">
+                                <li>Payments processed securely by Payrexx</li>
+                                <li><strong class="text-brand-purple">TalentiDO never stores credit card details</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">4. Why We Collect This Data</h2>
+                    <p>We use your data only to:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
+                        <li>Create and manage player profiles</li>
+                        <li>Deliver TalentiDO Football Pass services</li>
+                        <li>Track player progress and development</li>
+                        <li>Communicate with parents and players</li>
+                        <li>Enable scouting visibility (only if activated)</li>
+                        <li>Improve our platform and services</li>
+                        <li>Meet legal and regulatory obligations</li>
+                    </ul>
+                    <p class="mt-4 font-bold text-white">We do not sell personal data. Ever.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">5. Scholarships & Visibility</h2>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                        <li>Scholarship selection is handled internally by TalentiDO.</li>
+                        <li>Player data may be reviewed by TalentiDO coaches and staff.</li>
+                        <li>Scouts or partners only see profiles if visibility is enabled.</li>
+                        <li>No data is shared publicly without user or parent consent.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">6. Payments & Payment Security</h2>
+                    <p>All payments are handled by our trusted payment partner: <strong>Payrexx (Switzerland)</strong>.</p>
+                    <ul class="list-disc pl-5 mt-2 text-gray-400">
+                        <li>PCI-DSS compliant</li>
+                        <li>GDPR & Swiss FADP compliant</li>
+                    </ul>
+                    <p class="mt-4">TalentiDO does <strong>not</strong> store:</p>
+                    <ul class="list-disc pl-5 text-gray-400">
+                        <li>Credit card numbers</li>
+                        <li>Bank details</li>
+                        <li>Payment passwords</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-gray-500">For payment-related issues: <a href="mailto:coo@talentido.com" class="text-brand-purple">coo@talentido.com</a></p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">7. Data Sharing</h2>
+                    <p>We only share data with:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
+                        <li>Authorized TalentiDO staff and coaches</li>
+                        <li>Verified scouts or partners (only if activated)</li>
+                        <li>Service providers required to run the platform (hosting, analytics)</li>
+                    </ul>
+                    <p class="mt-2 text-sm">All partners are contractually bound to data protection laws.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">8. Data Storage & Security</h2>
+                    <p>We protect your data using:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
+                        <li>Secure servers</li>
+                        <li>Access control and encryption</li>
+                        <li>Regular security monitoring</li>
+                        <li>Limited staff access on a need-to-know basis</li>
+                    </ul>
+                    <p class="mt-2 text-sm">Your data is stored only as long as necessary for the service or legal obligations.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">9. Your Rights (GDPR & Swiss Law)</h2>
+                    <p>You have the right to:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
+                        <li>Access your data</li>
+                        <li>Correct incorrect data</li>
+                        <li>Request deletion (“right to be forgotten”)</li>
+                        <li>Restrict or object to processing</li>
+                        <li>Withdraw consent at any time</li>
+                        <li>Request data portability</li>
+                    </ul>
+                    <p class="mt-4 bg-brand-purple/10 p-3 rounded border-l-2 border-brand-purple">To exercise your rights, email: <a href="mailto:coo@talentido.com" class="font-bold text-white">coo@talentido.com</a>. We respond within legally required timeframes.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">10. Children’s Data Protection</h2>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                        <li>TalentiDO is designed for youth development.</li>
+                        <li>Parental consent is required for minors.</li>
+                        <li>We never knowingly exploit or commercialize children’s data.</li>
+                        <li>Parents can request deletion or changes at any time.</li>
+                    </ul>
+                    <p class="mt-2 font-bold text-white">Child safety and dignity come first.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">11. Cookies & Analytics</h2>
+                    <p>We use cookies to ensure website functionality, understand usage patterns, and improve user experience. You can manage or disable cookies via your browser settings.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">12. International Data Transfers</h2>
+                    <p>If data is processed outside Switzerland or the EU, we ensure adequate protection measures and GDPR-approved safeguards are applied.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-display font-bold mb-4">13. Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy to reflect legal changes, platform improvements, or new features. The latest version will always be available on our website.</p>
+                </section>
+
+                <hr class="border-white/10" />
+
+                <section class="text-center pt-8">
+                    <h2 class="text-xl font-display font-bold mb-2">14. Contact</h2>
+                    <p class="text-gray-400 mb-4">For privacy, data protection, or legal questions:</p>
+                    <a href="mailto:coo@talentido.com" class="inline-block bg-white/10 px-6 py-2 rounded-full text-white hover:bg-brand-purple transition mb-2">📧 coo@talentido.com</a>
+                    <p class="text-gray-500 text-sm">📍 TalentiDO — Switzerland</p>
+                </section>
+
+            </div>
+            
+            <div class="mt-12 text-center">
+                 <button onclick="togglePrivacy()" class="text-gray-400 underline hover:text-white">Close Privacy Policy</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-full snow-bg pointer-events-none z-0 animate-snow"></div>
 <div class="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple rounded-full blur-[150px] opacity-[0.2] pointer-events-none"></div>
@@ -604,7 +809,9 @@
 
       <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-300 items-center">
           <span class="hover:text-white cursor-pointer transition">Terms</span>
-          <span class="hover:text-white cursor-pointer transition">Privacy</span>
+          
+          <button onclick="togglePrivacy()" class="hover:text-white cursor-pointer transition">Privacy</button>
+
           <a href="https://www.talentido.com" target="_blank" class="hover:text-white cursor-pointer transition text-brand-purple">NFTs : www.talentido.com</a>
           <a href="mailto:coo@talentido.com" class="text-brand-purple hover:text-white transition font-bold border border-brand-purple/30 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm">Contact Us</a>
       </div>
@@ -626,6 +833,18 @@
       const body = document.body;
       menu.classList.toggle('hidden');
       if (menu.classList.contains('hidden')) {
+          body.classList.remove('overflow-hidden');
+      } else {
+          body.classList.add('overflow-hidden');
+      }
+  }
+
+  // PRIVACY POLICY TOGGLE SCRIPT
+  function togglePrivacy() {
+      const privacy = document.getElementById('privacy-overlay');
+      const body = document.body;
+      privacy.classList.toggle('hidden');
+      if (privacy.classList.contains('hidden')) {
           body.classList.remove('overflow-hidden');
       } else {
           body.classList.add('overflow-hidden');
