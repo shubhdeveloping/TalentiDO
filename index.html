@@ -700,15 +700,22 @@
                         Only 100 Passes
                     </span>
                     <h3 class="text-3xl font-display text-white font-bold mb-1">Football Pass</h3>
-                    <p class="text-gray-400 text-xs mb-8">Save 85% — Christmas Special</p>
+                    <p class="text-gray-400 text-xs mb-4">Save 85% — Christmas Special</p>
 
-                    <div class="mb-8 relative">
+                    <div class="mb-4 relative">
                         <div class="text-sm text-gray-500 line-through mb-1 font-mono">CHF 1,000</div>
                         <div class="text-7xl font-display font-bold text-white tracking-tighter leading-none drop-shadow-lg">
                             149<span class="text-2xl text-brand-accent font-medium ml-1">CHF</span>
                         </div>
-                         <p class="text-xs text-brand-cyan/80 mt-3 font-medium tracking-wider uppercase">Full Year Development</p>
                     </div>
+                    
+                    <ul class="text-left text-xs text-gray-300 space-y-2 mb-6 w-full px-2 border-t border-white/10 pt-4">
+                        <li class="flex items-start gap-2"><span class="text-brand-accent">✓</span> Up to CHF 100,000 Scholarship Opportunity</li>
+                        <li class="flex items-start gap-2"><span class="text-brand-accent">✓</span> Official TalentiDO Player Profile & Visibility</li>
+                        <li class="flex items-start gap-2"><span class="text-brand-accent">✓</span> Year-Long Structured Development Path</li>
+                        <li class="flex items-start gap-2"><span class="text-brand-accent">✓</span> Coach Feedback & Performance Tracking</li>
+                        <li class="flex items-start gap-2"><span class="text-brand-accent">✓</span> Priority Access to Future TalentiDO Programs</li>
+                    </ul>
 
                     <button class="w-full rounded-xl btn-neon font-bold text-sm py-4 uppercase tracking-widest shadow-lg active:scale-95 transition-transform">
                         Get the Gift 🎁
@@ -743,6 +750,10 @@
         </div>
     </div>
 </section>
+
+<div class="text-center mb-4 mt-8 relative z-10">
+    <span class="text-brand-cyan font-mono text-[10px] tracking-[0.2em] uppercase font-bold drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]">Club Partners</span>
+</div>
 
 <div class="w-full overflow-hidden bg-brand-deep/30 border-y border-white/5 py-4 mb-20 relative">
     <div class="flex w-max animate-scroll">
@@ -843,7 +854,7 @@
 
     <div class="liquid-card rounded-xl">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel4', this)">
-         <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">04</span>
             <span class="text-lg font-display font-bold text-white group-hover:text-brand-accent transition-colors">Coaching & Mentorship</span>
         </div>
@@ -862,7 +873,7 @@
 
     <div class="liquid-card rounded-xl">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel5', this)">
-         <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">05</span>
             <span class="text-lg font-display font-bold text-white group-hover:text-brand-accent transition-colors">Matches & Exposure</span>
         </div>
@@ -881,7 +892,7 @@
 
     <div class="liquid-card rounded-xl">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel6', this)">
-         <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">06</span>
             <span class="text-lg font-display font-bold text-white group-hover:text-brand-accent transition-colors">Profile, Safety & Communication</span>
         </div>
@@ -957,3 +968,56 @@
       </div>
   </div>
 </footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+        } else {
+            menu.classList.add('hidden');
+        }
+    }
+
+    function togglePrivacy() {
+        const overlay = document.getElementById('privacy-overlay');
+        if (overlay.classList.contains('hidden')) {
+            overlay.classList.remove('hidden');
+        } else {
+            overlay.classList.add('hidden');
+        }
+    }
+
+    function toggleTerms() {
+        const overlay = document.getElementById('terms-overlay');
+        if (overlay.classList.contains('hidden')) {
+            overlay.classList.remove('hidden');
+        } else {
+            overlay.classList.add('hidden');
+        }
+    }
+
+    function toggleAccordion(panelId, button) {
+        const content = document.getElementById(panelId);
+        const icon = button.querySelector('.accordion-icon');
+        const isActive = content.classList.contains('active');
+
+        // Close all other accordions (optional, but good for UX)
+        document.querySelectorAll('.accordion-content').forEach(el => {
+            el.classList.remove('active');
+            el.style.maxHeight = null;
+        });
+        document.querySelectorAll('.accordion-icon').forEach(el => {
+            el.classList.remove('rotate-45');
+        });
+
+        if (!isActive) {
+            content.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.classList.add('rotate-45');
+        }
+    }
+</script>
+
+</body>
+</html>
