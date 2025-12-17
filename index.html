@@ -90,6 +90,24 @@
         }
     }
 
+    /* SNOWFALL EFFECT */
+    .snowflake {
+        position: fixed;
+        top: -20px;
+        color: white;
+        text-shadow: 0 0 5px rgba(255,255,255,0.8);
+        z-index: 9999;
+        pointer-events: none;
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    @keyframes fall {
+        0% { transform: translateY(-10vh) translateX(0px) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.8; }
+        100% { transform: translateY(110vh) translateX(20px) rotate(360deg); opacity: 0; }
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar { width:5px }
     ::-webkit-scrollbar-thumb { background: #3b0764; border-radius:10px }
@@ -191,6 +209,8 @@
 </head>
 
 <body class="relative min-h-screen flex flex-col bg-theme-gradient">
+
+<div id="snow-container"></div>
 
 <div class="atmos-sphere-1"></div>
 <div class="atmos-sphere-2"></div>
@@ -806,7 +826,7 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
     
-    <div class="liquid-card rounded-xl">
+    <div class="liquid-card rounded-xl" id="card1">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel1', this)">
         <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">01</span>
@@ -825,7 +845,7 @@
       </div>
     </div>
 
-    <div class="liquid-card rounded-xl">
+    <div class="liquid-card rounded-xl" id="card2">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel2', this)">
         <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">02</span>
@@ -844,7 +864,7 @@
       </div>
     </div>
 
-    <div class="liquid-card rounded-xl">
+    <div class="liquid-card rounded-xl" id="card3">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel3', this)">
         <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">03</span>
@@ -863,7 +883,7 @@
       </div>
     </div>
 
-    <div class="liquid-card rounded-xl">
+    <div class="liquid-card rounded-xl" id="card4">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel4', this)">
           <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">04</span>
@@ -882,7 +902,7 @@
       </div>
     </div>
 
-    <div class="liquid-card rounded-xl">
+    <div class="liquid-card rounded-xl" id="card5">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel5', this)">
           <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">05</span>
@@ -901,7 +921,7 @@
       </div>
     </div>
 
-    <div class="liquid-card rounded-xl">
+    <div class="liquid-card rounded-xl" id="card6">
       <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none group" onclick="toggleAccordion('panel6', this)">
           <div class="flex items-center gap-4">
             <span class="w-8 h-8 rounded bg-brand-accent/20 flex items-center justify-center text-brand-accent text-xs font-bold border border-brand-accent/30">06</span>
@@ -981,53 +1001,121 @@
 </footer>
 
 <script>
+    // --- UI TOGGLES ---
     function toggleMenu() {
         const menu = document.getElementById('mobile-menu');
-        if (menu.classList.contains('hidden')) {
-            menu.classList.remove('hidden');
-        } else {
-            menu.classList.add('hidden');
-        }
+        menu.classList.toggle('hidden');
     }
-
     function togglePrivacy() {
         const overlay = document.getElementById('privacy-overlay');
-        if (overlay.classList.contains('hidden')) {
-            overlay.classList.remove('hidden');
-        } else {
-            overlay.classList.add('hidden');
-        }
+        overlay.classList.toggle('hidden');
     }
-
     function toggleTerms() {
         const overlay = document.getElementById('terms-overlay');
-        if (overlay.classList.contains('hidden')) {
-            overlay.classList.remove('hidden');
-        } else {
-            overlay.classList.add('hidden');
-        }
+        overlay.classList.toggle('hidden');
     }
 
+    // --- ACCORDION LOGIC ---
     function toggleAccordion(panelId, button) {
-        const content = document.getElementById(panelId);
-        const icon = button.querySelector('.accordion-icon');
-        const isActive = content.classList.contains('active');
+        const isDesktop = window.innerWidth >= 768;
+        const panelEl = document.getElementById(panelId);
+        const isActive = panelEl.classList.contains('active');
 
-        // Close all other accordions (optional, but good for UX)
-        document.querySelectorAll('.accordion-content').forEach(el => {
-            el.classList.remove('active');
-            el.style.maxHeight = null;
-        });
-        document.querySelectorAll('.accordion-icon').forEach(el => {
-            el.classList.remove('rotate-45');
-        });
+        // Logic for Desktop: Paired expansion
+        if (isDesktop) {
+            const pairs = {
+                'panel1': 'panel2', 'panel2': 'panel1',
+                'panel3': 'panel4', 'panel4': 'panel3',
+                'panel5': 'panel6', 'panel6': 'panel5'
+            };
+            const partnerId = pairs[panelId];
+            const partnerEl = document.getElementById(partnerId);
 
-        if (!isActive) {
-            content.classList.add('active');
-            content.style.maxHeight = content.scrollHeight + "px";
-            icon.classList.add('rotate-45');
+            // Close all others first to keep view clean
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                if(el.id !== panelId && el.id !== partnerId) {
+                    el.classList.remove('active');
+                    el.style.maxHeight = null;
+                    // Reset icon rotation for non-active
+                    const btn = el.previousElementSibling; 
+                    const icon = btn.querySelector('.accordion-icon');
+                    if(icon) icon.classList.remove('rotate-45');
+                }
+            });
+
+            if (!isActive) {
+                // Open Current
+                panelEl.classList.add('active');
+                panelEl.style.maxHeight = panelEl.scrollHeight + "px";
+                button.querySelector('.accordion-icon').classList.add('rotate-45');
+
+                // Open Partner
+                if(partnerEl) {
+                    partnerEl.classList.add('active');
+                    partnerEl.style.maxHeight = partnerEl.scrollHeight + "px";
+                    const partnerBtn = partnerEl.previousElementSibling;
+                    const partnerIcon = partnerBtn.querySelector('.accordion-icon');
+                    if(partnerIcon) partnerIcon.classList.add('rotate-45');
+                }
+            } else {
+                // Close Both
+                panelEl.classList.remove('active');
+                panelEl.style.maxHeight = null;
+                button.querySelector('.accordion-icon').classList.remove('rotate-45');
+
+                if(partnerEl) {
+                    partnerEl.classList.remove('active');
+                    partnerEl.style.maxHeight = null;
+                    const partnerBtn = partnerEl.previousElementSibling;
+                    const partnerIcon = partnerBtn.querySelector('.accordion-icon');
+                    if(partnerIcon) partnerIcon.classList.remove('rotate-45');
+                }
+            }
+
+        } else {
+            // Logic for Mobile: Standard single toggle
+            // Close others
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.classList.remove('active');
+                el.style.maxHeight = null;
+            });
+            document.querySelectorAll('.accordion-icon').forEach(el => {
+                el.classList.remove('rotate-45');
+            });
+
+            if (!isActive) {
+                panelEl.classList.add('active');
+                panelEl.style.maxHeight = panelEl.scrollHeight + "px";
+                const icon = button.querySelector('.accordion-icon');
+                if(icon) icon.classList.add('rotate-45');
+            }
         }
     }
+
+    // --- SNOWFALL ENGINE ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const snowContainer = document.getElementById('snow-container');
+        const flakeCount = 50; 
+        const symbols = ['❄', '❅', '❆', '•'];
+
+        for(let i=0; i<flakeCount; i++) {
+            const flake = document.createElement('div');
+            flake.classList.add('snowflake');
+            flake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            // Random positioning
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.opacity = Math.random() * 0.5 + 0.3;
+            flake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            
+            // Random animation
+            const duration = Math.random() * 5 + 5; // between 5s and 10s
+            flake.style.animationDuration = duration + 's';
+            flake.style.animationDelay = (Math.random() * 5) + 's';
+            
+            snowContainer.appendChild(flake);
+        }
+    });
 </script>
 
 </body>
