@@ -643,6 +643,43 @@
     </div>
 </div>
 
+<div id="legal-overlay" class="fixed inset-0 z-[100] bg-[#05020A] hidden overflow-y-auto transform transition-opacity duration-200">
+    <div class="fixed top-0 left-0 w-full h-16 bg-[#05020A]/90 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-between px-6">
+        <div class="font-display font-bold text-lg">
+             <span class="text-white">talent</span><span class="text-brand-accent">iDO</span> <span class="text-gray-400 text-xs ml-2">Legal</span>
+        </div>
+        <button onclick="toggleLegal()" class="text-white bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Close</button>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto pt-24 pb-12 px-6">
+        <div class="liquid-card p-6 md:p-10 rounded-2xl">
+            <h1 class="text-3xl font-display font-bold text-white mb-6">Infringement, Liability & Compensation</h1>
+            
+            <div class="space-y-6 font-light text-gray-300 text-sm leading-relaxed">
+                
+                <p>Any unauthorized copying, imitation, reproduction, extraction, reuse, adaptation, or commercial exploitation of this website or any part there of including its concept, idea, theme, structure, layout, design, visual flow, copy, branding, or overall presentation constitutes a material infringement of intellectual property and unfair competition laws applicable in Switzerland and the European Union.</p>
+
+                <p>In the event of such infringement, the infringing party shall be liable, to the fullest extent permitted by law, for:</p>
+
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>All direct and indirect damages, including financial loss, loss of business opportunity, and reputational harm</li>
+                    <li>Disgorgement of any profits or benefits obtained directly or indirectly from the infringement</li>
+                    <li>A contractually agreed minimum compensation of <strong>CHF 50,000</strong> per infringement, where legally permissible, without prejudice to the right to claim higher damages</li>
+                    <li>All reasonable legal, investigative, administrative, and enforcement costs, including attorney and court fees</li>
+                    <li>Immediate injunctive and equitable relief, including permanent cessation, takedown, and destruction of infringing materials</li>
+                </ul>
+
+                <p>The website owner expressly reserves the right to pursue additional civil, contractual, and statutory remedies, including interim measures, to protect its intellectual property and commercial rights.</p>
+
+            </div>
+
+            <div class="mt-8 text-center border-t border-white/5 pt-6">
+                 <button onclick="toggleLegal()" class="text-gray-400 underline hover:text-white transition">Close Legal Notice</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl h-16 glass-nav rounded-full flex items-center justify-between px-6 z-50 shadow-2xl">
   <div class="flex items-center gap-2">
     <div class="flex items-center font-display font-bold">
@@ -986,6 +1023,7 @@
       <div class="flex gap-6 items-center">
           <button onclick="toggleTerms()" class="hover:text-white transition">Terms</button>
           <button onclick="togglePrivacy()" class="hover:text-white transition">Privacy</button>
+          <button onclick="toggleLegal()" class="hover:text-white transition">Legal Notice</button>
           <a href="https://www.talentido.com" target="_blank" class="text-brand-accent hover:text-white transition">NFTs</a>
           <a href="mailto:coo@talentido.com" class="hover:text-white transition font-bold border border-brand-accent/30 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm text-brand-accent">Contact Us</a>
       </div>
@@ -1013,6 +1051,10 @@
     }
     function toggleTerms() {
         const overlay = document.getElementById('terms-overlay');
+        overlay.classList.toggle('hidden');
+    }
+    function toggleLegal() {
+        const overlay = document.getElementById('legal-overlay');
         overlay.classList.toggle('hidden');
     }
 
