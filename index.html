@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TalentiDO - Exklusive Enthüllung</title>
     
-    <meta name="description" content="TalentiDO - Mir forme d Zuekunft vo junge Fuessball-Talänt.">
+    <meta name="description" content="TalentiDO - Wir formen die Zukunft junger Fussball-Talente.">
     <meta property="og:title" content="TalentiDO - Exklusive Enthüllung">
-    <meta property="og:description" content="Demnächst Live. Wiehnachts-Edition.">
+    <meta property="og:description" content="Demnächst Live. Weihnachts-Edition.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1605540447171-2661b7562062?q=80&w=2071">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,6 @@
             /* BRAND IDENTITY */
             --brand-purple: #9333EA;
             --brand-purple-light: #c084fc;
-            --brand-purple-glow: rgba(147, 51, 234, 0.5);
             --pure-black: #050505;
             --text-white: #ffffff;
             --text-muted: rgba(255, 255, 255, 0.7);
@@ -36,7 +35,7 @@
         body {
             margin: 0;
             min-height: 100vh;
-            min-height: -webkit-fill-available; /* iOS Fix */
+            min-height: -webkit-fill-available;
             font-family: 'Montserrat', sans-serif;
             display: flex;
             align-items: center;
@@ -47,254 +46,140 @@
             position: relative;
         }
 
-        /* --- LAYERS --- */
+        /* --- BACKGROUND LAYERS --- */
         .bg-cinematic {
-            position: fixed;
-            inset: -5%;
-            width: 110%; height: 110%;
+            position: fixed; inset: -5%; width: 110%; height: 110%;
             background-image: url('https://images.unsplash.com/photo-1605540447171-2661b7562062?q=80&w=2071&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background-size: cover; background-position: center;
             z-index: -3;
             animation: slowPan 60s infinite alternate ease-in-out;
-            will-change: transform;
             filter: brightness(0.5) contrast(1.1);
         }
 
         .bg-noise {
-            position: fixed;
-            inset: 0;
-            width: 100%; height: 100%;
-            z-index: -2;
-            opacity: 0.07;
-            pointer-events: none;
+            position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.07; pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         .bg-overlay {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0; z-index: -2;
             background: radial-gradient(circle at center, rgba(0,0,0,0.4), rgba(0,0,0,0.95));
-            z-index: -2;
         }
 
         .ambient-glow {
-            position: fixed;
-            width: 80vw; height: 80vw;
-            max-width: 600px; max-height: 600px;
-            background: var(--brand-purple);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            filter: blur(120px);
-            opacity: 0.2; 
-            animation: pulseGlow 8s infinite ease-in-out;
+            position: fixed; width: 80vw; height: 80vw; max-width: 600px; max-height: 600px;
+            background: var(--brand-purple); top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: -1; filter: blur(120px); opacity: 0.2; animation: pulseGlow 8s infinite ease-in-out;
         }
 
         /* --- MAIN CARD --- */
         .container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
+            position: relative; z-index: 10; text-align: center;
             padding: clamp(30px, 5vh, 60px) clamp(20px, 5vw, 50px);
-            width: 100%;
-            max-width: 500px; /* Slightly narrower for form focus */
-            margin: 20px;
-            
+            width: 100%; max-width: 500px; margin: 20px;
             background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border-radius: 24px;
-            border: var(--glass-border);
-            box-shadow: 
-                0 40px 100px -20px rgba(0,0,0,0.8),
-                inset 0 0 0 1px rgba(255,255,255,0.05);
-            
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-            max-height: 90vh;
-            overflow-y: auto; /* Allow scroll on small screens if form gets tall */
-            scrollbar-width: none; /* Firefox */
+            backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 24px; border: var(--glass-border);
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
+            max-height: 90vh; overflow-y: auto; scrollbar-width: none;
         }
-        .container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .container::-webkit-scrollbar { display: none; }
 
         .container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 15%; right: 15%;
-            height: 1px;
+            content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
         }
 
         /* --- TYPOGRAPHY --- */
         .logo {
-            font-size: clamp(2.5rem, 7vw, 3.5rem);
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.04em;
-            line-height: 1;
-            display: inline-flex;
-            justify-content: center;
-            align-items: baseline;
+            font-size: clamp(2.5rem, 7vw, 3.5rem); font-weight: 900; margin-bottom: 0.5rem;
+            line-height: 1; letter-spacing: -0.04em;
+            display: inline-flex; justify-content: center; align-items: baseline;
             filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.4));
         }
         .logo .talent { color: #fff; }
-        .logo .ido { color: var(--brand-purple); position: relative; }
+        .logo .ido { color: var(--brand-purple); }
 
         .tagline {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            font-weight: 300;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin: 0 auto 1.5rem auto;
-            max-width: 90%;
-        }
-
-        .divider {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            margin: 1.5rem 0;
+            font-family: 'Inter', sans-serif; font-size: clamp(0.9rem, 3vw, 1rem);
+            font-weight: 300; color: var(--text-muted); line-height: 1.6;
+            margin: 0 auto 1.5rem auto; max-width: 90%;
         }
 
         /* --- STATUS --- */
         .status-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
+            display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px;
         }
 
         .live-message {
-            font-size: clamp(1.5rem, 5vw, 2rem);
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; color: #fff;
+            text-transform: uppercase; letter-spacing: 0.05em;
             background: linear-gradient(to bottom, #fff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--brand-purple-light);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: rgba(147, 51, 234, 0.15);
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.15);
-            animation: borderPulse 3s infinite;
+            display: inline-flex; align-items: center; gap: 10px;
+            color: var(--brand-purple-light); font-family: 'Inter', sans-serif;
+            font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+            background: rgba(147, 51, 234, 0.15); padding: 8px 16px;
+            border-radius: 8px; border: 1px solid rgba(147, 51, 234, 0.3);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.15); animation: borderPulse 3s infinite;
         }
 
         .status-dot {
-            width: 6px; height: 6px;
-            background-color: var(--brand-purple);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--brand-purple);
+            width: 6px; height: 6px; background-color: var(--brand-purple);
+            border-radius: 50%; box-shadow: 0 0 10px var(--brand-purple);
             animation: blink 1.5s infinite;
         }
 
         /* --- REGISTRATION FORM --- */
         .register-box {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: left;
+            background: rgba(0, 0, 0, 0.2); border-radius: 16px; padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05); text-align: left;
         }
 
         .form-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 15px;
-            display: block;
-            text-align: center;
-            letter-spacing: 0.5px;
+            font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 15px;
+            display: block; text-align: center; letter-spacing: 0.5px;
         }
 
-        .input-group {
-            margin-bottom: 12px;
-        }
+        .input-group { margin-bottom: 12px; }
 
         .glass-input {
-            width: 100%;
-            padding: 12px 16px;
+            width: 100%; padding: 12px 16px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px;
+            color: #fff; font-family: 'Inter', sans-serif; font-size: 0.95rem;
             transition: all 0.3s ease;
         }
-
-        .glass-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
         .glass-input:focus {
-            outline: none;
-            border-color: var(--brand-purple);
+            outline: none; border-color: var(--brand-purple);
             background: rgba(255, 255, 255, 0.07);
             box-shadow: 0 0 15px rgba(147, 51, 234, 0.2);
         }
 
         .btn-submit {
-            width: 100%;
-            padding: 14px;
-            margin-top: 5px;
+            width: 100%; padding: 14px; margin-top: 5px;
             background: linear-gradient(135deg, var(--brand-purple), #7e22ce);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border: none; border-radius: 10px;
+            color: white; font-family: 'Montserrat', sans-serif;
+            font-weight: 700; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;
         }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(147, 51, 234, 0.4);
-        }
-
-        .btn-submit:active {
-            transform: translateY(0);
-        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(147, 51, 234, 0.4); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         .success-message {
-            display: none;
-            color: #4ade80;
-            background: rgba(74, 222, 128, 0.1);
-            border: 1px solid rgba(74, 222, 128, 0.2);
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            text-align: center;
+            display: none; color: #4ade80;
+            background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 15px; border-radius: 12px; margin-top: 20px;
+            font-size: 0.9rem; text-align: center; line-height: 1.5;
         }
 
         .footer {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.3);
+            margin-top: 2rem; font-size: 0.75rem; color: rgba(255,255,255,0.3);
             font-family: 'Inter', sans-serif;
         }
 
@@ -332,7 +217,7 @@
             <div class="live-message">DEMNÄCHST LIVE</div>
             <div class="status-badge">
                 <div class="status-dot"></div>
-                Start wird konfiguriert
+                Startvorbereitungen laufen
             </div>
         </div>
 
@@ -344,28 +229,24 @@
         <div class="register-box">
             <span class="form-title">Vor-Registrierung</span>
             
-            <form id="preRegForm" action="https://formsubmit.co/coo@talentido.com" method="POST">
-                <input type="hidden" name="_subject" value="Neue TalentiDO Registrierung!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                
+            <form id="preRegForm">
                 <div class="input-group">
                     <input type="text" name="name" class="glass-input" placeholder="Name" required>
                 </div>
                 
                 <div class="input-group">
-                    <input type="text" name="country" class="glass-input" placeholder="Land / Country" required>
+                    <input type="text" name="country" class="glass-input" placeholder="Land" required>
                 </div>
 
                 <div class="input-group">
                     <input type="email" name="email" class="glass-input" placeholder="E-Mail Adresse" required>
                 </div>
 
-                <button type="submit" class="btn-submit" id="submitBtn">Absenden</button>
+                <button type="submit" class="btn-submit" id="submitBtn">Anmelden</button>
             </form>
 
             <div id="successMsg" class="success-message">
-                <strong>Danke!</strong><br>Deine Daten wurden erfolgreich übermittelt.
+                <strong>Vielen Dank!</strong><br>Deine Daten wurden erfolgreich übermittelt.<br>Wir melden uns bald.
             </div>
         </div>
 
@@ -376,46 +257,37 @@
     </main>
 
     <script>
-        // Form Handling (AJAX) - Sends email without opening client
+        // Form Handling - AJAX ONLY (No Email App)
         const form = document.getElementById('preRegForm');
         const successMsg = document.getElementById('successMsg');
         const submitBtn = document.getElementById('submitBtn');
 
         form.addEventListener('submit', function(e) {
+            // 1. STOP the default browser action (this prevents opening email app or reloading)
             e.preventDefault();
             
-            // Change button state
+            // 2. Change button to show loading state
             const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = "Sende...";
-            submitBtn.style.opacity = "0.7";
+            submitBtn.innerText = "Wird gesendet...";
             submitBtn.disabled = true;
 
             const formData = new FormData(form);
 
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+            // 3. Send data silently to FormSubmit AJAX endpoint
+            fetch("https://formsubmit.co/ajax/coo@talentido.com", {
+                method: "POST",
+                body: formData
             })
-            .then(response => {
-                if (response.ok) {
-                    // Success: Hide form, show message
-                    form.style.display = 'none';
-                    successMsg.style.display = 'block';
-                } else {
-                    alert("Es gab einen Fehler. Bitte versuche es später noch einmal.");
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.style.opacity = "1";
-                    submitBtn.disabled = false;
-                }
+            .then(response => response.json())
+            .then(data => {
+                // Success: Hide form, show success message
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert("Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung.");
+                alert("Es gab einen Fehler bei der Übermittlung. Bitte prüfen Sie Ihre Verbindung.");
                 submitBtn.innerText = originalBtnText;
-                submitBtn.style.opacity = "1";
                 submitBtn.disabled = false;
             });
         });
