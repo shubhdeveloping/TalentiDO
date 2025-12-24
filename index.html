@@ -21,7 +21,6 @@
             --brand-purple-light: #c084fc;
             --brand-purple-glow: rgba(147, 51, 234, 0.5);
             --pure-black: #050505;
-            --accent-red: #ef4444; 
             --text-white: #ffffff;
             --text-muted: rgba(255, 255, 255, 0.7);
             
@@ -49,8 +48,6 @@
         }
 
         /* --- LAYERS --- */
-        
-        /* 1. Base Image */
         .bg-cinematic {
             position: fixed;
             inset: -5%;
@@ -64,7 +61,6 @@
             filter: brightness(0.5) contrast(1.1);
         }
 
-        /* 2. Film Grain */
         .bg-noise {
             position: fixed;
             inset: 0;
@@ -75,7 +71,6 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* 3. Vignette & Tint */
         .bg-overlay {
             position: fixed;
             inset: 0;
@@ -83,7 +78,6 @@
             z-index: -2;
         }
 
-        /* 4. Ambient Light */
         .ambient-glow {
             position: fixed;
             width: 80vw; height: 80vw;
@@ -102,13 +96,11 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            /* Fluid Padding */
             padding: clamp(30px, 5vh, 60px) clamp(20px, 5vw, 50px);
             width: 100%;
-            max-width: 580px;
+            max-width: 500px; /* Slightly narrower for form focus */
             margin: 20px;
             
-            /* High-Performance Glassmorphism */
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
             -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -120,9 +112,12 @@
             
             transform: translateY(0);
             transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto; /* Allow scroll on small screens if form gets tall */
+            scrollbar-width: none; /* Firefox */
         }
+        .container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-        /* Top highlight border for 3D effect */
         .container::after {
             content: '';
             position: absolute;
@@ -131,11 +126,9 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
         }
 
-        /* --- TYPOGRAPHY & ELEMENTS --- */
-        
+        /* --- TYPOGRAPHY --- */
         .logo {
-            /* Fluid Font Size */
-            font-size: clamp(2.8rem, 8vw, 4.2rem);
+            font-size: clamp(2.5rem, 7vw, 3.5rem);
             font-weight: 900;
             margin-bottom: 0.5rem;
             letter-spacing: -0.04em;
@@ -145,20 +138,16 @@
             align-items: baseline;
             filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.4));
         }
-        
         .logo .talent { color: #fff; }
-        .logo .ido { 
-            color: var(--brand-purple);
-            position: relative;
-        }
+        .logo .ido { color: var(--brand-purple); position: relative; }
 
         .tagline {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(0.95rem, 3vw, 1.15rem);
+            font-size: clamp(0.9rem, 3vw, 1rem);
             font-weight: 300;
             color: var(--text-muted);
             line-height: 1.6;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 1.5rem auto;
             max-width: 90%;
         }
 
@@ -166,30 +155,28 @@
             height: 1px;
             width: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
-        .launch-info {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.05);
-            padding: 8px 16px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #f3f4f6;
-            margin-bottom: 2rem;
-        }
-
-        /* --- STATUS PULSE INDICATOR --- */
+        /* --- STATUS --- */
         .status-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .live-message {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: linear-gradient(to bottom, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .status-badge {
@@ -199,11 +186,11 @@
             color: var(--brand-purple-light);
             font-family: 'Inter', sans-serif;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             background: rgba(147, 51, 234, 0.15);
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 8px;
             border: 1px solid rgba(147, 51, 234, 0.3);
             box-shadow: 0 0 20px rgba(147, 51, 234, 0.15);
@@ -211,160 +198,104 @@
         }
 
         .status-dot {
-            width: 8px; height: 8px;
+            width: 6px; height: 6px;
             background-color: var(--brand-purple);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--brand-purple);
             animation: blink 1.5s infinite;
         }
 
-        /* --- NEW BUTTON STYLES --- */
-        .cta-button {
-            margin-top: 10px;
-            background: linear-gradient(135deg, #9333EA 0%, #7E22CE 100%);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 16px 32px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
-            background: linear-gradient(135deg, #A855F7 0%, #9333EA 100%);
-        }
-
-        .cta-button:active {
-            transform: scale(0.98);
-        }
-
-        /* --- FORM MODAL --- */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        /* --- REGISTRATION FORM --- */
+        .register-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
             padding: 20px;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .modal-glass {
-            background: rgba(20, 20, 25, 0.95);
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            width: 100%;
-            max-width: 450px;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-        }
-
-        .modal-overlay.active .modal-glass {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.5);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .modal-close:hover { color: #fff; }
-
-        .form-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: white;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: left;
         }
 
-        .form-label {
+        .form-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
             display: block;
-            font-size: 0.8rem;
-            color: var(--brand-purple-light);
-            margin-bottom: 5px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
 
-        .form-input {
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .glass-input {
             width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 8px;
-            color: white;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #fff;
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        .glass-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-input:focus {
             outline: none;
             border-color: var(--brand-purple);
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.2);
         }
 
-        .submit-btn {
+        .btn-submit {
             width: 100%;
-            margin-top: 10px;
             padding: 14px;
-            background: var(--brand-purple);
-            color: white;
+            margin-top: 5px;
+            background: linear-gradient(135deg, var(--brand-purple), #7e22ce);
             border: none;
-            border-radius: 8px;
-            font-weight: 700;
+            border-radius: 10px;
+            color: white;
             font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background 0.2s;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .submit-btn:hover { background: #7E22CE; }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
 
         .footer {
-            margin-top: 3rem;
+            margin-top: 2rem;
             font-size: 0.75rem;
             color: rgba(255,255,255,0.3);
             font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
         }
 
         /* --- ANIMATIONS --- */
@@ -375,27 +306,13 @@
         
         /* Snow CSS */
         .snowflake {
-            position: absolute;
-            top: -20px;
-            color: white;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 5;
-            will-change: transform;
-            animation: snowfall linear infinite;
+            position: absolute; top: -20px; color: white; opacity: 0; pointer-events: none; z-index: 5;
+            will-change: transform; animation: snowfall linear infinite;
         }
         @keyframes snowfall {
             0% { opacity: 0; transform: translateY(0) rotate(0deg); }
             20% { opacity: 0.8; }
             100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
-        }
-
-        /* Mobile Landscape Optimization */
-        @media (max-height: 600px) {
-            .container { padding: 20px; margin: 10px; }
-            .logo { font-size: 2.2rem; }
-            .tagline { margin-bottom: 1rem; }
-            .divider { margin: 1rem 0; }
         }
     </style>
 </head>
@@ -411,22 +328,45 @@
             <span class="talent">talent</span><span class="ido">iDO</span>
         </div>
         
-        <p class="tagline">
-            Mir forme d Zuekunft vo junge Fuessball-Talänt i de Schwiiz
-        </p>
-
-        <div class="launch-info">
-            <span>🎁</span> <span>Wiehnachts-Edition</span>
-        </div>
-
-        <div class="divider"></div>
-
         <div class="status-container">
+            <div class="live-message">DEMNÄCHST LIVE</div>
             <div class="status-badge">
                 <div class="status-dot"></div>
-                Exklusive Anmeldung
+                Start wird konfiguriert
             </div>
-            <button class="cta-button" onclick="openModal()">Jetzt Registrieren</button>
+        </div>
+
+        <p class="tagline">
+            Mir forme d Zuekunft vo junge Fuessball-Talänt.
+            <br>Melde dich an für exklusive Updates.
+        </p>
+
+        <div class="register-box">
+            <span class="form-title">Vor-Registrierung</span>
+            
+            <form id="preRegForm" action="https://formsubmit.co/coo@talentido.com" method="POST">
+                <input type="hidden" name="_subject" value="Neue TalentiDO Registrierung!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
+                <div class="input-group">
+                    <input type="text" name="name" class="glass-input" placeholder="Name" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" name="country" class="glass-input" placeholder="Land / Country" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" class="glass-input" placeholder="E-Mail Adresse" required>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">Absenden</button>
+            </form>
+
+            <div id="successMsg" class="success-message">
+                <strong>Danke!</strong><br>Deine Daten wurden erfolgreich übermittelt.
+            </div>
         </div>
 
         <footer class="footer">
@@ -435,90 +375,52 @@
         </footer>
     </main>
 
-    <div class="modal-overlay" id="registerModal">
-        <div class="modal-glass">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 class="form-title">Anmeldung</h2>
-            <form id="regForm" onsubmit="sendEmail(event)">
-                <div class="form-group">
-                    <label class="form-label">Name</label>
-                    <input type="text" id="name" class="form-input" required placeholder="Vor- und Nachname">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" id="email" class="form-input" required placeholder="deine@email.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Telefonnummer</label>
-                    <input type="tel" id="contact" class="form-input" required placeholder="+41 79 123 45 67">
-                </div>
-                <div class="form-group">
-                    <div style="display: flex; gap: 10px;">
-                        <div style="flex: 1;">
-                            <label class="form-label">Land</label>
-                            <input type="text" id="country" class="form-input" required placeholder="Schweiz">
-                        </div>
-                        <div style="width: 80px;">
-                            <label class="form-label">Alter</label>
-                            <input type="number" id="age" class="form-input" required placeholder="14">
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Absenden</button>
-            </form>
-        </div>
-    </div>
-
     <script>
-        // --- MODAL LOGIC ---
-        function openModal() {
-            document.getElementById('registerModal').classList.add('active');
-        }
+        // Form Handling (AJAX) - Sends email without opening client
+        const form = document.getElementById('preRegForm');
+        const successMsg = document.getElementById('successMsg');
+        const submitBtn = document.getElementById('submitBtn');
 
-        function closeModal() {
-            document.getElementById('registerModal').classList.remove('active');
-        }
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Change button state
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Sende...";
+            submitBtn.style.opacity = "0.7";
+            submitBtn.disabled = true;
 
-        // Close modal if clicking outside the glass box
-        document.getElementById('registerModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success: Hide form, show message
+                    form.style.display = 'none';
+                    successMsg.style.display = 'block';
+                } else {
+                    alert("Es gab einen Fehler. Bitte versuche es später noch einmal.");
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.style.opacity = "1";
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung.");
+                submitBtn.innerText = originalBtnText;
+                submitBtn.style.opacity = "1";
+                submitBtn.disabled = false;
+            });
         });
 
-        // --- EMAIL LOGIC ---
-        function sendEmail(event) {
-            event.preventDefault();
-
-            // Gather Data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const contact = document.getElementById('contact').value;
-            const country = document.getElementById('country').value;
-            const age = document.getElementById('age').value;
-
-            // Construct Email Body
-            const subject = encodeURIComponent("Neue Registrierung: TalentiDO");
-            const body = encodeURIComponent(
-`Neue Spieler-Anmeldung
-
-Name: ${name}
-Alter: ${age}
-Land: ${country}
-Telefon: ${contact}
-Email: ${email}
-
-Gesendet von der TalentiDO Landing Page.`
-            );
-
-            // Open Email Client
-            window.location.href = `mailto:coo@talentido.com?subject=${subject}&body=${body}`;
-            
-            // Optional: Close modal after slight delay
-            setTimeout(closeModal, 1000);
-        }
-
-        // --- SNOW LOGIC (Optimized) ---
+        // Snow Effect
         document.addEventListener('DOMContentLoaded', () => {
             const snowContainer = document.body;
             const isMobile = window.innerWidth < 768;
@@ -528,17 +430,13 @@ Gesendet von der TalentiDO Landing Page.`
                 const snow = document.createElement("div");
                 snow.className = "snowflake";
                 snow.innerHTML = "❄";
-                
                 snow.style.left = Math.random() * 100 + "vw";
                 snow.style.fontSize = (Math.random() * 10 + 8) + "px";
                 snow.style.filter = `blur(${Math.random() * 1.5}px)`;
-                
                 const duration = Math.random() * 5 + 6 + "s";
                 const delay = Math.random() * 5 + "s";
-
                 snow.style.animationDuration = duration;
                 snow.style.animationDelay = delay;
-
                 snowContainer.appendChild(snow);
             }
         });
