@@ -689,6 +689,42 @@
     </div>
 </div>
 
+<div id="contact-overlay" class="fixed inset-0 z-[100] bg-[#05020A] hidden overflow-y-auto transform transition-opacity duration-200">
+    <div class="fixed top-0 left-0 w-full h-16 bg-[#05020A]/90 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-between px-6">
+        <div class="font-display font-bold text-lg">
+             <span class="text-white">talent</span><span class="text-brand-accent">iDO</span> <span class="text-gray-400 text-xs ml-2">Contact</span>
+        </div>
+        <button onclick="toggleContact()" class="text-white bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Close</button>
+    </div>
+
+    <div class="relative z-10 max-w-lg mx-auto pt-28 pb-12 px-6">
+        <div class="liquid-card p-8 rounded-2xl">
+            <h2 class="text-2xl font-display font-bold text-white mb-6">Get in Touch</h2>
+            <form action="https://formsubmit.co/coo@talentido.com" method="POST" class="space-y-4">
+                
+                <div>
+                    <label class="block text-xs uppercase text-gray-400 mb-1 tracking-widest">Name</label>
+                    <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition">
+                </div>
+                
+                <div>
+                    <label class="block text-xs uppercase text-gray-400 mb-1 tracking-widest">Email</label>
+                    <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition">
+                </div>
+                
+                <div>
+                    <label class="block text-xs uppercase text-gray-400 mb-1 tracking-widest">Message</label>
+                    <textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition"></textarea>
+                </div>
+
+                <input type="hidden" name="_subject" value="New Inquiry from TalentiDO Landing Page">
+                <input type="hidden" name="_captcha" value="false">
+
+                <button type="submit" class="w-full btn-neon py-3 rounded-lg font-bold uppercase tracking-widest mt-4 hover:shadow-lg transition-transform active:scale-95">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
 <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl h-16 glass-nav rounded-full flex items-center justify-between px-6 z-50 shadow-2xl">
   <div class="flex items-center gap-2">
     <div class="flex items-center font-display font-bold">
@@ -1033,7 +1069,7 @@
           <button onclick="togglePrivacy()" class="hover:text-white transition">Privacy</button>
           <button onclick="toggleLegal()" class="hover:text-white transition">Legal Notice</button>
           <a href="https://www.talentido.com" target="_blank" class="text-brand-accent hover:text-white transition">NFTs</a>
-          <a href="mailto:coo@talentido.com" class="hover:text-white transition font-bold border border-brand-accent/30 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm text-brand-accent">Contact Us</a>
+          <button onclick="toggleContact()" class="hover:text-white transition font-bold border border-brand-accent/30 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm text-brand-accent">Contact Us</button>
       </div>
 
       <div class="flex gap-4 text-gray-400 mt-4 md:mt-0 justify-center">
@@ -1063,6 +1099,11 @@
     }
     function toggleLegal() {
         const overlay = document.getElementById('legal-overlay');
+        overlay.classList.toggle('hidden');
+    }
+    // Added Contact Toggle
+    function toggleContact() {
+        const overlay = document.getElementById('contact-overlay');
         overlay.classList.toggle('hidden');
     }
 
