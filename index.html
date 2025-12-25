@@ -789,7 +789,7 @@
       </div>
   </div>
 
-  <div class="flex-1 w-full max-w-md lg:w-auto lg:min-w-[550px] lg:max-w-[700px] flex justify-center relative z-10">
+  <div id="price-container-parent" class="flex-1 w-full max-w-md lg:w-auto lg:min-w-[550px] lg:max-w-[700px] flex justify-center relative z-10">
       <div id="offer" class="w-full relative group perspective-1000">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-brand-accent/20 blur-[60px] rounded-full pointer-events-none"></div>
 
@@ -1113,15 +1113,23 @@
         overlay.classList.toggle('hidden');
     }
 
-    // --- DESKTOP PRICE FOCUS LOGIC (1000 IQ) ---
+    // --- DESKTOP PRICE FOCUS LOGIC (1000 IQ FIXED) ---
     function openPriceFocus(e) {
         if (window.innerWidth >= 1024) { // Only on Desktop (lg)
             e.preventDefault(); // Stop standard jump anchor
             document.getElementById('price-overlay').classList.remove('hidden');
+            
+            const wrapper = document.getElementById('offer');
             const card = document.getElementById('price-card');
             
-            // Transform to Fixed Center
-            card.classList.add('fixed', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-[100]', 'scale-110');
+            // FIX: Lift the entire parent container up in the z-stack
+            // AND remove the perspective/relative context temporarily
+            wrapper.parentElement.style.zIndex = "100"; 
+            wrapper.classList.remove('perspective-1000');
+            wrapper.classList.remove('relative');
+            
+            // Transform card to Fixed Center
+            card.classList.add('fixed', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-[101]', 'scale-110');
             // Remove hover effects to keep it stable
             card.classList.remove('relative', 'transform', 'hover:scale-[1.02]'); 
             
@@ -1132,10 +1140,16 @@
 
     function closePriceFocus() {
         document.getElementById('price-overlay').classList.add('hidden');
+        const wrapper = document.getElementById('offer');
         const card = document.getElementById('price-card');
         
-        // Revert classes
-        card.classList.remove('fixed', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-[100]', 'scale-110');
+        // Restore wrapper context
+        wrapper.parentElement.style.zIndex = ""; 
+        wrapper.classList.add('perspective-1000');
+        wrapper.classList.add('relative');
+
+        // Revert card classes
+        card.classList.remove('fixed', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-[101]', 'scale-110');
         card.classList.add('relative', 'transform', 'hover:scale-[1.02]');
         
         // Hide close button
