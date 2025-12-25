@@ -224,7 +224,6 @@
 <div class="atmos-sphere-1"></div>
 <div class="atmos-sphere-2"></div>
 
-<div id="price-overlay" class="fixed inset-0 z-[90] bg-black/80 backdrop-blur-md hidden transition-opacity duration-300" onclick="closePriceFocus()"></div>
 
 <div id="privacy-overlay" class="fixed inset-0 z-[100] bg-[#05020A] hidden overflow-y-auto transform transition-opacity duration-200">
     <div class="fixed top-0 left-0 w-full h-16 bg-[#05020A]/90 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-between px-6">
@@ -741,7 +740,7 @@
   </div>
 
   <div class="flex items-center gap-3">
-      <a href="#offer" class="hidden md:block px-6 py-2 rounded-full btn-neon font-bold text-xs uppercase tracking-wide" onclick="openPriceFocus(event)">
+      <a href="#offer" class="hidden md:block px-6 py-2 rounded-full btn-neon font-bold text-xs uppercase tracking-wide">
         Get the Gift
       </a>
       <button onclick="toggleMenu()" class="md:hidden text-white p-1 focus:outline-none">
@@ -785,22 +784,16 @@
       </div>
       
       <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <a href="#offer" class="px-8 py-3.5 rounded-xl btn-neon font-bold text-sm text-center uppercase tracking-wider shadow-lg" onclick="openPriceFocus(event)">Get Started</a>
+          <a href="#offer" class="px-8 py-3.5 rounded-xl btn-neon font-bold text-sm text-center uppercase tracking-wider shadow-lg">Get Started</a>
       </div>
   </div>
 
-  <div id="price-container-parent" class="flex-1 w-full max-w-md lg:w-auto lg:min-w-[550px] lg:max-w-[700px] flex justify-center relative z-10">
+  <div class="flex-1 w-full max-w-md lg:w-auto lg:min-w-[550px] lg:max-w-[700px] flex justify-center relative z-10">
       <div id="offer" class="w-full relative group perspective-1000">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-brand-accent/20 blur-[60px] rounded-full pointer-events-none"></div>
 
-        <div id="price-card" class="relative liquid-card rounded-[2.5rem] p-1 transform md:rotate-0 transition-all duration-500 hover:scale-[1.02]">
+        <div class="relative liquid-card rounded-[2.5rem] p-1 transform md:rotate-0 transition-all duration-500 hover:scale-[1.02]">
             
-            <button id="price-close-btn" onclick="closePriceFocus()" class="hidden absolute top-4 right-4 text-white/50 hover:text-white z-50 bg-black/50 rounded-full p-2 backdrop-blur-sm border border-white/10">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-
             <div class="bg-[#0a0514] rounded-[2.3rem] h-full relative border border-white/5 overflow-hidden">
                 
                 <div class="flex flex-col md:grid md:grid-cols-5 h-full">
@@ -1108,52 +1101,10 @@
         const overlay = document.getElementById('legal-overlay');
         overlay.classList.toggle('hidden');
     }
+    // Added Contact Toggle
     function toggleContact() {
         const overlay = document.getElementById('contact-overlay');
         overlay.classList.toggle('hidden');
-    }
-
-    // --- DESKTOP PRICE FOCUS LOGIC (1000 IQ FIXED) ---
-    function openPriceFocus(e) {
-        if (window.innerWidth >= 1024) { // Only on Desktop (lg)
-            e.preventDefault(); // Stop standard jump anchor
-            document.getElementById('price-overlay').classList.remove('hidden');
-            
-            const wrapper = document.getElementById('offer');
-            const card = document.getElementById('price-card');
-            
-            // FIX: Lift the entire parent container up in the z-stack
-            // AND remove the perspective/relative context temporarily
-            wrapper.parentElement.style.zIndex = "100"; 
-            wrapper.classList.remove('perspective-1000');
-            wrapper.classList.remove('relative');
-            
-            // Transform card to Fixed Center
-            card.classList.add('fixed', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-[101]', 'scale-110');
-            // Remove hover effects to keep it stable
-            card.classList.remove('relative', 'transform', 'hover:scale-[1.02]'); 
-            
-            // Show close button
-            document.getElementById('price-close-btn').classList.remove('hidden');
-        }
-    }
-
-    function closePriceFocus() {
-        document.getElementById('price-overlay').classList.add('hidden');
-        const wrapper = document.getElementById('offer');
-        const card = document.getElementById('price-card');
-        
-        // Restore wrapper context
-        wrapper.parentElement.style.zIndex = ""; 
-        wrapper.classList.add('perspective-1000');
-        wrapper.classList.add('relative');
-
-        // Revert card classes
-        card.classList.remove('fixed', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-[101]', 'scale-110');
-        card.classList.add('relative', 'transform', 'hover:scale-[1.02]');
-        
-        // Hide close button
-        document.getElementById('price-close-btn').classList.add('hidden');
     }
 
     // --- ACCORDION LOGIC ---
